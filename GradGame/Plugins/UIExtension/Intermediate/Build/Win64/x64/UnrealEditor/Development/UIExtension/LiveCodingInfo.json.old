@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.UIExtension.cpp.obj": [
+			"UIExtension.init.gen.cpp.obj",
+			"UIExtensionSystem.gen.cpp.obj",
+			"UIExtension.cpp.obj",
+			"UIExtensionSystem.cpp.obj"
+		]
+	}
+}

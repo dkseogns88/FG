@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\source\\commongame\\private\\commongameinstance.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\debuggame\\unrealed\\sharedpch.unrealed.project.nonoptimized.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\commongame\\definitions.commongame.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\source\\commongame\\public\\commongameinstance.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\intermediate\\build\\win64\\unrealeditor\\inc\\commongame\\uht\\commongameinstance.generated.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\source\\commongame\\public\\commonlocalplayer.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\intermediate\\build\\win64\\unrealeditor\\inc\\commongame\\uht\\commonlocalplayer.generated.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\source\\commongame\\public\\gameuimanagersubsystem.h",
+            "c:\\users\\seonggyu\\desktop\\lyrastarter\\gradgame\\plugins\\commongame\\intermediate\\build\\win64\\unrealeditor\\inc\\commongame\\uht\\gameuimanagersubsystem.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

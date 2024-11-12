@@ -1,0 +1,42 @@
+syntax = "proto3";
+package Protocol;
+
+enum ObjectType
+{
+	OBJECT_TYPE_NONE = 0;
+	OBJECT_TYPE_PLAYER = 1;
+	OBJECT_TYPE_MONSTER = 2;
+}
+
+enum PlayerType
+{
+	PLAYER_TYPE_NONE	= 0;
+}
+
+enum MonsterType
+{
+	MONSTER_TYPE_NONE		= 0;
+}
+
+enum MoveState
+{
+	MOVE_STATE_NONE		= 0;
+	MOVE_STATE_IDLE		= 1;
+	MOVE_STATE_RUN		= 2;
+}
+
+enum SkillType
+{
+	Skill_TYPE_NONE		= 0;
+	Skill_TYPE_RIFLE	= 1;
+	Skill_TYPE_DASH		= 2;
+}
+
+enum DashDirectionType
+{
+	DASH_DIRECTION_TYPE_NONE		= 0;
+	DASH_DIRECTION_TYPE_FORWARD		= 1;
+	DASH_DIRECTION_TYPE_BACKWARD	= 2;
+	DASH_DIRECTION_TYPE_LEFT		= 3;
+	DASH_DIRECTION_TYPE_RIGHT		= 4;
+}
