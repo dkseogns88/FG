@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\testengine\\task\\gradgame\\source\\gradgame\\input\\gradmappableconfigpair.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\gradgame\\definitions.gradgame.h",
+            "c:\\testengine\\task\\gradgame\\source\\gradgame\\input\\gradmappableconfigpair.h",
+            "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradmappableconfigpair.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

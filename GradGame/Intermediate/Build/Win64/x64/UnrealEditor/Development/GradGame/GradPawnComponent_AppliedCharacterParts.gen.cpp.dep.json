@@ -1,0 +1,26 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradpawncomponent_appliedcharacterparts.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\fg\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\gradgame\\definitions.gradgame.h",
+            "c:\\fg\\gradgame\\source\\gradgame\\cosmetics\\gradpawncomponent_appliedcharacterparts.h",
+            "c:\\fg\\gradgame\\source\\gradgame\\cosmetics\\gradcharacterparttypes.h",
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradcharacterparttypes.generated.h",
+            "c:\\fg\\gradgame\\source\\gradgame\\cosmetics\\gradcosmeticanimationtypes.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\gameplaytags\\classes\\gameplaytagcontainer.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\core\\public\\misc\\comparisonutility.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\gameplaytags\\uht\\gameplaytagcontainer.generated.h",
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradcosmeticanimationtypes.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\plugins\\runtime\\modulargameplay\\source\\modulargameplay\\public\\components\\pawncomponent.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\plugins\\runtime\\modulargameplay\\source\\modulargameplay\\public\\components\\gameframeworkcomponent.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\plugins\\runtime\\modulargameplay\\intermediate\\build\\win64\\unrealeditor\\inc\\modulargameplay\\uht\\gameframeworkcomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\plugins\\runtime\\modulargameplay\\intermediate\\build\\win64\\unrealeditor\\inc\\modulargameplay\\uht\\pawncomponent.generated.h",
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradpawncomponent_appliedcharacterparts.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

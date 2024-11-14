@@ -9,13 +9,15 @@
 			"CommonUIExtensions.gen.cpp.obj",
 			"GameUIManagerSubsystem.gen.cpp.obj",
 			"GameUIPolicy.gen.cpp.obj",
+			"PrimaryGameLayout.gen.cpp.obj",
 			"CommonGame.cpp.obj",
 			"CommonGameInstance.cpp.obj",
 			"CommonLocalPlayer.cpp.obj",
 			"CommonPlayerController.cpp.obj",
 			"CommonUIExtensions.cpp.obj",
 			"GameUIManagerSubsystem.cpp.obj",
-			"GameUIPolicy.cpp.obj"
+			"GameUIPolicy.cpp.obj",
+			"PrimaryGameLayout.cpp.obj"
 		]
 	}
 }

@@ -1,0 +1,14 @@
+{
+	"SourceFiles": [
+		"C:\\FG\\GradGame\\Source\\GradGame\\GradGame.Build.cs",
+		"C:\\FG\\GradGame\\Source\\ProtobufCore\\ProtobufCore.Build.cs",
+		"C:\\FG\\GradGame\\Plugins\\CommonGame\\Source\\CommonGame\\CommonGame.Build.cs",
+		"C:\\FG\\GradGame\\Plugins\\CommonUser\\Source\\CommonUser\\CommonUser.Build.cs",
+		"C:\\FG\\GradGame\\Plugins\\GameFeatures\\SewerCore\\Source\\SewerCoreRuntime\\SewerCoreRuntime.Build.cs",
+		"C:\\FG\\GradGame\\Plugins\\ModularGameplayActors\\Source\\ModularGameplayActors\\ModularGameplayActors.Build.cs",
+		"C:\\FG\\GradGame\\Plugins\\UIExtension\\Source\\UIExtension\\UIExtension.Build.cs",
+		"C:\\FG\\GradGame\\Source\\GradGame.Target.cs",
+		"C:\\FG\\GradGame\\Source\\GradGameEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}

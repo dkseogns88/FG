@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradgamemodebase.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\fg\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\gradgame\\definitions.gradgame.h",
+            "c:\\fg\\gradgame\\source\\gradgame\\gamemodes\\gradgamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\fg\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradgamemodebase.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

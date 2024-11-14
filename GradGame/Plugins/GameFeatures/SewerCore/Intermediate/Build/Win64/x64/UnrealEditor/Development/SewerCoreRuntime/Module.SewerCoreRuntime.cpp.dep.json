@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\fg\\gradgame\\plugins\\gamefeatures\\sewercore\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sewercoreruntime\\module.sewercoreruntime.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\fg\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\fg\\gradgame\\plugins\\gamefeatures\\sewercore\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sewercoreruntime\\definitions.sewercoreruntime.h",
+            "c:\\fg\\gradgame\\plugins\\gamefeatures\\sewercore\\source\\sewercoreruntime\\private\\sewercoreruntimemodule.cpp",
+            "c:\\fg\\gradgame\\plugins\\gamefeatures\\sewercore\\source\\sewercoreruntime\\public\\sewercoreruntimemodule.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

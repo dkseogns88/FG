@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\testengine\\task\\gradgame\\source\\gradgame\\camera\\gradcameramode_thirdperson.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\x64\\gradgameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\gradgame\\definitions.gradgame.h",
+            "c:\\testengine\\task\\gradgame\\source\\gradgame\\camera\\gradcameramode_thirdperson.h",
+            "c:\\testengine\\task\\gradgame\\source\\gradgame\\camera\\gradcameramode.h",
+            "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradcameramode.generated.h",
+            "c:\\testengine\\task\\gradgame\\intermediate\\build\\win64\\unrealeditor\\inc\\gradgame\\uht\\gradcameramode_thirdperson.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\curves\\curvevector.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\curvevector.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
