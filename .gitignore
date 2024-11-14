@@ -72,6 +72,8 @@ DerivedDataCache/*
 
 GradGame/Content/Effects/Textures/Flipbooks/SmokeSwirl_3_Flipbook_CHANNELPACK.uasset
 GradGame/Saved
+GradGame/Intermediate
+GradGame/DerivedDataCache
 GameServer/DummyClient/Enum.pb.h
 GameServer/DummyClient/Enum.pb.cc
 GameServer/DummyClient/Protocol.pb.cc
