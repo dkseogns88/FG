@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GradGameModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e0daa46cddd39d92530dfcd1615aa5af587d80a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GradGameModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GradGameModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

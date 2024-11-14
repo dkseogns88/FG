@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradPawnData_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradPawnData(); \
 	friend struct Z_Construct_UClass_UGradPawnData_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UGradPawnData)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradPawnData(UGradPawnData&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UGradPawnData();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_15_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_18_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_15_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_18_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h_18_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_18_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradPawnData>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradPawnData_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Character_GradPawnData_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

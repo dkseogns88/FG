@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradInventoryFragment_SetStats_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradInventoryFragment_SetStats(); \
 	friend struct Z_Construct_UClass_UGradInventoryFragment_SetStats_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UGradInventoryFragment_SetStats)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UGradInventoryFragment_SetStats(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +37,12 @@ public: \
 	NO_API virtual ~UGradInventoryFragment_SetStats();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_10_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_10_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +50,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradInventoryFragment_SetStats>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryFragment_SetStats_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

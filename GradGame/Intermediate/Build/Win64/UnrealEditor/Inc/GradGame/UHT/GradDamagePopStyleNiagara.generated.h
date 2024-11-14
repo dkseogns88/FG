@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradDamagePopStyleNiagara_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradDamagePopStyleNiagara(); \
 	friend struct Z_Construct_UClass_UGradDamagePopStyleNiagara_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UGradDamagePopStyleNiagara)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UGradDamagePopStyleNiagara(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +37,12 @@ public: \
 	NO_API virtual ~UGradDamagePopStyleNiagara();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_14_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_14_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +50,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradDamagePopStyleNiagara>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Feedback_NumberPops_GradDamagePopStyleNiagara_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

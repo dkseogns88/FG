@@ -25,7 +25,7 @@ void EmptyLinkFunctionForGeneratedCodeGradGame_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xD3BA5671,
+				0xC66CC125,
 				0x36EB9D3D,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -33,5 +33,5 @@ void EmptyLinkFunctionForGeneratedCodeGradGame_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_GradGame.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_GradGame(Z_Construct_UPackage__Script_GradGame, TEXT("/Script/GradGame"), Z_Registration_Info_UPackage__Script_GradGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xD3BA5671, 0x36EB9D3D));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_GradGame(Z_Construct_UPackage__Script_GradGame, TEXT("/Script/GradGame"), Z_Registration_Info_UPackage__Script_GradGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xC66CC125, 0x36EB9D3D));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

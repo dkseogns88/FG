@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradInventoryItemDefinition_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradInventoryItemFragment(); \
 	friend struct Z_Construct_UClass_UGradInventoryItemFragment_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UGradInventoryItemFragment)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UGradInventoryItemFragment(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,19 +37,19 @@ public: \
 	NO_API virtual ~UGradInventoryItemFragment();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_19_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_19_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 template<> GRADGAME_API UClass* StaticClass<class UGradInventoryItemFragment>();
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradInventoryItemDefinition(); \
 	friend struct Z_Construct_UClass_UGradInventoryItemDefinition_Statics; \
@@ -58,7 +58,7 @@ public: \
 	DECLARE_SERIALIZER(UGradInventoryItemDefinition)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradInventoryItemDefinition(UGradInventoryItemDefinition&&); \
@@ -70,12 +70,12 @@ public: \
 	NO_API virtual ~UGradInventoryItemDefinition();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_31_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_31_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -83,7 +83,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradInventoryItemDefinition>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Inventory_GradInventoryItemDefinition_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

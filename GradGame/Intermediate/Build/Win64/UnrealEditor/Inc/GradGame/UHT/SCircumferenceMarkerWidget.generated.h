@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_SCircumferenceMarkerWidget_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Weapons_SCircumferenceMarkerWidget_h_17_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_UI_Weapons_SCircumferenceMarkerWidget_h_17_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FCircumferenceMarkerEntry_Statics; \
 	GRADGAME_API static class UScriptStruct* StaticStruct();
 
@@ -22,7 +22,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UScriptStruct* StaticStruct<struct FCircumferenceMarkerEntry>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_UI_Weapons_SCircumferenceMarkerWidget_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_UI_Weapons_SCircumferenceMarkerWidget_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

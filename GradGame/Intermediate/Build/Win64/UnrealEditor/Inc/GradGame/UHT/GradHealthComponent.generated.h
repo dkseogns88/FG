@@ -16,18 +16,18 @@ class UGradHealthComponent;
 #endif
 #define GRADGAME_GradHealthComponent_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_19_DELEGATE \
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_19_DELEGATE \
 GRADGAME_API void FGradHealth_AttributeChanged_DelegateWrapper(const FMulticastScriptDelegate& GradHealth_AttributeChanged, UGradHealthComponent* HealthComponent, float OldValue, float NewValue, AActor* Instigator);
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetHealthNormalized); \
 	DECLARE_FUNCTION(execGetMaxHealth); \
 	DECLARE_FUNCTION(execGetHealth); \
 	DECLARE_FUNCTION(execFindHealthComponent);
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradHealthComponent(); \
 	friend struct Z_Construct_UClass_UGradHealthComponent_Statics; \
@@ -36,7 +36,7 @@ public: \
 	DECLARE_SERIALIZER(UGradHealthComponent)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradHealthComponent(UGradHealthComponent&&); \
@@ -48,13 +48,13 @@ public: \
 	NO_API virtual ~UGradHealthComponent();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_27_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_27_PROLOG
+#define FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h_30_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -62,7 +62,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradHealthComponent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Character_GradHealthComponent_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Character_GradHealthComponent_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

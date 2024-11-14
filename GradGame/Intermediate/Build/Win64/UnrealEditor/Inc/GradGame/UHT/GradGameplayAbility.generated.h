@@ -20,7 +20,7 @@ enum class EGradAbilityDashDirection : uint8;
 #endif
 #define GRADGAME_GradGameplayAbility_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execSendDash); \
 	DECLARE_FUNCTION(execClearCameraMode); \
 	DECLARE_FUNCTION(execSetCameraMode); \
@@ -30,8 +30,8 @@ enum class EGradAbilityDashDirection : uint8;
 	DECLARE_FUNCTION(execGetGradPlayerControllerFromActorInfo);
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_CALLBACK_WRAPPERS
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_CALLBACK_WRAPPERS
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradGameplayAbility(); \
 	friend struct Z_Construct_UClass_UGradGameplayAbility_Statics; \
@@ -40,7 +40,7 @@ public: \
 	DECLARE_SERIALIZER(UGradGameplayAbility)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradGameplayAbility(UGradGameplayAbility&&); \
@@ -52,14 +52,14 @@ public: \
 	NO_API virtual ~UGradGameplayAbility();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_61_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_61_PROLOG
+#define FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_CALLBACK_WRAPPERS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_CALLBACK_WRAPPERS \
+	FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h_64_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -67,7 +67,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradGameplayAbility>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_AbilitySystem_Abilities_GradGameplayAbility_h
 
 
 #define FOREACH_ENUM_EGRADABILITYACTIVATIONPOLICY(op) \

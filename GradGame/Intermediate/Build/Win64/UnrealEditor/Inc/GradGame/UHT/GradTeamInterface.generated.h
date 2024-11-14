@@ -14,8 +14,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradTeamInterface_generated_h
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_CALLBACK_WRAPPERS
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_CALLBACK_WRAPPERS
+#define FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradTeamInterface(); \
 	friend struct Z_Construct_UClass_UGradTeamInterface_Statics; \
@@ -24,7 +24,7 @@ public: \
 	DECLARE_SERIALIZER(UGradTeamInterface)
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradTeamInterface(UGradTeamInterface&&); \
@@ -36,13 +36,13 @@ public: \
 	NO_API virtual ~UGradTeamInterface();
 
 
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_12_PROLOG
-#define FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_GENERATED_BODY \
+#define FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_12_PROLOG
+#define FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_CALLBACK_WRAPPERS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_INCLASS_NO_PURE_DECLS \
-	FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_CALLBACK_WRAPPERS \
+	FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +50,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradTeamInterface>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h
+#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_UI_Teams_GradTeamInterface_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

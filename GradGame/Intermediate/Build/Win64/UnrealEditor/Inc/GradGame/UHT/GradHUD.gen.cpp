@@ -82,14 +82,14 @@ AGradHUD::~AGradHUD() {}
 // End Class AGradHUD
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_UI_GradHUD_h_Statics
+struct Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_UI_GradHUD_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AGradHUD, AGradHUD::StaticClass, TEXT("AGradHUD"), &Z_Registration_Info_UClass_AGradHUD, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGradHUD), 348932358U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_UI_GradHUD_h_2369258339(TEXT("/Script/GradGame"),
-	Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_UI_GradHUD_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_UI_GradHUD_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_UI_GradHUD_h_2369258339(TEXT("/Script/GradGame"),
+	Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_UI_GradHUD_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_UI_GradHUD_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E72487BC-BF85-3BF6-B5D9-34E5A4250341}</ProjectGuid>
+    <ProjectGuid>{178553D5-C044-3394-AB39-16F550ED8FE9}</ProjectGuid>
     <RootNamespace>GradGame</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -570,6 +570,7 @@
     <None Include="..\..\GradGame.uproject"/>
     <None Include="..\..\Source\GradGame.Target.cs"/>
     <None Include="..\..\Source\GradGameEditor.Target.cs"/>
+    <None Include="..\..\.vsconfig"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>
