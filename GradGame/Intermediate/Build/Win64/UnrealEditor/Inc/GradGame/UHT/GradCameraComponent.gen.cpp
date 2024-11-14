@@ -95,14 +95,14 @@ UGradCameraComponent::~UGradCameraComponent() {}
 // End Class UGradCameraComponent
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics
+struct Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_UGradCameraComponent, UGradCameraComponent::StaticClass, TEXT("UGradCameraComponent"), &Z_Registration_Info_UClass_UGradCameraComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGradCameraComponent), 426746550U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_Camera_GradCameraComponent_h_294899809(TEXT("/Script/GradGame"),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraComponent_h_294899809(TEXT("/Script/GradGame"),
+	Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

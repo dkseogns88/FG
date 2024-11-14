@@ -14,14 +14,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradCharacterPartTypes_generated_h
 
-#define FID_FG_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h_12_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h_12_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FGradCharacterPartHandle_Statics; \
 	GRADGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> GRADGAME_API UScriptStruct* StaticStruct<struct FGradCharacterPartHandle>();
 
-#define FID_FG_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h_31_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h_31_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FGradCharacterPart_Statics; \
 	GRADGAME_API static class UScriptStruct* StaticStruct();
 
@@ -29,7 +29,7 @@ template<> GRADGAME_API UScriptStruct* StaticStruct<struct FGradCharacterPartHan
 template<> GRADGAME_API UScriptStruct* StaticStruct<struct FGradCharacterPart>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h
+#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Cosmetics_GradCharacterPartTypes_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

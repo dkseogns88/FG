@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradGameplayAbilityTargetData_SingleTarget_generated_h
 
-#define FID_FG_GradGame_Source_GradGame_AbilitySystem_GradGameplayAbilityTargetData_SingleTarget_h_9_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_GradGameplayAbilityTargetData_SingleTarget_h_9_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FGradGameplayAbilityTargetData_SingleTargetHit_Statics; \
 	GRADGAME_API static class UScriptStruct* StaticStruct(); \
 	typedef FGameplayAbilityTargetData_SingleTargetHit Super;
@@ -23,7 +23,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UScriptStruct* StaticStruct<struct FGradGameplayAbilityTargetData_SingleTargetHit>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_AbilitySystem_GradGameplayAbilityTargetData_SingleTarget_h
+#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_AbilitySystem_GradGameplayAbilityTargetData_SingleTarget_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

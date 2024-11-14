@@ -78,14 +78,14 @@ AGradGameModeBase::~AGradGameModeBase() {}
 // End Class AGradGameModeBase
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics
+struct Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AGradGameModeBase, AGradGameModeBase::StaticClass, TEXT("AGradGameModeBase"), &Z_Registration_Info_UClass_AGradGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGradGameModeBase), 2826473434U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_175273642(TEXT("/Script/GradGame"),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_175273642(TEXT("/Script/GradGame"),
+	Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_TestEngine_Task_GradGame_Source_GradGame_GameModes_GradGameModeBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

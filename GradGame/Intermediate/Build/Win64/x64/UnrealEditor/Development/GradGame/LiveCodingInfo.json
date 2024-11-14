@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.GradGame.1.cpp.obj": [
-			"GradAbilityCost.cpp.obj",
 			"AsyncAction_ExperienceReady.gen.cpp.obj",
 			"GameFeatureAction_AddWidgets.gen.cpp.obj",
 			"GradAbilityCost.gen.cpp.obj",
@@ -31,7 +30,9 @@
 			"GradGameInstance.gen.cpp.obj",
 			"GradGameModeBase.gen.cpp.obj",
 			"GradGameplayAbility.gen.cpp.obj",
-			"GradGameplayAbility_FromEquipment.gen.cpp.obj",
+			"GradGameplayAbility_FromEquipment.gen.cpp.obj"
+		],
+		"Module.GradGame.2.cpp.obj": [
 			"GradGameplayAbility_RangedWeapon.gen.cpp.obj",
 			"GradGameplayCueManager.gen.cpp.obj",
 			"GradGameState.gen.cpp.obj",
@@ -65,11 +66,12 @@
 			"GradUIManagerSubsystem.gen.cpp.obj",
 			"GradUserFacingExperience.gen.cpp.obj",
 			"GradWeaponInstance.gen.cpp.obj",
-			"GradWeaponUserInterface.gen.cpp.obj",
-			"InventoryFragment_ReticleConfig.gen.cpp.obj",
-			"NetworkManager.gen.cpp.obj"
+			"GradWeaponUserInterface.gen.cpp.obj"
 		],
-		"Module.GradGame.2.cpp.obj": [
+		"Module.GradGame.3.cpp.obj": [
+			"InventoryFragment_ReticleConfig.gen.cpp.obj",
+			"NetworkManager.gen.cpp.obj",
+			"GradAbilityCost.cpp.obj",
 			"GradAbilityCost_ItemTagStack.cpp.obj",
 			"GradGameplayAbility.cpp.obj",
 			"GradGameplayAbility_Death.cpp.obj",

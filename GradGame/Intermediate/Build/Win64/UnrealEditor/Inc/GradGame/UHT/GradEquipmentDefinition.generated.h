@@ -14,14 +14,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradEquipmentDefinition_generated_h
 
-#define FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_15_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_15_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FGradEquipmentActorToSpawn_Statics; \
 	GRADGAME_API static class UScriptStruct* StaticStruct();
 
 
 template<> GRADGAME_API UScriptStruct* StaticStruct<struct FGradEquipmentActorToSpawn>();
 
-#define FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_INCLASS_NO_PURE_DECLS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradEquipmentDefinition(); \
 	friend struct Z_Construct_UClass_UGradEquipmentDefinition_Statics; \
@@ -30,7 +30,7 @@ public: \
 	DECLARE_SERIALIZER(UGradEquipmentDefinition)
 
 
-#define FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_ENHANCED_CONSTRUCTORS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradEquipmentDefinition(UGradEquipmentDefinition&&); \
@@ -42,12 +42,12 @@ public: \
 	NO_API virtual ~UGradEquipmentDefinition();
 
 
-#define FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_33_PROLOG
-#define FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_33_PROLOG
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_INCLASS_NO_PURE_DECLS \
-	FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_ENHANCED_CONSTRUCTORS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_INCLASS_NO_PURE_DECLS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h_36_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -55,7 +55,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradEquipmentDefinition>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h
+#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Equipment_GradEquipmentDefinition_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

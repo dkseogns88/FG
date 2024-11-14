@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GRADGAME_GradCameraMode_generated_h
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_INCLASS_NO_PURE_DECLS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradCameraMode(); \
 	friend struct Z_Construct_UClass_UGradCameraMode_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UGradCameraMode)
 
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_ENHANCED_CONSTRUCTORS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradCameraMode(UGradCameraMode&&); \
@@ -35,19 +35,19 @@ public: \
 	NO_API virtual ~UGradCameraMode();
 
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_41_PROLOG
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_41_PROLOG
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_INCLASS_NO_PURE_DECLS \
-	FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_ENHANCED_CONSTRUCTORS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_INCLASS_NO_PURE_DECLS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 template<> GRADGAME_API UClass* StaticClass<class UGradCameraMode>();
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_INCLASS_NO_PURE_DECLS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGradCameraModeStack(); \
 	friend struct Z_Construct_UClass_UGradCameraModeStack_Statics; \
@@ -56,7 +56,7 @@ public: \
 	DECLARE_SERIALIZER(UGradCameraModeStack)
 
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_ENHANCED_CONSTRUCTORS \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGradCameraModeStack(UGradCameraModeStack&&); \
@@ -68,12 +68,12 @@ public: \
 	NO_API virtual ~UGradCameraModeStack();
 
 
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_103_PROLOG
-#define FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_GENERATED_BODY \
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_103_PROLOG
+#define FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_INCLASS_NO_PURE_DECLS \
-	FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_ENHANCED_CONSTRUCTORS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_INCLASS_NO_PURE_DECLS \
+	FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h_106_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -81,7 +81,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GRADGAME_API UClass* StaticClass<class UGradCameraModeStack>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_FG_GradGame_Source_GradGame_Camera_GradCameraMode_h
+#define CURRENT_FILE_ID FID_TestEngine_Task_GradGame_Source_GradGame_Camera_GradCameraMode_h
 
 
 #define FOREACH_ENUM_EGRADCAMERAMODEBLENDFUNCTION(op) \
