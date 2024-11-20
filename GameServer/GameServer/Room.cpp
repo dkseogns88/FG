@@ -169,9 +169,12 @@ void Room::HandleFire(Protocol::C_FIRE pkt)
 
 		float newHP = hitHp - attackDamage;
 
+		if (hitPlayer->IsDead()) return;
+
 		if (newHP <= 0)
 		{
 			newHP = 0;
+			hitPlayer->SetDead(true);
 			
 			// TODO: 레드 팀, 블루 팀 구별해서 처리
 			Protocol::S_SCORE scorePkt;
@@ -272,6 +275,9 @@ void Room::ObjectRespawn(uint64 objectId)
 	player->statInfo->set_hp(100);
 	player->statInfo->set_max_hp(100);
 	player->statInfo->set_damage(50);
+
+	// 죽었다가 살아남
+	player->SetDead(false);
 
 
 	// 죽은 캐릭 재생성 전송

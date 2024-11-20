@@ -8,8 +8,10 @@ public:
 	Object();
 	virtual ~Object();
 
-	bool IsPlayer() { return _isPlayer; }
+	void SetDead(bool isDead) { _isDead = isDead; }
 
+	bool IsPlayer() { return _isPlayer; }
+	bool IsDead() { return _isDead; }
 public:
 	Protocol::ObjectInfo* objectInfo;
 	Protocol::PosInfo* posInfo;
@@ -20,5 +22,6 @@ public:
 
 protected:
 	bool _isPlayer = false;
+	bool _isDead = false;
 };
 
