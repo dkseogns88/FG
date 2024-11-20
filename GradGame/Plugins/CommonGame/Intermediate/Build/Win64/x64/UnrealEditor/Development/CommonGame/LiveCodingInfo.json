@@ -2,14 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.CommonGame.cpp.obj": [
-			"CommonGame.init.gen.cpp.obj",
-			"CommonGameInstance.gen.cpp.obj",
-			"CommonLocalPlayer.gen.cpp.obj",
-			"CommonPlayerController.gen.cpp.obj",
-			"CommonUIExtensions.gen.cpp.obj",
-			"GameUIManagerSubsystem.gen.cpp.obj",
-			"GameUIPolicy.gen.cpp.obj",
-			"PrimaryGameLayout.gen.cpp.obj",
 			"CommonGame.cpp.obj",
 			"CommonGameInstance.cpp.obj",
 			"CommonLocalPlayer.cpp.obj",
@@ -17,7 +9,15 @@
 			"CommonUIExtensions.cpp.obj",
 			"GameUIManagerSubsystem.cpp.obj",
 			"GameUIPolicy.cpp.obj",
-			"PrimaryGameLayout.cpp.obj"
+			"PrimaryGameLayout.cpp.obj",
+			"CommonGame.init.gen.cpp.obj",
+			"CommonGameInstance.gen.cpp.obj",
+			"CommonLocalPlayer.gen.cpp.obj",
+			"CommonPlayerController.gen.cpp.obj",
+			"CommonUIExtensions.gen.cpp.obj",
+			"GameUIManagerSubsystem.gen.cpp.obj",
+			"GameUIPolicy.gen.cpp.obj",
+			"PrimaryGameLayout.gen.cpp.obj"
 		]
 	}
 }

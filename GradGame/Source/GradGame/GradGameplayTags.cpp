@@ -32,6 +32,7 @@ void FGradGameplayTags::AddAllTags(UGameplayTagsManager& Manager)
 	AddTag(InputTag_Weapon_Reload, "InputTag.Weapon.Reload", "");
 	AddTag(InputTag_Weapon_ADS, "InputTag.Weapon.ADS", "");
 	AddTag(InputTag_Ability_Dash, "InputTag.Ability.Dash", "");
+	AddTag(InputTag_Ability_Shield, "InputTag.Ability.Shield", "");
 	
 	AddTag(Status_Death, "Status.Death", "");
 	AddTag(Status_Death_Dying, "Status.Death.Dying", "");
