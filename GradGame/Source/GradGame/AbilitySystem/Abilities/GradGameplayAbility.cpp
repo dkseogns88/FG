@@ -24,9 +24,42 @@ UGradGameplayAbility::UGradGameplayAbility(const FObjectInitializer& ObjectIniti
 
 }
 
+UGradAbilitySystemComponent* UGradGameplayAbility::GetGradAbilitySystemComponentFromActorInfo() const
+{
+	return (CurrentActorInfo ? Cast<UGradAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent.Get()) : nullptr);
+}
+
 AGradPlayerController* UGradGameplayAbility::GetGradPlayerControllerFromActorInfo() const
 {
 	return (CurrentActorInfo ? Cast<AGradPlayerController>(CurrentActorInfo->PlayerController.Get()) : nullptr);
+}
+
+AController* UGradGameplayAbility::GetControllerFromActorInfo() const
+{
+	if (CurrentActorInfo)
+	{
+		if (AController* PC = CurrentActorInfo->PlayerController.Get())
+		{
+			return PC;
+		}
+		// Look for a player controller or pawn in the owner chain.
+		AActor* TestActor = CurrentActorInfo->OwnerActor.Get();
+		while (TestActor)
+		{
+			if (AController* C = Cast<AController>(TestActor))
+			{
+				return C;
+			}
+
+			if (APawn* Pawn = Cast<APawn>(TestActor))
+			{
+				return Pawn->GetController();
+			}
+
+			TestActor = TestActor->GetOwner();
+		}
+	}
+	return nullptr;
 }
 
 AGradCharacter* UGradGameplayAbility::GetGradCharacterFromActorInfo() const
@@ -47,7 +80,6 @@ UGradHeroComponent* UGradGameplayAbility::GetHeroComponentFromActorInfo() const
 void UGradGameplayAbility::TryActivateAbilityOnSpawn(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) const
 {
 	const bool bIsPredicting = (Spec.ActivationInfo.ActivationMode == EGameplayAbilityActivationMode::Predicting);
-
 	// Try to activate if activation policy is on spawn.
 	if (ActorInfo && !Spec.IsActive() && !bIsPredicting && (ActivationPolicy == EGradAbilityActivationPolicy::OnSpawn))
 	{
@@ -58,19 +90,34 @@ void UGradGameplayAbility::TryActivateAbilityOnSpawn(const FGameplayAbilityActor
 		if (ASC && AvatarActor && !AvatarActor->GetTearOff() && (AvatarActor->GetLifeSpan() <= 0.0f))
 		{
 			ASC->TryActivateAbility(Spec.Handle);
-
-			/*const bool bIsLocalExecution = (NetExecutionPolicy == EGameplayAbilityNetExecutionPolicy::LocalPredicted) || (NetExecutionPolicy == EGameplayAbilityNetExecutionPolicy::LocalOnly);
-			const bool bIsServerExecution = (NetExecutionPolicy == EGameplayAbilityNetExecutionPolicy::ServerOnly) || (NetExecutionPolicy == EGameplayAbilityNetExecutionPolicy::ServerInitiated);
-
-			const bool bClientShouldActivate = ActorInfo->IsLocallyControlled() && bIsLocalExecution;
-			const bool bServerShouldActivate = ActorInfo->IsNetAuthority() && bIsServerExecution;
-
-			if (bClientShouldActivate || bServerShouldActivate)
-			{
-				ASC->TryActivateAbility(Spec.Handle);
-			}*/
 		}
 	}
+}
+
+bool UGradGameplayAbility::CanChangeActivationGroup(EGradAbilityActivationGroup NewGroup) const
+{
+	return false;
+}
+
+bool UGradGameplayAbility::ChangeActivationGroup(EGradAbilityActivationGroup NewGroup)
+{
+	if (!CanChangeActivationGroup(NewGroup))
+	{
+		return false;
+	}
+
+	if (ActivationGroup != NewGroup)
+	{
+		UGradAbilitySystemComponent* GradASC = GetGradAbilitySystemComponentFromActorInfo();
+		check(GradASC);
+
+		GradASC->RemoveAbilityFromActivationGroup(ActivationGroup, this);
+		GradASC->AddAbilityToActivationGroup(NewGroup, this);
+
+		ActivationGroup = NewGroup;
+	}
+
+	return true;
 }
 
 void UGradGameplayAbility::SetCameraMode(TSubclassOf<UGradCameraMode> CameraMode)

@@ -27,7 +27,7 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	player->statInfo->set_object_id(player->objectInfo->object_id());
 	player->statInfo->set_hp(100);
 	player->statInfo->set_max_hp(100);
-	player->statInfo->set_damage(10);
+	player->statInfo->set_damage(50);
 
 
 	// 입장 사실을 들어온 플레이어에게 알린다.
@@ -43,9 +43,7 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 		if (auto session = player->session.lock())
 			session->Send(sendBuffer);
 
-		static bool OnTime = false;
-
-		//DoTimer(2000, &Room::TestSendStat, player->statInfo->object_id(), static_cast<float>(player->statInfo->hp()), 0.f);
+		DoTimer(5000, &Room::TestGameStart);
 
 	}
 
@@ -139,68 +137,68 @@ void Room::HandleMove(Protocol::C_MOVE pkt)
 
 void Room::HandleFire(Protocol::C_FIRE pkt)
 {
-	const uint64 attackId = pkt.info().attack_object_id();
-	const uint64 hitId = pkt.info().hit_object_id();
-	const bool isHit = pkt.info().is_target_hit();
-
-
-	if (isHit)
-	{
-		auto attackPlayer = _objects.find(attackId)->second;
-		auto hitPlayer = _objects.find(hitId)->second;
-
-		if (attackPlayer == nullptr || hitPlayer == nullptr) return;
-
-		Protocol::S_FIRE firekPkt;
-		{
-			Protocol::FireInfo* info = firekPkt.mutable_info();
-			info->CopyFrom(pkt.info());
-		}
-
-		{
-			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(firekPkt);
-			Broadcast(sendBuffer);
-		}
-		float attackDamage = attackPlayer->statInfo->damage();
-		float hitHp = hitPlayer->statInfo->hp();
-
-		float newHP = hitHp - attackDamage;
-		if (newHP <= 0)
-		{
-			newHP = 0;
-			// TODO: 죽었다는 패킷 전송 필요
-		}
-
-		// ====
-
-		// TODO: 나중에 Health라는 패킷에서 damage같은 불필요한 정보 없이 보내기
-		Protocol::S_STAT statPkt;
-		Protocol::StatInfo* info = statPkt.mutable_info();
-		info->set_object_id(hitId);
-		info->set_hp(newHP);
-		{
-			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statPkt);
-			Broadcast(sendBuffer);
-		}
-
-		hitPlayer->statInfo->set_hp(newHP);
-
-		cout << "공격 ID: " << attackId << "피격 ID: " << hitId << endl;
-		cout << "공격 Damage: " << attackDamage << "피격 후 HP: " << newHP << endl << endl;
-
-	}
-	else
 	{
 		Protocol::S_FIRE firekPkt;
 		{
 			Protocol::FireInfo* info = firekPkt.mutable_info();
 			info->CopyFrom(pkt.info());
 		}
-
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(firekPkt);
 		Broadcast(sendBuffer);
 	}
 
+	const uint64 attackId = pkt.info().attack_object_id();
+	const uint64 hitId = pkt.info().hit_object_id();
+	const bool isHit = pkt.info().is_target_hit();
+	
+	auto attackIter = _objects.find(attackId);
+	auto hitIter = _objects.find(hitId);
+
+	if (attackIter == _objects.end() || hitIter == _objects.end()) return;
+	
+	auto attackPlayer = attackIter->second;
+	auto hitPlayer = hitIter->second;
+
+	if (attackPlayer == nullptr || hitPlayer == nullptr) return;
+
+
+	if (isHit)
+	{
+		float attackDamage = attackPlayer->statInfo->damage();
+		float hitHp = hitPlayer->statInfo->hp();
+
+		float newHP = hitHp - attackDamage;
+
+		if (newHP <= 0)
+		{
+			newHP = 0;
+			
+			// TODO: 레드 팀, 블루 팀 구별해서 처리
+			Protocol::S_SCORE scorePkt;
+			float NewRedScore = ++RedScore;
+			scorePkt.set_redscore(NewRedScore);
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(scorePkt);
+			Broadcast(sendBuffer);
+
+			// TODO: 여기서 특정 시간 뒤에 클라이언트 Respawn 처리
+			DoTimer(5000, &Room::ObjectRespawn, hitId);
+		}
+
+		Protocol::S_HIT hitPkt;
+		Protocol::HitInfo* info = hitPkt.mutable_info();
+		info->set_attack_object_id(attackId);
+		info->set_attack_damage(attackDamage);
+		info->set_hit_object_id(hitId);
+		info->set_hit_hp(newHP);
+
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(hitPkt);
+		Broadcast(sendBuffer);
+
+		hitPlayer->statInfo->set_hp(newHP);
+
+		cout << "공격 ID: " << attackId << "  피격 ID: " << hitId << endl;
+		cout << "공격 Damage: " << attackDamage << "  피격 후 HP: " << newHP << endl << endl;
+	}
 }
 
 void Room::HandleReload(Protocol::C_RELOAD pkt)
@@ -241,17 +239,50 @@ void Room::HandleDash(Protocol::C_DASH pkt)
 	Broadcast(sendBuffer);
 }
 
-void Room::TestSendStat(uint64 playerID, float BeforeHP, float NewHP)
+void Room::TestGameStart()
 {
-	Protocol::S_STAT statPkt;
-	Protocol::StatInfo* info = statPkt.mutable_info();
-	info->set_object_id(playerID);
-	info->set_hp(NewHP);
-	
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statPkt);
+	Protocol::S_GAMESTART gameStartpkt;
+	gameStartpkt.set_start(true);
+
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(gameStartpkt);
 	Broadcast(sendBuffer);
 }
 
+void Room::GameStart(Protocol::S_GAMESTART pkt)
+{
+
+}
+
+void Room::ObjectRespawn(uint64 objectId)
+{
+	if (_objects.find(objectId) == _objects.end())
+		return;
+
+	PlayerRef player = dynamic_pointer_cast<Player>(_objects[objectId]);
+
+	// 좌표 설정(레드팀, 블루팀)
+	player->posInfo->set_x(Utils::GetRandom(0.f, 500.f));
+	player->posInfo->set_y(Utils::GetRandom(0.f, 500.f));
+	player->posInfo->set_z(88.f);
+	player->posInfo->set_yaw(Utils::GetRandom(0.f, 500.f));
+	player->posInfo->set_move_state(Protocol::MoveState::MOVE_STATE_IDLE);
+
+	// 스탯 설정
+	player->statInfo->set_hp(100);
+	player->statInfo->set_max_hp(100);
+	player->statInfo->set_damage(50);
+
+
+	// 죽은 캐릭 재생성 전송
+	Protocol::S_RESPAWN respawnPkt;
+
+	Protocol::ObjectInfo* objectInfo = respawnPkt.mutable_objects();
+	objectInfo->CopyFrom(*player->objectInfo);
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(respawnPkt);
+	Broadcast(sendBuffer);
+}
 
 RoomRef Room::GetRoomRef()
 {

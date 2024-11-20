@@ -164,6 +164,13 @@ public:
 	/** Extension --(Broadcast) --> ExtensionPoints [Extension이 추가/제거 되었을 경우, Extension Points에 알림] */
 	void NotifyExtensionPointsOfExtension(EUIExtensionAction Action, TSharedPtr<FUIExtension>& Extension);
 
+	/**
+ * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object
+ * that they can look at to determine if it's for whatever they consider their player.
+ */
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension", meta = (DisplayName = "Register Extension (Widget For Context)"))
+	FUIExtensionHandle K2_RegisterExtensionAsWidgetForContext(FGameplayTag ExtensionPointTag, TSubclassOf<UUserWidget> WidgetClass, UObject* ContextObject, int32 Priority = -1);
+
 	/** GameplayTag(Slot) --- FUIExtension(WidgetClass) */
 	typedef TArray<TSharedPtr<FUIExtension>> FExtensionList;
 	TMap<FGameplayTag, FExtensionList> ExtensionMap;
@@ -171,4 +178,34 @@ public:
 	/** GameplayTag(Slot) --- FUIExtensionPoint(WidgetClassWithContext) */
 	typedef TArray<TSharedPtr<FUIExtensionPoint>> FExtensionPointList;
 	TMap<FGameplayTag, FExtensionPointList> ExtensionPointMap;
+};
+
+UCLASS()
+class UIEXTENSION_API UUIExtensionHandleFunctions : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
+
+public:
+	UUIExtensionHandleFunctions() { }
+
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension")
+	static void Unregister(UPARAM(ref) FUIExtensionHandle& Handle);
+
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension")
+	static bool IsValid(UPARAM(ref) FUIExtensionHandle& Handle);
+};
+
+UCLASS()
+class UIEXTENSION_API UUIExtensionPointHandleFunctions : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
+
+public:
+	UUIExtensionPointHandleFunctions() { }
+
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension")
+	static void Unregister(UPARAM(ref) FUIExtensionPointHandle& Handle);
+
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension")
+	static bool IsValid(UPARAM(ref) FUIExtensionPointHandle& Handle);
 };

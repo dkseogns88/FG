@@ -11,6 +11,7 @@
 class UGradEquipmentManagerComponent;
 class UGradEquipmentInstance;
 
+
 UCLASS(BlueprintType, Blueprintable, Meta = (BlueprintSpawnableComponent))
 class GRADGAME_API UGradNetworkComponent : public UPawnComponent
 {
@@ -29,6 +30,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "GradNet")
 	void SetActiveSlotIndex(int32 NewIndex);
 
+	UFUNCTION(BlueprintCallable, BlueprintPure = false)
+	TArray<UGradInventoryItemInstance*> GetSlots() const
+	{
+		return Slots;
+	}
+
+	UFUNCTION(BlueprintCallable)
+	UGradInventoryItemInstance* RemoveItemFromSlot(int32 SlotIndex);
+
 	void SetMoveState(Protocol::MoveState State);
 	void SetObjectInfo(const Protocol::ObjectInfo& Info);
 	void SetPosInfo(const Protocol::PosInfo& Info);
@@ -38,7 +48,6 @@ public:
 	Protocol::ObjectInfo* GetObjectInfo() { return ObjectInfo; }
 	Protocol::PosInfo* GetPosInfo() { return PosInfo; }
 	Protocol::StatInfo* GetStatInfo() { return StatInfo; }
-
 	uint64 GetObjectId() { return ObjectInfo->pos_info().object_id(); }
 
 public:

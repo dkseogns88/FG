@@ -22,12 +22,15 @@ public:
 	 */
 	virtual void InitAbilityActorInfo(AActor* InOwnerActor, AActor* InAvatarActor) override;
 
+	typedef TFunctionRef<bool(const UGradGameplayAbility* GradAbility, FGameplayAbilitySpecHandle Handle)> TShouldCancelAbilityFunc;
+	void CancelAbilitiesByFunc(TShouldCancelAbilityFunc ShouldCancelFunc, bool bReplicateCancelAbility);
+
+
 	/** Sets the current tag relationship mapping, if null it will clear it out */
 	void SetTagRelationshipMapping(UGradAbilityTagRelationshipMapping* NewMapping);
 
 	/** Looks at ability tags and gathers additional required and blocking tags */
 	void GetAdditionalActivationTagRequirements(const FGameplayTagContainer& AbilityTags, FGameplayTagContainer& OutActivationRequired, FGameplayTagContainer& OutActivationBlocked) const;
-
 
 	/**
 	 * member methods
@@ -38,6 +41,9 @@ public:
 	void ProcessAbilityInput(float DeltaTime, bool bGamePaused);
 
 	bool IsActivationGroupBlocked(EGradAbilityActivationGroup Group) const;
+	void AddAbilityToActivationGroup(EGradAbilityActivationGroup Group, UGradGameplayAbility* GradAbility);
+	void RemoveAbilityFromActivationGroup(EGradAbilityActivationGroup Group, UGradGameplayAbility* GradAbility);
+	void CancelActivationGroupAbilities(EGradAbilityActivationGroup Group, UGradGameplayAbility* IgnoreGradAbility, bool bReplicateCancelAbility);
 
 
 protected:

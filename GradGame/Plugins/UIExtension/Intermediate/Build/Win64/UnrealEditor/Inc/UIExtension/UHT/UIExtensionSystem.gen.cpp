@@ -11,9 +11,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeUIExtensionSystem() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UClass* Z_Construct_UClass_UObject_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UBlueprintFunctionLibrary();
 ENGINE_API UClass* Z_Construct_UClass_UWorldSubsystem();
 GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTag();
+UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionHandleFunctions();
+UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionHandleFunctions_NoRegister();
+UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionPointHandleFunctions();
+UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionPointHandleFunctions_NoRegister();
 UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionSubsystem();
 UIEXTENSION_API UClass* Z_Construct_UClass_UUIExtensionSubsystem_NoRegister();
 UIEXTENSION_API UEnum* Z_Construct_UEnum_UIExtension_EUIExtensionAction();
@@ -21,6 +27,7 @@ UIEXTENSION_API UEnum* Z_Construct_UEnum_UIExtension_EUIExtensionPointMatch();
 UIEXTENSION_API UScriptStruct* Z_Construct_UScriptStruct_FUIExtensionHandle();
 UIEXTENSION_API UScriptStruct* Z_Construct_UScriptStruct_FUIExtensionPointHandle();
 UIEXTENSION_API UScriptStruct* Z_Construct_UScriptStruct_FUIExtensionRequest();
+UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 UPackage* Z_Construct_UPackage__Script_UIExtension();
 // End Cross Module References
 
@@ -354,9 +361,84 @@ UScriptStruct* Z_Construct_UScriptStruct_FUIExtensionPointHandle()
 }
 // End ScriptStruct FUIExtensionPointHandle
 
+// Begin Class UUIExtensionSubsystem Function K2_RegisterExtensionAsWidgetForContext
+struct Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics
+{
+	struct UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms
+	{
+		FGameplayTag ExtensionPointTag;
+		TSubclassOf<UUserWidget> WidgetClass;
+		UObject* ContextObject;
+		int32 Priority;
+		FUIExtensionHandle ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI Extension" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/**\n * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object\n * that they can look at to determine if it's for whatever they consider their player.\n */" },
+#endif
+		{ "CPP_Default_Priority", "-1" },
+		{ "DisplayName", "Register Extension (Widget For Context)" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object\nthat they can look at to determine if it's for whatever they consider their player." },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_ExtensionPointTag;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_WidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ContextObject;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_Priority;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ExtensionPointTag = { "ExtensionPointTag", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms, ExtensionPointTag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(0, nullptr) }; // 1298103297
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_WidgetClass = { "WidgetClass", nullptr, (EPropertyFlags)0x0014000000000080, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms, WidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ContextObject = { "ContextObject", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms, ContextObject), Z_Construct_UClass_UObject_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_Priority = { "Priority", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms, Priority), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms, ReturnValue), Z_Construct_UScriptStruct_FUIExtensionHandle, METADATA_PARAMS(0, nullptr) }; // 1926367713
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ExtensionPointTag,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_WidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ContextObject,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_Priority,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIExtensionSubsystem, nullptr, "K2_RegisterExtensionAsWidgetForContext", nullptr, nullptr, Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020409, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::UIExtensionSubsystem_eventK2_RegisterExtensionAsWidgetForContext_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIExtensionSubsystem::execK2_RegisterExtensionAsWidgetForContext)
+{
+	P_GET_STRUCT(FGameplayTag,Z_Param_ExtensionPointTag);
+	P_GET_OBJECT(UClass,Z_Param_WidgetClass);
+	P_GET_OBJECT(UObject,Z_Param_ContextObject);
+	P_GET_PROPERTY(FIntProperty,Z_Param_Priority);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(FUIExtensionHandle*)Z_Param__Result=P_THIS->K2_RegisterExtensionAsWidgetForContext(Z_Param_ExtensionPointTag,Z_Param_WidgetClass,Z_Param_ContextObject,Z_Param_Priority);
+	P_NATIVE_END;
+}
+// End Class UUIExtensionSubsystem Function K2_RegisterExtensionAsWidgetForContext
+
 // Begin Class UUIExtensionSubsystem
 void UUIExtensionSubsystem::StaticRegisterNativesUUIExtensionSubsystem()
 {
+	UClass* Class = UUIExtensionSubsystem::StaticClass();
+	static const FNameNativePtrPair Funcs[] = {
+		{ "K2_RegisterExtensionAsWidgetForContext", &UUIExtensionSubsystem::execK2_RegisterExtensionAsWidgetForContext },
+	};
+	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
 IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UUIExtensionSubsystem);
 UClass* Z_Construct_UClass_UUIExtensionSubsystem_NoRegister()
@@ -372,6 +454,10 @@ struct Z_Construct_UClass_UUIExtensionSubsystem_Statics
 	};
 #endif // WITH_METADATA
 	static UObject* (*const DependentSingletons[])();
+	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext, "K2_RegisterExtensionAsWidgetForContext" }, // 2190867970
+	};
+	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UUIExtensionSubsystem>::IsAbstract,
 	};
@@ -387,11 +473,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UUIExtensionSubsystem_S
 	nullptr,
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
-	nullptr,
+	FuncInfo,
 	nullptr,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
-	0,
+	UE_ARRAY_COUNT(FuncInfo),
 	0,
 	0,
 	0x001000A0u,
@@ -414,8 +500,338 @@ DEFINE_VTABLE_PTR_HELPER_CTOR(UUIExtensionSubsystem);
 UUIExtensionSubsystem::~UUIExtensionSubsystem() {}
 // End Class UUIExtensionSubsystem
 
+// Begin Class UUIExtensionHandleFunctions Function IsValid
+struct Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics
+{
+	struct UIExtensionHandleFunctions_eventIsValid_Parms
+	{
+		FUIExtensionHandle Handle;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI Extension" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Handle;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_Handle = { "Handle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionHandleFunctions_eventIsValid_Parms, Handle), Z_Construct_UScriptStruct_FUIExtensionHandle, METADATA_PARAMS(0, nullptr) }; // 1926367713
+void Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((UIExtensionHandleFunctions_eventIsValid_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UIExtensionHandleFunctions_eventIsValid_Parms), &Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_Handle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIExtensionHandleFunctions, nullptr, "IsValid", nullptr, nullptr, Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::UIExtensionHandleFunctions_eventIsValid_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422409, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::UIExtensionHandleFunctions_eventIsValid_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIExtensionHandleFunctions::execIsValid)
+{
+	P_GET_STRUCT_REF(FUIExtensionHandle,Z_Param_Out_Handle);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=UUIExtensionHandleFunctions::IsValid(Z_Param_Out_Handle);
+	P_NATIVE_END;
+}
+// End Class UUIExtensionHandleFunctions Function IsValid
+
+// Begin Class UUIExtensionHandleFunctions Function Unregister
+struct Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics
+{
+	struct UIExtensionHandleFunctions_eventUnregister_Parms
+	{
+		FUIExtensionHandle Handle;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI Extension" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Handle;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::NewProp_Handle = { "Handle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionHandleFunctions_eventUnregister_Parms, Handle), Z_Construct_UScriptStruct_FUIExtensionHandle, METADATA_PARAMS(0, nullptr) }; // 1926367713
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::NewProp_Handle,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIExtensionHandleFunctions, nullptr, "Unregister", nullptr, nullptr, Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::UIExtensionHandleFunctions_eventUnregister_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422409, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::UIExtensionHandleFunctions_eventUnregister_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIExtensionHandleFunctions::execUnregister)
+{
+	P_GET_STRUCT_REF(FUIExtensionHandle,Z_Param_Out_Handle);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	UUIExtensionHandleFunctions::Unregister(Z_Param_Out_Handle);
+	P_NATIVE_END;
+}
+// End Class UUIExtensionHandleFunctions Function Unregister
+
+// Begin Class UUIExtensionHandleFunctions
+void UUIExtensionHandleFunctions::StaticRegisterNativesUUIExtensionHandleFunctions()
+{
+	UClass* Class = UUIExtensionHandleFunctions::StaticClass();
+	static const FNameNativePtrPair Funcs[] = {
+		{ "IsValid", &UUIExtensionHandleFunctions::execIsValid },
+		{ "Unregister", &UUIExtensionHandleFunctions::execUnregister },
+	};
+	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+}
+IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UUIExtensionHandleFunctions);
+UClass* Z_Construct_UClass_UUIExtensionHandleFunctions_NoRegister()
+{
+	return UUIExtensionHandleFunctions::StaticClass();
+}
+struct Z_Construct_UClass_UUIExtensionHandleFunctions_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "IncludePath", "UIExtensionSystem.h" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_UUIExtensionHandleFunctions_IsValid, "IsValid" }, // 1341743743
+		{ &Z_Construct_UFunction_UUIExtensionHandleFunctions_Unregister, "Unregister" }, // 289150690
+	};
+	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
+	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UUIExtensionHandleFunctions>::IsAbstract,
+	};
+	static const UECodeGen_Private::FClassParams ClassParams;
+};
+UObject* (*const Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UBlueprintFunctionLibrary,
+	(UObject* (*)())Z_Construct_UPackage__Script_UIExtension,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::ClassParams = {
+	&UUIExtensionHandleFunctions::StaticClass,
+	nullptr,
+	&StaticCppClassTypeInfo,
+	DependentSingletons,
+	FuncInfo,
+	nullptr,
+	nullptr,
+	UE_ARRAY_COUNT(DependentSingletons),
+	UE_ARRAY_COUNT(FuncInfo),
+	0,
+	0,
+	0x001000A0u,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::Class_MetaDataParams), Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::Class_MetaDataParams)
+};
+UClass* Z_Construct_UClass_UUIExtensionHandleFunctions()
+{
+	if (!Z_Registration_Info_UClass_UUIExtensionHandleFunctions.OuterSingleton)
+	{
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UUIExtensionHandleFunctions.OuterSingleton, Z_Construct_UClass_UUIExtensionHandleFunctions_Statics::ClassParams);
+	}
+	return Z_Registration_Info_UClass_UUIExtensionHandleFunctions.OuterSingleton;
+}
+template<> UIEXTENSION_API UClass* StaticClass<UUIExtensionHandleFunctions>()
+{
+	return UUIExtensionHandleFunctions::StaticClass();
+}
+DEFINE_VTABLE_PTR_HELPER_CTOR(UUIExtensionHandleFunctions);
+UUIExtensionHandleFunctions::~UUIExtensionHandleFunctions() {}
+// End Class UUIExtensionHandleFunctions
+
+// Begin Class UUIExtensionPointHandleFunctions Function IsValid
+struct Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics
+{
+	struct UIExtensionPointHandleFunctions_eventIsValid_Parms
+	{
+		FUIExtensionPointHandle Handle;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI Extension" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Handle;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_Handle = { "Handle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionPointHandleFunctions_eventIsValid_Parms, Handle), Z_Construct_UScriptStruct_FUIExtensionPointHandle, METADATA_PARAMS(0, nullptr) }; // 2722366529
+void Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((UIExtensionPointHandleFunctions_eventIsValid_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UIExtensionPointHandleFunctions_eventIsValid_Parms), &Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_Handle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIExtensionPointHandleFunctions, nullptr, "IsValid", nullptr, nullptr, Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::UIExtensionPointHandleFunctions_eventIsValid_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422409, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::UIExtensionPointHandleFunctions_eventIsValid_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIExtensionPointHandleFunctions::execIsValid)
+{
+	P_GET_STRUCT_REF(FUIExtensionPointHandle,Z_Param_Out_Handle);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=UUIExtensionPointHandleFunctions::IsValid(Z_Param_Out_Handle);
+	P_NATIVE_END;
+}
+// End Class UUIExtensionPointHandleFunctions Function IsValid
+
+// Begin Class UUIExtensionPointHandleFunctions Function Unregister
+struct Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics
+{
+	struct UIExtensionPointHandleFunctions_eventUnregister_Parms
+	{
+		FUIExtensionPointHandle Handle;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI Extension" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Handle;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::NewProp_Handle = { "Handle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIExtensionPointHandleFunctions_eventUnregister_Parms, Handle), Z_Construct_UScriptStruct_FUIExtensionPointHandle, METADATA_PARAMS(0, nullptr) }; // 2722366529
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::NewProp_Handle,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIExtensionPointHandleFunctions, nullptr, "Unregister", nullptr, nullptr, Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::UIExtensionPointHandleFunctions_eventUnregister_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422409, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::UIExtensionPointHandleFunctions_eventUnregister_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIExtensionPointHandleFunctions::execUnregister)
+{
+	P_GET_STRUCT_REF(FUIExtensionPointHandle,Z_Param_Out_Handle);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	UUIExtensionPointHandleFunctions::Unregister(Z_Param_Out_Handle);
+	P_NATIVE_END;
+}
+// End Class UUIExtensionPointHandleFunctions Function Unregister
+
+// Begin Class UUIExtensionPointHandleFunctions
+void UUIExtensionPointHandleFunctions::StaticRegisterNativesUUIExtensionPointHandleFunctions()
+{
+	UClass* Class = UUIExtensionPointHandleFunctions::StaticClass();
+	static const FNameNativePtrPair Funcs[] = {
+		{ "IsValid", &UUIExtensionPointHandleFunctions::execIsValid },
+		{ "Unregister", &UUIExtensionPointHandleFunctions::execUnregister },
+	};
+	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+}
+IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UUIExtensionPointHandleFunctions);
+UClass* Z_Construct_UClass_UUIExtensionPointHandleFunctions_NoRegister()
+{
+	return UUIExtensionPointHandleFunctions::StaticClass();
+}
+struct Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "IncludePath", "UIExtensionSystem.h" },
+		{ "ModuleRelativePath", "Public/UIExtensionSystem.h" },
+	};
+#endif // WITH_METADATA
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_UUIExtensionPointHandleFunctions_IsValid, "IsValid" }, // 3335445079
+		{ &Z_Construct_UFunction_UUIExtensionPointHandleFunctions_Unregister, "Unregister" }, // 4100562625
+	};
+	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
+	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UUIExtensionPointHandleFunctions>::IsAbstract,
+	};
+	static const UECodeGen_Private::FClassParams ClassParams;
+};
+UObject* (*const Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UBlueprintFunctionLibrary,
+	(UObject* (*)())Z_Construct_UPackage__Script_UIExtension,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::ClassParams = {
+	&UUIExtensionPointHandleFunctions::StaticClass,
+	nullptr,
+	&StaticCppClassTypeInfo,
+	DependentSingletons,
+	FuncInfo,
+	nullptr,
+	nullptr,
+	UE_ARRAY_COUNT(DependentSingletons),
+	UE_ARRAY_COUNT(FuncInfo),
+	0,
+	0,
+	0x001000A0u,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::Class_MetaDataParams), Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::Class_MetaDataParams)
+};
+UClass* Z_Construct_UClass_UUIExtensionPointHandleFunctions()
+{
+	if (!Z_Registration_Info_UClass_UUIExtensionPointHandleFunctions.OuterSingleton)
+	{
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UUIExtensionPointHandleFunctions.OuterSingleton, Z_Construct_UClass_UUIExtensionPointHandleFunctions_Statics::ClassParams);
+	}
+	return Z_Registration_Info_UClass_UUIExtensionPointHandleFunctions.OuterSingleton;
+}
+template<> UIEXTENSION_API UClass* StaticClass<UUIExtensionPointHandleFunctions>()
+{
+	return UUIExtensionPointHandleFunctions::StaticClass();
+}
+DEFINE_VTABLE_PTR_HELPER_CTOR(UUIExtensionPointHandleFunctions);
+UUIExtensionPointHandleFunctions::~UUIExtensionPointHandleFunctions() {}
+// End Class UUIExtensionPointHandleFunctions
+
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EUIExtensionPointMatch_StaticEnum, TEXT("EUIExtensionPointMatch"), &Z_Registration_Info_UEnum_EUIExtensionPointMatch, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1937886694U) },
@@ -427,12 +843,14 @@ struct Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtens
 		{ FUIExtensionPointHandle::StaticStruct, Z_Construct_UScriptStruct_FUIExtensionPointHandle_Statics::NewStructOps, TEXT("UIExtensionPointHandle"), &Z_Registration_Info_UScriptStruct_UIExtensionPointHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUIExtensionPointHandle), 2722366529U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUIExtensionSubsystem, UUIExtensionSubsystem::StaticClass, TEXT("UUIExtensionSubsystem"), &Z_Registration_Info_UClass_UUIExtensionSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionSubsystem), 1937142439U) },
+		{ Z_Construct_UClass_UUIExtensionSubsystem, UUIExtensionSubsystem::StaticClass, TEXT("UUIExtensionSubsystem"), &Z_Registration_Info_UClass_UUIExtensionSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionSubsystem), 2227351743U) },
+		{ Z_Construct_UClass_UUIExtensionHandleFunctions, UUIExtensionHandleFunctions::StaticClass, TEXT("UUIExtensionHandleFunctions"), &Z_Registration_Info_UClass_UUIExtensionHandleFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionHandleFunctions), 4229492804U) },
+		{ Z_Construct_UClass_UUIExtensionPointHandleFunctions, UUIExtensionPointHandleFunctions::StaticClass, TEXT("UUIExtensionPointHandleFunctions"), &Z_Registration_Info_UClass_UUIExtensionPointHandleFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionPointHandleFunctions), 3386953115U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_253090659(TEXT("/Script/UIExtension"),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo));
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_2461871594(TEXT("/Script/UIExtension"),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_LyraStarter_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

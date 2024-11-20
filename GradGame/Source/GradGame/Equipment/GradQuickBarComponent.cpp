@@ -107,3 +107,26 @@ void UGradQuickBarComponent::SetActiveSlotIndex(int32 NewIndex)
 		EquipItemInSlot();
 	}
 }
+
+UGradInventoryItemInstance* UGradQuickBarComponent::RemoveItemFromSlot(int32 SlotIndex)
+{
+	UGradInventoryItemInstance* Result = nullptr;
+
+	if (ActiveSlotIndex == SlotIndex)
+	{
+		UnequipItemInSlot();
+		ActiveSlotIndex = -1;
+	}
+
+	if (Slots.IsValidIndex(SlotIndex))
+	{
+		Result = Slots[SlotIndex];
+
+		if (Result != nullptr)
+		{
+			Slots[SlotIndex] = nullptr;
+		}
+	}
+
+	return Result;
+}

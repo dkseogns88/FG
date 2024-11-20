@@ -66,7 +66,13 @@ public:
 	UGradGameplayAbility(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 	
 	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
+	UGradAbilitySystemComponent* GetGradAbilitySystemComponentFromActorInfo() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
 	AGradPlayerController* GetGradPlayerControllerFromActorInfo() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
+	AController* GetControllerFromActorInfo() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
 	AGradCharacter* GetGradCharacterFromActorInfo() const;
@@ -77,7 +83,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
 	UGradHeroComponent* GetHeroComponentFromActorInfo() const;
 
+	EGradAbilityActivationPolicy GetActivationPolicy() const { return ActivationPolicy; }
+	EGradAbilityActivationGroup GetActivationGroup() const { return ActivationGroup; }
+
 	void TryActivateAbilityOnSpawn(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) const;
+
+
+	// Tries to change the activation group.  Returns true if it successfully changed.
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Grad|Ability", Meta = (ExpandBoolAsExecs = "ReturnValue"))
+	bool CanChangeActivationGroup(EGradAbilityActivationGroup NewGroup) const;
+
+	// Tries to change the activation group.  Returns true if it successfully changed.
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Grad|Ability", Meta = (ExpandBoolAsExecs = "ReturnValue"))
+	bool ChangeActivationGroup(EGradAbilityActivationGroup NewGroup);
 
 	// Sets the ability's camera mode.
 	UFUNCTION(BlueprintCallable, Category = "Grad|Ability")

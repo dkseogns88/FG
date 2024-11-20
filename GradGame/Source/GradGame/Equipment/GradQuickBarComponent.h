@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ControllerComponent.h"
+#include "Inventory/GradInventoryItemInstance.h"
 #include "GradQuickBarComponent.generated.h"
 
 class UGradEquipmentManagerComponent;
@@ -18,7 +19,7 @@ class UGradInventoryItemInstance;
  * - HUD(Slate)와 Inventory/Equipment(Gameplay)의 다리(Bridge) 역활하는 Component로 생각하자
  * - 해당 Component는 Grad의 HUD 및 Slate Widget을 다루면서 다시 보게될 예정이다
  */
-UCLASS()
+UCLASS(Blueprintable, meta = (BlueprintSpawnableComponent))
 class GRADGAME_API UGradQuickBarComponent : public UControllerComponent
 {
 	GENERATED_BODY()
@@ -42,6 +43,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Grad")
 	void SetActiveSlotIndex(int32 NewIndex);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure = false)
+	TArray<UGradInventoryItemInstance*> GetSlots() const
+	{
+		return Slots;
+	}
+
+	UFUNCTION(BlueprintCallable)
+	UGradInventoryItemInstance* RemoveItemFromSlot(int32 SlotIndex);
 
 	/** HUD QuickBar Slot 갯수 */
 	UPROPERTY()

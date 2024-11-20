@@ -30,15 +30,8 @@ public:
 protected:
 
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
-	//virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
+	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 
-	//// Starts the death sequence.
-	//UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
-	//void StartDeath();
-
-	//// Finishes the death sequence.
-	//UFUNCTION(BlueprintCallable, Category = "Grad|Ability")
-	//void FinishDeath();
 
 protected:
 

@@ -34,11 +34,15 @@ void FGradGameplayTags::AddAllTags(UGameplayTagsManager& Manager)
 	AddTag(InputTag_Ability_Dash, "InputTag.Ability.Dash", "");
 	
 	AddTag(Status_Death, "Status.Death", "");
-	
-	AddTag(GameplayEvent_Death, "GameplayEvent.Death", "");
+	AddTag(Status_Death_Dying, "Status.Death.Dying", "");
+	AddTag(Status_Death_Dead, "Status.Death.Dead", "");
 
 	AddTag(Ability_ActivateFail_IsDead, "Ability.ActivateFail.IsDead", "");
 	AddTag(Ability_ActivateFail_ActivationGroup, "Ability.ActivateFail.ActivationGroup", "");
+
+	AddTag(Ability_Behavior_SurvivesDeath, "Ability.Behavior.SurvivesDeath", "");
+
+	AddTag(GameplayEvent_Death, "GameplayEvent.Death", "");
 
 	AddTag(GameplayCue_Character_Death, "GameplayCue.Character.Death", "");
 	AddTag(GameplayCue_Character_DamageTaken, "GameplayCue.Character.DamageTaken", "");

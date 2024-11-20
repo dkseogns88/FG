@@ -12,6 +12,17 @@
 
 
 
+void UGradSystemStatics::SetScalarParameterValueOnAllMeshComponents(AActor* TargetActor, const FName ParameterName, const float ParameterValue, bool bIncludeChildActors)
+{
+	if (TargetActor != nullptr)
+	{
+		TargetActor->ForEachComponent<UMeshComponent>(bIncludeChildActors, [=](UMeshComponent* InComponent)
+			{
+				InComponent->SetScalarParameterValueOnMaterials(ParameterName, ParameterValue);
+			});
+	}
+}
+
 void UGradSystemStatics::SetVectorParameterValueOnAllMeshComponents(AActor* TargetActor, const FName ParameterName, const FVector ParameterValue, bool bIncludeChildActors)
 {
 	if (TargetActor != nullptr)

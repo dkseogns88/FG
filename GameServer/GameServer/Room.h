@@ -17,8 +17,9 @@ public:
 
 
 private:
-	void TestSendStat(uint64 playerID, float BeforeHP, float NewHP);
-
+	void TestGameStart();
+	void GameStart(Protocol::S_GAMESTART pkt);
+	void ObjectRespawn(uint64 objectId);
 
 public:
 	RoomRef GetRoomRef();
@@ -33,6 +34,10 @@ public:
 
 private:
 	unordered_map<uint64, ObjectRef> _objects;
+
+	// Temp
+	float RedScore = 0;
+	float BlueScore = 0;
 
 };
 

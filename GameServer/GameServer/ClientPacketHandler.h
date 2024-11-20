@@ -18,15 +18,19 @@ enum : uint16
 	PKT_S_LEAVE_GAME = 1005,
 	PKT_S_SPAWN = 1006,
 	PKT_S_DESPAWN = 1007,
-	PKT_C_MOVE = 1008,
-	PKT_S_MOVE = 1009,
-	PKT_S_STAT = 1010,
-	PKT_C_FIRE = 1011,
-	PKT_S_FIRE = 1012,
-	PKT_C_RELOAD = 1013,
-	PKT_S_RELOAD = 1014,
-	PKT_C_DASH = 1015,
-	PKT_S_DASH = 1016,
+	PKT_S_RESPAWN = 1008,
+	PKT_C_MOVE = 1009,
+	PKT_S_MOVE = 1010,
+	PKT_S_STAT = 1011,
+	PKT_S_GAMESTART = 1012,
+	PKT_C_FIRE = 1013,
+	PKT_S_FIRE = 1014,
+	PKT_C_RELOAD = 1015,
+	PKT_S_RELOAD = 1016,
+	PKT_S_HIT = 1017,
+	PKT_S_SCORE = 1018,
+	PKT_C_DASH = 1019,
+	PKT_S_DASH = 1020,
 };
 
 // Custom Handlers
@@ -65,10 +69,14 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::S_LEAVE_GAME& pkt) { return MakeSendBuffer(pkt, PKT_S_LEAVE_GAME); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_S_SPAWN); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_DESPAWN& pkt) { return MakeSendBuffer(pkt, PKT_S_DESPAWN); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_RESPAWN& pkt) { return MakeSendBuffer(pkt, PKT_S_RESPAWN); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_MOVE& pkt) { return MakeSendBuffer(pkt, PKT_S_MOVE); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_STAT& pkt) { return MakeSendBuffer(pkt, PKT_S_STAT); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_GAMESTART& pkt) { return MakeSendBuffer(pkt, PKT_S_GAMESTART); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_FIRE& pkt) { return MakeSendBuffer(pkt, PKT_S_FIRE); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_RELOAD& pkt) { return MakeSendBuffer(pkt, PKT_S_RELOAD); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_HIT& pkt) { return MakeSendBuffer(pkt, PKT_S_HIT); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_SCORE& pkt) { return MakeSendBuffer(pkt, PKT_S_SCORE); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_DASH& pkt) { return MakeSendBuffer(pkt, PKT_S_DASH); }
 
 private:

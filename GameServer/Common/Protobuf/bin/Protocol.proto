@@ -49,6 +49,11 @@ message S_DESPAWN
 	repeated uint64 object_ids = 1;
 }
 
+message S_RESPAWN
+{
+	ObjectInfo objects = 1;
+}
+
 message C_MOVE
 {
 	PosInfo info = 1;
@@ -62,6 +67,11 @@ message S_MOVE
 message S_STAT
 {
 	StatInfo info = 1;
+}
+
+message S_GAMESTART
+{
+	bool start = 1;
 }
 
 message C_FIRE
@@ -83,6 +93,17 @@ message S_RELOAD
 {
 	uint64 object_id = 1;
 	bool success = 2;
+}
+
+message S_HIT
+{
+	HitInfo info = 1;
+}
+
+message S_SCORE
+{
+	float RedScore	= 1;
+	float BlueScore = 2;
 }
 
 message C_DASH

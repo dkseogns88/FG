@@ -102,6 +102,15 @@ FUIExtensionHandle UUIExtensionSubsystem::RegisterExtensionAsData(const FGamepla
 	// Extension이 추가되었으니 Added로 NotifyExtensionPointsOfExtension 실행
 	NotifyExtensionPointsOfExtension(EUIExtensionAction::Added, Entry);
 
+	if (ContextObject)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("Extension [%s] @ [%s] Registered"), *GetNameSafe(Data), *ExtensionPointTag.ToString());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("Extension [%s] for [%s] @ [%s] Registered"), *GetNameSafe(Data), *GetNameSafe(ContextObject), *ExtensionPointTag.ToString());
+	}
+
 	return FUIExtensionHandle(this, Entry);
 }
 
@@ -237,4 +246,41 @@ void UUIExtensionSubsystem::NotifyExtensionPointsOfExtension(EUIExtensionAction 
 		// - ExtensionPointTagMatchType이 UIExtensionPoint 안에 있으므로!
 		bOnInitialTag = false;
 	}
+}
+
+FUIExtensionHandle UUIExtensionSubsystem::K2_RegisterExtensionAsWidgetForContext(FGameplayTag ExtensionPointTag, TSubclassOf<UUserWidget> WidgetClass, UObject* ContextObject, int32 Priority)
+{
+	if (ContextObject)
+	{
+		return RegisterExtensionAsWidgetForContext(ExtensionPointTag, ContextObject, WidgetClass, Priority);
+	}
+	else
+	{
+		FFrame::KismetExecutionMessage(TEXT("A null ContextObject was passed to Register Extension (Widget For Context)"), ELogVerbosity::Error);
+		return FUIExtensionHandle();
+	}
+}
+
+//=========================================================
+
+void UUIExtensionHandleFunctions::Unregister(UPARAM(ref)FUIExtensionHandle& Handle)
+{
+	Handle.Unregister();
+}
+
+bool UUIExtensionHandleFunctions::IsValid(UPARAM(ref)FUIExtensionHandle& Handle)
+{
+	return Handle.IsValid();
+}
+
+//=========================================================
+
+void UUIExtensionPointHandleFunctions::Unregister(UPARAM(ref)FUIExtensionPointHandle& Handle)
+{
+	Handle.Unregister();
+}
+
+bool UUIExtensionPointHandleFunctions::IsValid(UPARAM(ref)FUIExtensionPointHandle& Handle)
+{
+	return Handle.IsValid();
 }

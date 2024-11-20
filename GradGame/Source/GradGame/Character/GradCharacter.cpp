@@ -8,8 +8,12 @@
 #include "GradGame/AbilitySystem/Attributes/GradCombatSet.h"
 #include "GradGame/AbilitySystem/Attributes/GradHealthSet.h"
 #include "GradHealthComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
-// Sets default values
+#include "Network/NetworkManager.h"
+#include "Network/GradNetworkComponent.h"
+
 AGradCharacter::AGradCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -39,6 +43,8 @@ AGradCharacter::AGradCharacter()
 	// HealthComponent 생성
 	{
 		HealthComponent = CreateDefaultSubobject<UGradHealthComponent>(TEXT("HealthComponent"));
+		HealthComponent->OnDeathStarted.AddDynamic(this, &ThisClass::OnDeathStarted);
+		HealthComponent->OnDeathFinished.AddDynamic(this, &ThisClass::OnDeathFinished);
 	}
 }
 
@@ -77,5 +83,78 @@ void AGradCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Pawn이 Possess로서, Controller와 PlayerState 정보 접근이 가능한 상태가 되었음:
 	// - SetupPlayerInputComponent 확인
 	PawnExtComponent->SetupPlayerInputComponent();
+}
+
+void AGradCharacter::OnDeathStarted(AActor* OwningActor)
+{
+	DisableMovementAndCollision();
+
+	uint64 PlayerId = GetPlayerId();
+
+	/*for (auto World : GEngine->GetWorldContexts())
+	{
+		if (const UGameInstance* GameInstance = World.World()->GetGameInstance())
+		{
+			if (UNetworkManager* NetworkManager = GameInstance->GetSubsystem<UNetworkManager>())
+			{
+				NetworkManager->MyPlayer = nullptr;
+				NetworkManager->Objects.Remove(PlayerId);
+			}
+		}
+	}*/
+}
+
+void AGradCharacter::OnDeathFinished(AActor* OwningActor)
+{
+	GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ThisClass::DestroyDueToDeath);
+}
+
+void AGradCharacter::DisableMovementAndCollision()
+{
+	if (Controller)
+	{
+		Controller->SetIgnoreMoveInput(true);
+	}
+
+	UCapsuleComponent* CapsuleComp = GetCapsuleComponent();
+	check(CapsuleComp);
+	CapsuleComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
+
+	UCharacterMovementComponent* GradMoveComp = GetCharacterMovement();
+	check(GradMoveComp);
+	GradMoveComp->StopMovementImmediately();
+	GradMoveComp->DisableMovement();
+}
+
+void AGradCharacter::DestroyDueToDeath()
+{
+	K2_OnDeathFinished();
+
+	UninitAndDestroy();
+}
+
+void AGradCharacter::UninitAndDestroy()
+{
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		DetachFromControllerPendingDestroy();
+		SetLifeSpan(0.1f);
+	}
+
+	if (UGradAbilitySystemComponent* GradASC = GetGradAbilitySystemComponent())
+	{
+		if (GradASC->GetAvatarActor() == this)
+		{
+			PawnExtComponent->UninitializeAbilitySystem();
+		}
+	}
+
+	SetActorHiddenInGame(true);
+}
+
+uint64 AGradCharacter::GetPlayerId()
+{
+	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetObjectId() : 0);
 }
 

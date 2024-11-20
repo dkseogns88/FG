@@ -10,6 +10,7 @@
 #include "GradNetCharacter.generated.h"
 
 class UGradAbilitySystemComponent;
+class UGradHealthComponent;
 
 UCLASS()
 class GRADGAME_API AGradNetCharacter : public AModularCharacter
@@ -28,12 +29,31 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	virtual void OnDeathStarted(AActor* OwningActor);
+
+	UFUNCTION()
+	virtual void OnDeathFinished(AActor* OwningActor);
+
+	void DisableMovementAndCollision();
+	void DestroyDueToDeath();
+	void UninitAndDestroy();
+
+	// Called when the death sequence for the character has completed
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnDeathFinished"))
+	void K2_OnDeathFinished();
+
 	void HandleSkill(const FGameplayTag& InputTag);
 
 	UGradAbilitySystemComponent* GetGradAbilitySystemComponent() const { return AbilitySystemComponent; }
+
+	uint64 GetPlayerId();
 public:
 	UPROPERTY(VisibleAnywhere, Category = "Grad|NetCharacter")
 	TObjectPtr<UGradAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Grad|Character")
+	TObjectPtr<UGradHealthComponent> HealthComponent;
 
 public:
 	// WeaponFire

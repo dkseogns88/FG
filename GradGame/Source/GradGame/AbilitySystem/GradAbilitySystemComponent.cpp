@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "GradGame/Animation/GradAnimInstance.h"
 #include "AbilitySystem/GradAbilityTagRelationshipMapping.h"
+#include "GradLogChannels.h"
 
 UGradAbilitySystemComponent::UGradAbilitySystemComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -27,6 +28,57 @@ void UGradAbilitySystemComponent::InitAbilityActorInfo(AActor* InOwnerActor, AAc
 		if (UGradAnimInstance* GradAnimInst = Cast<UGradAnimInstance>(ActorInfo->GetAnimInstance()))
 		{
 			GradAnimInst->InitializeWithAbilitySystem(this);
+		}
+	}
+}
+
+void UGradAbilitySystemComponent::CancelAbilitiesByFunc(TShouldCancelAbilityFunc ShouldCancelFunc, bool bReplicateCancelAbility)
+{
+	ABILITYLIST_SCOPE_LOCK();
+	for (const FGameplayAbilitySpec& AbilitySpec : ActivatableAbilities.Items)
+	{
+		if (!AbilitySpec.IsActive())
+		{
+			continue;
+		}
+
+		UGradGameplayAbility* GradAbilityCDO = Cast<UGradGameplayAbility>(AbilitySpec.Ability);
+		if (!GradAbilityCDO)
+		{
+			UE_LOG(LogGrad, Error, TEXT("CancelAbilitiesByFunc: Non-GradGameplayAbility %s was Granted to ASC. Skipping."), *AbilitySpec.Ability.GetName());
+			continue;
+		}
+
+		if (GradAbilityCDO->GetInstancingPolicy() != EGameplayAbilityInstancingPolicy::NonInstanced)
+		{
+			// Cancel all the spawned instances, not the CDO.
+			TArray<UGameplayAbility*> Instances = AbilitySpec.GetAbilityInstances();
+			for (UGameplayAbility* AbilityInstance : Instances)
+			{
+				UGradGameplayAbility* GradAbilityInstance = CastChecked<UGradGameplayAbility>(AbilityInstance);
+
+				if (ShouldCancelFunc(GradAbilityInstance, AbilitySpec.Handle))
+				{
+					if (GradAbilityInstance->CanBeCanceled())
+					{
+						GradAbilityInstance->CancelAbility(AbilitySpec.Handle, AbilityActorInfo.Get(), GradAbilityInstance->GetCurrentActivationInfo(), bReplicateCancelAbility);
+					}
+					else
+					{
+						UE_LOG(LogGrad, Error, TEXT("CancelAbilitiesByFunc: Can't cancel ability [%s] because CanBeCanceled is false."), *GradAbilityInstance->GetName());
+					}
+				}
+			}
+		}
+		else
+		{
+			// Cancel the non-instanced ability CDO.
+			if (ShouldCancelFunc(GradAbilityCDO, AbilitySpec.Handle))
+			{
+				// Non-instanced abilities can always be canceled.
+				check(GradAbilityCDO->CanBeCanceled());
+				GradAbilityCDO->CancelAbility(AbilitySpec.Handle, AbilityActorInfo.Get(), FGameplayAbilityActivationInfo(), bReplicateCancelAbility);
+			}
 		}
 	}
 }
@@ -180,6 +232,56 @@ bool UGradAbilitySystemComponent::IsActivationGroupBlocked(EGradAbilityActivatio
 	}
 
 	return bBlocked;
+}
+
+void UGradAbilitySystemComponent::AddAbilityToActivationGroup(EGradAbilityActivationGroup Group, UGradGameplayAbility* GradAbility)
+{
+	check(GradAbility);
+	check(ActivationGroupCounts[(uint8)Group] < INT32_MAX);
+
+	ActivationGroupCounts[(uint8)Group]++;
+
+	const bool bReplicateCancelAbility = false;
+
+	switch (Group)
+	{
+	case EGradAbilityActivationGroup::Independent:
+		// Independent abilities do not cancel any other abilities.
+		break;
+
+	case EGradAbilityActivationGroup::Exclusive_Replaceable:
+	case EGradAbilityActivationGroup::Exclusive_Blocking:
+		CancelActivationGroupAbilities(EGradAbilityActivationGroup::Exclusive_Replaceable, GradAbility, bReplicateCancelAbility);
+		break;
+
+	default:
+		checkf(false, TEXT("AddAbilityToActivationGroup: Invalid ActivationGroup [%d]\n"), (uint8)Group);
+		break;
+	}
+
+	const int32 ExclusiveCount = ActivationGroupCounts[(uint8)EGradAbilityActivationGroup::Exclusive_Replaceable] + ActivationGroupCounts[(uint8)EGradAbilityActivationGroup::Exclusive_Blocking];
+	if (!ensure(ExclusiveCount <= 1))
+	{
+		UE_LOG(LogGrad, Error, TEXT("AddAbilityToActivationGroup: Multiple exclusive abilities are running."));
+	}
+}
+
+void UGradAbilitySystemComponent::RemoveAbilityFromActivationGroup(EGradAbilityActivationGroup Group, UGradGameplayAbility* GradAbility)
+{
+	check(GradAbility);
+	check(ActivationGroupCounts[(uint8)Group] > 0);
+
+	ActivationGroupCounts[(uint8)Group]--;
+}
+
+void UGradAbilitySystemComponent::CancelActivationGroupAbilities(EGradAbilityActivationGroup Group, UGradGameplayAbility* IgnoreGradAbility, bool bReplicateCancelAbility)
+{
+	auto ShouldCancelFunc = [this, Group, IgnoreGradAbility](const UGradGameplayAbility* GradAbility, FGameplayAbilitySpecHandle Handle)
+		{
+			return ((GradAbility->GetActivationGroup() == Group) && (GradAbility != IgnoreGradAbility));
+		};
+
+	CancelAbilitiesByFunc(ShouldCancelFunc, bReplicateCancelAbility);
 }
 
 void UGradAbilitySystemComponent::ApplyAbilityBlockAndCancelTags(const FGameplayTagContainer& AbilityTags, UGameplayAbility* RequestingAbility, bool bEnableBlockTags, const FGameplayTagContainer& BlockTags, bool bExecuteCancelTags, const FGameplayTagContainer& CancelTags)

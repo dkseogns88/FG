@@ -5,6 +5,20 @@
 #include "GradInventoryItemDefinition.h"
 #include "GradInventoryItemInstance.h"
 
+TArray<UGradInventoryItemInstance*> FGradInventoryList::GetAllItems() const
+{
+	TArray<UGradInventoryItemInstance*> Results;
+	Results.Reserve(Entries.Num());
+	for (const FGradInventoryEntry& Entry : Entries)
+	{
+		if (Entry.Instance != nullptr) //@TODO: Would prefer to not deal with this here and hide it further?
+		{
+			Results.Add(Entry.Instance);
+		}
+	}
+	return Results;
+}
+
 UGradInventoryItemInstance* FGradInventoryList::AddEntry(TSubclassOf<UGradInventoryItemDefinition> ItemDef)
 {
 	UGradInventoryItemInstance* Result = nullptr;
@@ -31,6 +45,19 @@ UGradInventoryItemInstance* FGradInventoryList::AddEntry(TSubclassOf<UGradInvent
 	return Result;
 }
 
+void FGradInventoryList::RemoveEntry(UGradInventoryItemInstance* Instance)
+{
+	for (auto EntryIt = Entries.CreateIterator(); EntryIt; ++EntryIt)
+	{
+		FGradInventoryEntry& Entry = *EntryIt;
+		if (Entry.Instance == Instance)
+		{
+			EntryIt.RemoveCurrent();
+			// MarkArrayDirty();
+		}
+	}
+}
+
 UGradInventoryManagerComponent::UGradInventoryManagerComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, InventoryList(this)
@@ -44,4 +71,19 @@ UGradInventoryItemInstance* UGradInventoryManagerComponent::AddItemDefinition(TS
 		Result = InventoryList.AddEntry(ItemDef);
 	}
 	return Result;
+}
+
+void UGradInventoryManagerComponent::RemoveItemInstance(UGradInventoryItemInstance* ItemInstance)
+{
+	InventoryList.RemoveEntry(ItemInstance);
+
+	if (ItemInstance && IsUsingRegisteredSubObjectList())
+	{
+		RemoveReplicatedSubObject(ItemInstance);
+	}
+}
+
+TArray<UGradInventoryItemInstance*> UGradInventoryManagerComponent::GetAllItems() const
+{
+	return InventoryList.GetAllItems();
 }

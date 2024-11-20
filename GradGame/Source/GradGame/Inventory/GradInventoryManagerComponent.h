@@ -29,8 +29,11 @@ struct FGradInventoryList
 
 	FGradInventoryList(UActorComponent* InOwnerComponent = nullptr) : OwnerComponent(InOwnerComponent)
 	{}
+	TArray<UGradInventoryItemInstance*> GetAllItems() const;
 
 	UGradInventoryItemInstance* AddEntry(TSubclassOf<UGradInventoryItemDefinition> ItemDef);
+
+	void RemoveEntry(UGradInventoryItemInstance* Instance);
 
 	UPROPERTY()
 	TArray<FGradInventoryEntry> Entries;
@@ -53,6 +56,12 @@ public:
 	/** InventoryItemDefinition을 통해, InventoryList에 추가하여 관리하며, InventoryItemInstance를 반환한다 */
 	UFUNCTION(BlueprintCallable, Category = Inventory)
 	UGradInventoryItemInstance* AddItemDefinition(TSubclassOf<UGradInventoryItemDefinition> ItemDef);
+
+	UFUNCTION(BlueprintCallable, Category = Inventory)
+	void RemoveItemInstance(UGradInventoryItemInstance* ItemInstance);
+
+	UFUNCTION(BlueprintCallable, Category = Inventory, BlueprintPure = false)
+	TArray<UGradInventoryItemInstance*> GetAllItems() const;
 
 	UPROPERTY()
 	FGradInventoryList InventoryList;

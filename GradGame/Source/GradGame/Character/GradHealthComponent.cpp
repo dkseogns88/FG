@@ -7,6 +7,8 @@
 #include "GameplayEffectExtension.h"
 #include "GradGame/AbilitySystem/GradAbilitySystemComponent.h"
 #include "GradGame/AbilitySystem/Attributes/GradHealthSet.h"
+#include "GradGame/GradGameplayTags.h"
+
 
 UGradHealthComponent::UGradHealthComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -112,4 +114,44 @@ float UGradHealthComponent::GetHealthNormalized() const
 		return ((MaxHealth > 0.0f) ? (Health / MaxHealth) : 0.0f);
 	}
 	return 0.0f;
+}
+
+void UGradHealthComponent::StartDeath()
+{
+	if (DeathState != EGradDeathState::NotDead)
+	{
+		return;
+	}
+
+	DeathState = EGradDeathState::DeathStarted;
+
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->SetLooseGameplayTagCount(FGradGameplayTags::Get().Status_Death_Dying, 1);
+	}
+
+	AActor* Owner = GetOwner();
+	check(Owner);
+
+	OnDeathStarted.Broadcast(Owner);
+}
+
+void UGradHealthComponent::FinishDeath()
+{
+	if (DeathState != EGradDeathState::DeathStarted)
+	{
+		return;
+	}
+
+	DeathState = EGradDeathState::DeathFinished;
+
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->SetLooseGameplayTagCount(FGradGameplayTags::Get().Status_Death_Dead, 1);
+	}
+
+	AActor* Owner = GetOwner();
+	check(Owner);
+
+	OnDeathFinished.Broadcast(Owner);
 }

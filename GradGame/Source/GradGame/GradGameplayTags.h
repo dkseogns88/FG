@@ -57,9 +57,16 @@ struct FGradGameplayTags
 	FGameplayTag Ability_ActivateFail_ActivationGroup;
 	
 	/**
+	* Ability Behavior Tags
+	*/
+	FGameplayTag Ability_Behavior_SurvivesDeath;
+
+	/**
 	 * Status Tags
 	*/
 	FGameplayTag Status_Death;
+	FGameplayTag Status_Death_Dying;
+	FGameplayTag Status_Death_Dead;
 	
 	/**
 	* GameplayEvent Tags

@@ -90,6 +90,17 @@ bool Handle_S_DESPAWN(PacketSessionRef& session, Protocol::S_DESPAWN& pkt)
 	return false;
 }
 
+bool Handle_S_RESPAWN(PacketSessionRef& session, Protocol::S_RESPAWN& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleRespawn(pkt);
+		return true;
+	}
+
+	return false;
+}
+
 bool Handle_S_MOVE(PacketSessionRef& session, Protocol::S_MOVE& pkt)
 {
 	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
@@ -111,6 +122,16 @@ bool Handle_S_STAT(PacketSessionRef& session, Protocol::S_STAT& pkt)
 	return false;
 }
 
+bool Handle_S_GAMESTART(PacketSessionRef& session, Protocol::S_GAMESTART& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleGameStart(pkt);
+		return true;
+	}
+	return false;
+}
+
 bool Handle_S_FIRE(PacketSessionRef& session, Protocol::S_FIRE& pkt)
 {
 	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
@@ -126,6 +147,26 @@ bool Handle_S_RELOAD(PacketSessionRef& session, Protocol::S_RELOAD& pkt)
 	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
 	{
 		GameNetwork->HandleReload(pkt);
+		return true;
+	}
+	return false;
+}
+
+bool Handle_S_HIT(PacketSessionRef& session, Protocol::S_HIT& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleHit(pkt);
+		return true;
+	}
+	return false;
+}
+
+bool Handle_S_SCORE(PacketSessionRef& session, Protocol::S_SCORE& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleScore(pkt);
 		return true;
 	}
 	return false;

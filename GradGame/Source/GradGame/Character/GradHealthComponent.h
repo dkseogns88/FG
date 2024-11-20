@@ -16,15 +16,23 @@ struct FOnAttributeChangeData;
 
 
 /** Health 변화 콜백을 위한 델레게이트 */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGradHealth_DeathEvent, AActor*, OwningActor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FGradHealth_AttributeChanged, UGradHealthComponent*, HealthComponent, float, OldValue, float, NewValue, AActor*, Instigator);
 
+UENUM(BlueprintType)
+enum class EGradDeathState : uint8
+{
+	NotDead = 0,
+	DeathStarted,
+	DeathFinished
+};
 
 /**
  * Character(Pawn)에 대해 체력관련 처리를 담당하는 Component이다
  * - 참고로 해당 클래스는 Blueprintable이다:
  * - 이는 멤버변수인 Delegate를 UI에서 바인딩하기 위함이다 (자세한건 클론하면서 알아보자)
  */
-UCLASS()
+UCLASS(Blueprintable, Meta = (BlueprintSpawnableComponent))
 class GRADGAME_API UGradHealthComponent : public UGameFrameworkComponent
 {
 	GENERATED_BODY()
@@ -45,6 +53,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Grad|Health")
 	float GetHealthNormalized() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Grad|Health")
+	EGradDeathState GetDeathState() const { return DeathState; }
+
+	// Begins the death sequence for the owner.
+	virtual void StartDeath();
+
+	// Ends the death sequence for the owner.
+	virtual void FinishDeath();
+
 	/** ASC와 HealthSet 초기화 */
 	void InitializeWithAbilitySystem(UGradAbilitySystemComponent* InASC);
 	void UninitializeWithAbilitySystem();
@@ -63,4 +80,16 @@ public:
 	/** health 변화에 따른 Delegate(Multicast) */
 	UPROPERTY(BlueprintAssignable)
 	FGradHealth_AttributeChanged OnHealthChanged;
+
+	// Delegate fired when the death sequence has started.
+	UPROPERTY(BlueprintAssignable)
+	FGradHealth_DeathEvent OnDeathStarted;
+
+	// Delegate fired when the death sequence has finished.
+	UPROPERTY(BlueprintAssignable)
+	FGradHealth_DeathEvent OnDeathFinished;
+
+protected:
+	UPROPERTY()
+	EGradDeathState DeathState;
 };

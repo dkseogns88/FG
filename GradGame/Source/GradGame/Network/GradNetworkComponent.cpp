@@ -12,6 +12,8 @@
 #include "GradGame/Equipment/GradEquipmentDefinition.h"
 #include "GradGame/Inventory/GradInventoryFragment_EquippableItem.h"
 #include "GradGame/Inventory/GradInventoryItemInstance.h"
+#include "AbilitySystem/GradAbilitySystemComponent.h"
+
 
 UGradNetworkComponent::UGradNetworkComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -107,6 +109,29 @@ void UGradNetworkComponent::SetActiveSlotIndex(int32 NewIndex)
 		ActiveSlotIndex = NewIndex;
 		EquipItemInSlot();
 	}
+}
+
+UGradInventoryItemInstance* UGradNetworkComponent::RemoveItemFromSlot(int32 SlotIndex)
+{
+	UGradInventoryItemInstance* Result = nullptr;
+
+	if (ActiveSlotIndex == SlotIndex)
+	{
+		UnequipItemInSlot();
+		ActiveSlotIndex = -1;
+	}
+
+	if (Slots.IsValidIndex(SlotIndex))
+	{
+		Result = Slots[SlotIndex];
+
+		if (Result != nullptr)
+		{
+			Slots[SlotIndex] = nullptr;
+		}
+	}
+
+	return Result;
 }
 
 void UGradNetworkComponent::SetMoveState(Protocol::MoveState State)

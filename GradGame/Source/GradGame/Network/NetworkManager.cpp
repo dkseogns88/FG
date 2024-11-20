@@ -18,6 +18,7 @@
 #include "AbilitySystem/GradAbilitySystemComponent.h"
 #include "AbilitySystem/Abilities/GradGameplayAbility.h"
 #include "AbilitySystem/GradAbilitySet.h"
+#include "GameModes/GradGameState.h"
 
 
 #include "GradGameplayTags.h"
@@ -137,6 +138,80 @@ void UNetworkManager::HandleDespawn(const Protocol::S_DESPAWN& DespawnPkt)
 {
 }
 
+PRAGMA_DISABLE_OPTIMIZATION
+void UNetworkManager::HandleRespawn(const Protocol::S_RESPAWN& RespawnPkt)
+{
+	auto* World = GetWorld();
+	if (World == nullptr)
+		return;
+
+	FVector SpawnLocation(RespawnPkt.objects().pos_info().x(), RespawnPkt.objects().pos_info().y(), RespawnPkt.objects().pos_info().z());
+	
+	bool IsMine = (RespawnPkt.objects().object_id() == MyPlayerId);
+	if (IsMine)
+	{
+		AGameStateBase* GameState = GetWorld()->GetGameState();
+		UGradExperienceManagerComponent* ExperienceManagerComponent = GameState->FindComponentByClass<UGradExperienceManagerComponent>();
+		check(ExperienceManagerComponent);
+
+		if (AGradGameModeBase* GameMode = GetWorld()->GetAuthGameMode<AGradGameModeBase>())
+		{
+			ExperienceManagerComponent->CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate::CreateUObject(GameMode, &AGradGameModeBase::OnExperienceLoaded));
+			
+			auto* PC = UGameplayStatics::GetPlayerController(this, 0);
+			check(PC);
+			TObjectPtr<APawn> Player = PC->GetPawn();
+			if (Player == nullptr)
+				return;
+
+			if (UGradNetworkComponent* PawnNetComp = Player->FindComponentByClass<UGradNetworkComponent>())
+			{
+				PawnNetComp->SetObjectInfo(RespawnPkt.objects());
+				PawnNetComp->SetPosInfo(RespawnPkt.objects().pos_info());
+				PawnNetComp->SetStatInfo(RespawnPkt.objects().stat_info());
+
+				Player->SetActorLocation(SpawnLocation);
+			}
+		
+			MyPlayer = Player;
+			Objects.Add(RespawnPkt.objects().object_id(), Player);
+		}
+	}
+	else 
+	{
+		const AGameStateBase* GameState = GetWorld()->GetGameState();
+		check(GameState);
+
+		UGradExperienceManagerComponent* ExperienceManagerComponent = GameState->FindComponentByClass<UGradExperienceManagerComponent>();
+		check(ExperienceManagerComponent);
+
+		UClass* NetClass = ExperienceManagerComponent->CurrentExperience->DefaultPawnData->NetPawnClass;
+		TObjectPtr<AGradNetCharacter> Player = Cast<AGradNetCharacter>(World->SpawnActor(NetClass, &SpawnLocation));
+
+		if (const UGradPawnData* PawnData = ExperienceManagerComponent->CurrentExperience->DefaultPawnData)
+		{
+			for (UGradAbilitySet* AbilitySet : PawnData->AbilitySets)
+			{
+				if (AbilitySet)
+				{
+					AbilitySet->GiveToAbilitySystem(Player->GetGradAbilitySystemComponent(), nullptr);
+				}
+			}
+		}
+
+		if (UGradNetworkComponent* PawnNetComp = Player->FindComponentByClass<UGradNetworkComponent>())
+		{
+			PawnNetComp->SetObjectInfo(RespawnPkt.objects());
+			PawnNetComp->SetPosInfo(RespawnPkt.objects().pos_info());
+			PawnNetComp->SetStatInfo(RespawnPkt.objects().stat_info());
+
+			Player->K2_NetOnEquipped();
+		}
+		Objects.Add(RespawnPkt.objects().object_id(), Player);
+	}
+	OnTeamHpChanged.Broadcast(RespawnPkt.objects().object_id(), 100.f, 100.f);
+}
+
 void UNetworkManager::HandleLeave(const Protocol::S_LEAVE_GAME& LeavePkt)
 {
 }
@@ -165,7 +240,6 @@ void UNetworkManager::HandleMove(const Protocol::S_MOVE& MovePkt)
 	}
 }
 
-PRAGMA_DISABLE_OPTIMIZATION
 void UNetworkManager::HandleStat(const Protocol::S_STAT& StatPkt)
 {
 	const uint64 ObjectId = StatPkt.info().object_id();
@@ -173,46 +247,22 @@ void UNetworkManager::HandleStat(const Protocol::S_STAT& StatPkt)
 	TObjectPtr<APawn>* FindActor = Objects.Find(ObjectId);
 	if (FindActor == nullptr)
 		return;
-	
-	float BeforeHP;
-	float NewHP;
+
 	const Protocol::StatInfo& Info = StatPkt.info();
 	if (UGradNetworkComponent* PawnNetComp = (*FindActor)->FindComponentByClass<UGradNetworkComponent>())
 	{
-		BeforeHP = PawnNetComp->GetStatInfo()->hp();
-
 		PawnNetComp->SetStatInfo(Info);
-
-		NewHP = StatPkt.info().hp();
-
-		// 왼쪽 밑에 팀원들에 피 Update
-		OnTeamHpChanged.Broadcast(ObjectId, BeforeHP, NewHP);
 	}
+}
 
-	if (UGradHealthComponent* PawnHealthComp = (*FindActor)->FindComponentByClass<UGradHealthComponent>())
+void UNetworkManager::HandleGameStart(const Protocol::S_GAMESTART& StatPkt)
+{
+	bool IsStart = StatPkt.start();
+	if (IsStart)
 	{
-		// Lyra에 있는 HealthComponent를 사용하고 있다. 추후에 변경이 필요하다.
-		// 나의 캐릭터에 대한 피 Update
-		PawnHealthComp->OnHealthChanged.Broadcast(PawnHealthComp, BeforeHP, NewHP, nullptr);
+		OnScoreGoal.Broadcast(20, 20);
+		OnScore.Broadcast(0, 0);
 	}
-
-	// TODO: 여기서 죽음에 처리
-	if (NewHP <= 0.f)
-	{
-		{
-			UGradAbilitySystemComponent* GradASC = (*FindActor)->FindComponentByClass<UGradAbilitySystemComponent>();
-			if (GradASC)
-			{
-				FGameplayEventData Payload;
-				Payload.EventTag = FGradGameplayTags::Get().GameplayEvent_Death;
-				Payload.Instigator = *FindActor;
-				Payload.Target = GradASC->GetAvatarActor();
-
-				GradASC->HandleGameplayEvent(Payload.EventTag, &Payload);
-			}
-		}
-	}
-
 }
 
 void UNetworkManager::HandleFire(const Protocol::S_FIRE& FirePkt)
@@ -251,32 +301,6 @@ void UNetworkManager::HandleFire(const Protocol::S_FIRE& FirePkt)
 			}
 		}
 	}
-	
-
-	const bool IsHit = FirePkt.info().is_target_hit();
-	if (IsHit)
-	{
-		const uint64 HitId = FirePkt.info().hit_object_id();
-		TObjectPtr<APawn>* HitPlayer = Objects.Find(HitId);
-
-		FHitResult HitResult;
-		HitResult.HitObjectHandle = FActorInstanceHandle(HitPlayer->Get());
-		HitResult.Location = (*HitPlayer)->GetActorLocation();
-		AActor* HitGetActor = HitResult.GetActor();
-		HitGetActor =  HitPlayer->Get();
-
-
-		FGameplayCueParameters CueParams;
-		CueParams.EffectContext = FGameplayEffectContextHandle(new FGameplayEffectContext());
-		CueParams.EffectContext.AddHitResult(HitResult);
-		// TODO: 데미지를 단순 10이 아니러 캐릭터에 데미지로 변경 해야함
-		CueParams.RawMagnitude = 10.f;
-
-		FGameplayTag HitEffectTag =	FGradGameplayTags::Get().GameplayCue_Character_DamageTaken;
-		UGameplayCueFunctionLibrary::ExecuteGameplayCueOnActor(AttackPlayer->Get(), HitEffectTag, CueParams);
-
-	}
-
 }
 
 void UNetworkManager::HandleReload(const Protocol::S_RELOAD& ReloadkPkt)
@@ -304,6 +328,81 @@ void UNetworkManager::HandleReload(const Protocol::S_RELOAD& ReloadkPkt)
 	{
 		NetPawn->HandleSkill(GameplayTags.InputTag_Weapon_Reload);
 	}
+}
+
+void UNetworkManager::HandleHit(const Protocol::S_HIT& HitPkt)
+{
+	uint64 HitObjectId = HitPkt.info().hit_object_id();
+	uint64 AttackObjectId = HitPkt.info().attack_object_id();
+
+	TObjectPtr<APawn>* HitObject = Objects.Find(HitObjectId);
+	TObjectPtr<APawn>* AttackObject = Objects.Find(AttackObjectId);
+	if (HitObject == nullptr || AttackObject == nullptr) return;
+
+	float BeforeHP = 0;
+	float NewHP = 0;
+
+	if (UGradNetworkComponent* HitPawnNetComp = (*HitObject)->FindComponentByClass<UGradNetworkComponent>())
+	{
+		BeforeHP = HitPawnNetComp->GetStatInfo()->hp();
+		NewHP = HitPkt.info().hit_hp();
+		HitPawnNetComp->GetStatInfo()->set_hp(NewHP);
+
+		// 왼쪽 밑에 팀원들에 피 Update
+		OnTeamHpChanged.Broadcast(HitObjectId, BeforeHP, NewHP);
+	}
+
+	if (UGradHealthComponent* PawnHealthComp = (*HitObject)->FindComponentByClass<UGradHealthComponent>())
+	{
+		// 나의 캐릭터에 대한 피 Update
+		// - Lyra에 있는 HealthComponent를 사용하고 있다. 추후에 변경이 필요하다.
+		PawnHealthComp->OnHealthChanged.Broadcast(PawnHealthComp, BeforeHP, NewHP, nullptr);
+	}
+
+	FHitResult HitResult;
+	HitResult.HitObjectHandle = FActorInstanceHandle(HitObject->Get());
+	HitResult.Location = (*HitObject)->GetActorLocation();
+	AActor* HitGetActor = HitResult.GetActor();
+
+	FGameplayCueParameters CueParams;
+	CueParams.EffectContext = FGameplayEffectContextHandle(new FGameplayEffectContext());
+	CueParams.EffectContext.AddHitResult(HitResult);
+
+	if (UGradNetworkComponent* AttackPawnNetComp = (*AttackObject)->FindComponentByClass<UGradNetworkComponent>())
+	{
+		CueParams.RawMagnitude = BeforeHP = AttackPawnNetComp->GetStatInfo()->damage();
+	}
+	else {
+		CueParams.RawMagnitude = 0.f;
+	}
+
+	FGameplayTag HitEffectTag = FGradGameplayTags::Get().GameplayCue_Character_DamageTaken;
+	UGameplayCueFunctionLibrary::ExecuteGameplayCueOnActor(AttackObject->Get(), HitEffectTag, CueParams);
+
+	if (NewHP <= 0.f)
+	{
+		UGradAbilitySystemComponent* GradASC = (*HitObject)->FindComponentByClass<UGradAbilitySystemComponent>();
+		if (GradASC)
+		{
+			FGameplayEventData Payload;
+			Payload.EventTag = FGradGameplayTags::Get().GameplayEvent_Death;
+			Payload.Instigator = *HitObject;
+			Payload.Target = GradASC->GetAvatarActor();
+
+			GradASC->HandleGameplayEvent(Payload.EventTag, &Payload);
+		}
+
+		Objects.Remove(HitObjectId);
+		if (MyPlayer == *HitObject)MyPlayer = nullptr;
+	}
+}
+
+void UNetworkManager::HandleScore(const Protocol::S_SCORE& ScorePkt)
+{
+	float RedScore = ScorePkt.redscore();
+	float BlueScore = ScorePkt.bluescore();
+
+	OnScore.Broadcast(RedScore, BlueScore);
 }
 
 void UNetworkManager::HandleDash(const Protocol::S_DASH& DashPkt)
@@ -377,6 +476,7 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 		}
 
 		MyPlayer = Player;
+		MyPlayerId = ObjectInfo.pos_info().object_id();
 		Objects.Add(ObjectInfo.object_id(), Player);
 	}
 	else
@@ -412,9 +512,5 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 
 		Objects.Add(ObjectInfo.object_id(), Player);
 	}
-
-	// 캐릭터가 추가되었으니 왼쪽 하단에 팀 체력바 업그레이드 해보자
-	//OnTeamMembersChanged.ExecuteIfBound(PlayerIDs, Objects.Num());
-
 }
 PRAGMA_ENABLE_OPTIMIZATION

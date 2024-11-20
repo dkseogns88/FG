@@ -1,8 +1,5 @@
 {
 	"RemapUnityFiles": 
 	{
-		"Module.SewerCoreRuntime.cpp.obj": [
-			"SewerCoreRuntimeModule.cpp.obj"
-		]
 	}
 }

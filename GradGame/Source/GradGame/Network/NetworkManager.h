@@ -17,6 +17,8 @@ class AGradNetCharacter;
 
 DECLARE_DELEGATE_TwoParams(FTeamMembers_ChangedDelegate, TArray<int32>, int32);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FTeamHp_ChangedDelegate,int32, PlayerID, float, OldValue, float, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScoreGoal_Delegate, float, RedGoal, float, BlueGoal);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScore_ChangedDelegate, float, RedScore, float, BlueScore);
 
 UCLASS()
 class GRADGAME_API UNetworkManager : public UGameInstanceSubsystem
@@ -48,12 +50,17 @@ public:
 	void HandleDespawn(uint64 ObjectId);
 	void HandleDespawn(const Protocol::S_DESPAWN& DespawnPkt);
 
+	void HandleRespawn(const Protocol::S_RESPAWN& RespawnPkt);
+
 	void HandleLeave(const Protocol::S_LEAVE_GAME& LeavePkt);
 
 	void HandleMove(const Protocol::S_MOVE& MovePkt);
 	void HandleStat(const Protocol::S_STAT& StatPkt);
+	void HandleGameStart(const Protocol::S_GAMESTART& StatPkt);
 	void HandleFire(const Protocol::S_FIRE& FirePkt);
 	void HandleReload(const Protocol::S_RELOAD& ReloadkPkt);
+	void HandleHit(const Protocol::S_HIT& HitPkt);
+	void HandleScore(const Protocol::S_SCORE& ScorePkt);
 	void HandleDash(const Protocol::S_DASH& DashPkt);
 
 private:
@@ -69,6 +76,7 @@ public:
 public:
 	UPROPERTY()
 	TObjectPtr<APawn> MyPlayer;
+	uint64 MyPlayerId = 0;
 
 	UPROPERTY()
 	TMap<uint64, TObjectPtr<APawn>> Objects;
@@ -79,6 +87,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FTeamHp_ChangedDelegate OnTeamHpChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FScoreGoal_Delegate OnScoreGoal;
+
+	UPROPERTY(BlueprintAssignable)
+	FScore_ChangedDelegate OnScore;
 };
 
 template <typename T> 

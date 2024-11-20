@@ -52,3 +52,11 @@ message FireInfo
 	float camrot_yaw				= 9;
 	float camrot_roll				= 10;
 }
+
+message HitInfo
+{
+	uint64	attack_object_id		= 1;
+	float	attack_damage			= 2;
+	uint64	hit_object_id			= 3;
+	float	hit_hp					= 4;
+}

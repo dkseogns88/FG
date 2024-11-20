@@ -23,6 +23,10 @@ public:
 	
 	// Sets ParameterName to ParameterValue on all sections of all mesh components found on the TargetActor
 	UFUNCTION(BlueprintCallable, Category = "Rendering|Material", meta = (DefaultToSelf = "TargetActor"))
+	static void SetScalarParameterValueOnAllMeshComponents(AActor* TargetActor, const FName ParameterName, const float ParameterValue, bool bIncludeChildActors = true);
+
+	// Sets ParameterName to ParameterValue on all sections of all mesh components found on the TargetActor
+	UFUNCTION(BlueprintCallable, Category = "Rendering|Material", meta = (DefaultToSelf = "TargetActor"))
 	static void SetVectorParameterValueOnAllMeshComponents(AActor* TargetActor, const FName ParameterName, const FVector ParameterValue, bool bIncludeChildActors = true);
 
 	// Sets ParameterName to ParameterValue on all sections of all mesh components found on the TargetActor
