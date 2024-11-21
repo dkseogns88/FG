@@ -23,20 +23,20 @@ UCLASS(Blueprintable, Meta = (BlueprintSpawnableComponent))
 class GRADGAME_API UGradHeroComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
 {
 	GENERATED_BODY()
-	
+
 public:
 	UGradHeroComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	/** Returns the hero component if one exists on the specified actor. */
 	UFUNCTION(BlueprintPure, Category = "Grad|Hero")
 	static UGradHeroComponent* FindHeroComponent(const AActor* Actor) { return (Actor ? Actor->FindComponentByClass<UGradHeroComponent>() : nullptr); }
-	
+
 	/** Overrides the camera from an active gameplay ability */
 	void SetAbilityCameraMode(TSubclassOf<UGradCameraMode> CameraMode, const FGameplayAbilitySpecHandle& OwningSpecHandle);
-	
+
 	/** Clears the camera override if it is set */
 	void ClearAbilityCameraMode(const FGameplayAbilitySpecHandle& OwningSpecHandle);
-	
+
 	/** FeatureName Á¤ÀÇ */
 	static const FName NAME_ActorFeatureName;
 

@@ -165,9 +165,9 @@ public:
 	void NotifyExtensionPointsOfExtension(EUIExtensionAction Action, TSharedPtr<FUIExtension>& Extension);
 
 	/**
- * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object
- * that they can look at to determine if it's for whatever they consider their player.
- */
+	 * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object
+	 * that they can look at to determine if it's for whatever they consider their player.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "UI Extension", meta = (DisplayName = "Register Extension (Widget For Context)"))
 	FUIExtensionHandle K2_RegisterExtensionAsWidgetForContext(FGameplayTag ExtensionPointTag, TSubclassOf<UUserWidget> WidgetClass, UObject* ContextObject, int32 Priority = -1);
 

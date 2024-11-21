@@ -18,8 +18,8 @@ UCLASS()
 class GRADGAME_API UGradPawnExtensionComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
 {
 	GENERATED_BODY()
-	
-	public:
+
+public:
 	UGradPawnExtensionComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	/** FeatureName 정의 */
@@ -36,9 +36,9 @@ class GRADGAME_API UGradPawnExtensionComponent : public UPawnComponent, public I
 	UGradAbilitySystemComponent* GetGradAbilitySystemComponent() const { return AbilitySystemComponent; }
 
 	/** AbilitySystemComponent의 AvatorActor 대상 초기화/해제 호출 */
-	void InitializeAbilitySystem(UGradAbilitySystemComponent* InASC, AActor* InOwnerActor);
+	void InitializeAbilitySystem(UGradAbilitySystemComponent* InASC, AActor* InOwnerActor, APlayerState* GradPS);
 	void UninitializeAbilitySystem();
-	
+
 	/** OnAbilitySystem[Initialized|Uninitialized] Delegate에 추가: */
 	void OnAbilitySystemInitialized_RegisterAndCall(FSimpleMulticastDelegate::FDelegate Delegate);
 	void OnAbilitySystemUninitialized_Register(FSimpleMulticastDelegate::FDelegate Delegate);

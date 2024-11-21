@@ -171,7 +171,7 @@ void UGradHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* M
 			UGradAbilitySystemComponent* AbliltyComponent = Pawn->FindComponentByClass<UGradAbilitySystemComponent>();
 			if (AbliltyComponent)
 			{
-				PawnExtComp->InitializeAbilitySystem(AbliltyComponent, Pawn);
+				PawnExtComp->InitializeAbilitySystem(AbliltyComponent, Pawn, GradPS);
 			}
 		}
 
@@ -333,7 +333,7 @@ void UGradHeroComponent::Input_Move(const FInputActionValue& InputActionValue)
 			GradPlayerController->DesiredMoveDirection += ForwardDirection * Value.X;
 			GradPlayerController->DesiredMoveDirection += RightDirection * Value.Y;
 			GradPlayerController->DesiredMoveDirection.Normalize();
-			
+
 			GradPlayerController->DesiredYaw = MovementRotation.Yaw;
 		}
 	}

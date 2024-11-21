@@ -376,7 +376,7 @@ struct Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetF
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "UI Extension" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object\n * that they can look at to determine if it's for whatever they consider their player.\n */" },
+		{ "Comment", "/**\n\x09 * Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object\n\x09 * that they can look at to determine if it's for whatever they consider their player.\n\x09 */" },
 #endif
 		{ "CPP_Default_Priority", "-1" },
 		{ "DisplayName", "Register Extension (Widget For Context)" },
@@ -455,7 +455,7 @@ struct Z_Construct_UClass_UUIExtensionSubsystem_Statics
 #endif // WITH_METADATA
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext, "K2_RegisterExtensionAsWidgetForContext" }, // 2190867970
+		{ &Z_Construct_UFunction_UUIExtensionSubsystem_K2_RegisterExtensionAsWidgetForContext, "K2_RegisterExtensionAsWidgetForContext" }, // 350706632
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -831,7 +831,7 @@ UUIExtensionPointHandleFunctions::~UUIExtensionPointHandleFunctions() {}
 // End Class UUIExtensionPointHandleFunctions
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EUIExtensionPointMatch_StaticEnum, TEXT("EUIExtensionPointMatch"), &Z_Registration_Info_UEnum_EUIExtensionPointMatch, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1937886694U) },
@@ -843,14 +843,14 @@ struct Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtens
 		{ FUIExtensionPointHandle::StaticStruct, Z_Construct_UScriptStruct_FUIExtensionPointHandle_Statics::NewStructOps, TEXT("UIExtensionPointHandle"), &Z_Registration_Info_UScriptStruct_UIExtensionPointHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FUIExtensionPointHandle), 2722366529U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUIExtensionSubsystem, UUIExtensionSubsystem::StaticClass, TEXT("UUIExtensionSubsystem"), &Z_Registration_Info_UClass_UUIExtensionSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionSubsystem), 2227351743U) },
+		{ Z_Construct_UClass_UUIExtensionSubsystem, UUIExtensionSubsystem::StaticClass, TEXT("UUIExtensionSubsystem"), &Z_Registration_Info_UClass_UUIExtensionSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionSubsystem), 3159614112U) },
 		{ Z_Construct_UClass_UUIExtensionHandleFunctions, UUIExtensionHandleFunctions::StaticClass, TEXT("UUIExtensionHandleFunctions"), &Z_Registration_Info_UClass_UUIExtensionHandleFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionHandleFunctions), 4229492804U) },
 		{ Z_Construct_UClass_UUIExtensionPointHandleFunctions, UUIExtensionPointHandleFunctions::StaticClass, TEXT("UUIExtensionPointHandleFunctions"), &Z_Registration_Info_UClass_UUIExtensionPointHandleFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIExtensionPointHandleFunctions), 3386953115U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_2461871594(TEXT("/Script/UIExtension"),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo),
-	Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo));
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_1114538820(TEXT("/Script/UIExtension"),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::ScriptStructInfo),
+	Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_SeongGyu_Desktop_FG_GradGame_Plugins_UIExtension_Source_UIExtension_Public_UIExtensionSystem_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
