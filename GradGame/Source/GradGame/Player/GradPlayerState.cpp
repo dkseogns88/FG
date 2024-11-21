@@ -8,6 +8,7 @@
 #include "GradGame/Character/GradPawnData.h"
 #include "GradGame/AbilitySystem/GradAbilitySystemComponent.h"
 #include "GradGame/AbilitySystem/GradAbilitySet.h"
+#include "GradLogChannels.h"
 
 void AGradPlayerState::PostInitializeComponents()
 {
@@ -33,10 +34,14 @@ void AGradPlayerState::OnExperienceLoaded(const UGradExperienceDefinition* Curre
 	{
 		// AGradGameMode에서 GetPawnDataForController를 구현해야 함
 		// - GetPawnDataForController에서 우리는 아직 PawnData를 설정하지 않았으므로, ExperienceMangerComponent의 DefaultPawnData로 설정한다
-		const UGradPawnData* NewPawnData = GameMode->GetPawnDataForController(GetOwningController());
-		check(NewPawnData);
-
-		SetPawnData(NewPawnData);
+		if (const UGradPawnData* NewPawnData = GameMode->GetPawnDataForController(GetOwningController()))
+		{
+			SetPawnData(NewPawnData);
+		}
+		else
+		{
+			UE_LOG(LogGrad, Error, TEXT("ALyraPlayerState::OnExperienceLoaded(): Unable to find PawnData to initialize player state [%s]!"), *GetNameSafe(this));
+		}
 	}
 }
 

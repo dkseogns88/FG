@@ -22,6 +22,7 @@ public class GradGame : ModuleRules
 			"GameplayTags",
 			"GameplayTasks",
             "GameplayAbilities",
+            "GameplayMessageRuntime",
 			// Game Features
 			"ModularGameplay",
 			"GameFeatures",
@@ -35,6 +36,10 @@ public class GradGame : ModuleRules
             "CommonGame",
             // CommonUI
             "CommonUI",
+            // CommonLoadingScreen,
+            "CommonLoadingScreen",
+			// ControlFlows
+			"ControlFlows",
             // UMG
             "UMG",
 			// UIExtension

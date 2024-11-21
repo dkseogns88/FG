@@ -17,6 +17,7 @@ public:
 	 */
 	virtual int32 AddLocalPlayer(ULocalPlayer* NewPlayer, FPlatformUserId UserId) override;
 	virtual bool RemoveLocalPlayer(ULocalPlayer* ExistingPlayer) override;
+	virtual void Init() override;
 
 	/** 메인 로컬 플레이어를 캐싱한다 */
 	TWeakObjectPtr<ULocalPlayer> PrimaryPlayer;

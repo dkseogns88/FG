@@ -9,6 +9,7 @@
 #include "GradExperienceActionSet.h"
 #include "GradGame/System/GradAssetManager.h"
 
+
 void UGradExperienceManagerComponent::CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate&& Delegate)
 {
 	// 그냥 단순히 OnExperienceLoaded.Add(Delegate)를 해주면 되는데
@@ -247,6 +248,7 @@ void UGradExperienceManagerComponent::OnExperienceFullLoadCompleted()
 	}
 
 	LoadState = EGradExperienceLoadState::Loaded;
+
 	OnExperienceLoaded.Broadcast(CurrentExperience);
 	OnExperienceLoaded.Clear();
 }

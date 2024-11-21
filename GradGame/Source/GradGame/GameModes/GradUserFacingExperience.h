@@ -26,4 +26,8 @@ public:
 	/** the gameplay expierence to load */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Experience, meta = (AllowedTypes = "GradExperienceDefinition"))
 	FPrimaryAssetId ExperienceID;
+
+	/** The loading screen widget to show when loading into (or back out of) a given experience */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = LoadingScreen)
+	TSoftClassPtr<UUserWidget> LoadingScreenWidget;
 };

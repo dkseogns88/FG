@@ -13,6 +13,7 @@
 #include "GradGame/Character/GradPawnExtensionComponent.h"
 #include "GradGame/UI/GradHUD.h"
 #include "Kismet/GameplayStatics.h"
+#include "GradWorldSettings.h"
 
 AGradGameModeBase::AGradGameModeBase()
 {
@@ -129,6 +130,14 @@ void AGradGameModeBase::HandleMatchAssignmentIfNotExpectingOne()
 		// Experience의 Value를 가져와서, PrimaryAssetId를 생성해준다: 이때, HakExperienceDefinition의 Class 이름을 사용한다
 		const FString ExperienceFromOptions = UGameplayStatics::ParseOption(OptionsString, TEXT("Experience"));
 		ExperienceId = FPrimaryAssetId(FPrimaryAssetType(UGradExperienceDefinition::StaticClass()->GetFName()), FName(*ExperienceFromOptions));
+	}
+
+	if (!ExperienceId.IsValid())
+	{
+		if (AGradWorldSettings* TypedWorldSettings = Cast<AGradWorldSettings>(GetWorldSettings()))
+		{
+			ExperienceId = TypedWorldSettings->GetDefaultGameplayExperience();
+		}
 	}
 
 	// fall back to the default experience

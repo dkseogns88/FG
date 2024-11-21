@@ -333,7 +333,7 @@ void UGradHeroComponent::Input_Move(const FInputActionValue& InputActionValue)
 			GradPlayerController->DesiredMoveDirection += ForwardDirection * Value.X;
 			GradPlayerController->DesiredMoveDirection += RightDirection * Value.Y;
 			GradPlayerController->DesiredMoveDirection.Normalize();
-
+			
 			GradPlayerController->DesiredYaw = MovementRotation.Yaw;
 		}
 	}

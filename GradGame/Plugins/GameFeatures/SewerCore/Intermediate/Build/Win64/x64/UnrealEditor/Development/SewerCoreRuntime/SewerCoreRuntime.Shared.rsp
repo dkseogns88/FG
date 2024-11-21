@@ -1,5 +1,5 @@
 /I "."
-/I "C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Source\SewerCoreRuntime\Private"
+/I "C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Source\SewerCoreRuntime\Private"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\UHT"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode"
 /I "Runtime\CoreUObject\Public"
@@ -282,8 +282,8 @@
 /I "Editor\SceneDepthPickerMode\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationEditMode\UHT"
 /I "Editor\AnimationEditMode\Public"
-/I "C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Source"
-/I "C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Source\SewerCoreRuntime\Public"
+/I "C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Source"
+/I "C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Source\SewerCoreRuntime\Public"
 /external:W0
 /external:I "ThirdParty\LibTiff\Source\Win64"
 /external:I "ThirdParty\LibTiff\Source"

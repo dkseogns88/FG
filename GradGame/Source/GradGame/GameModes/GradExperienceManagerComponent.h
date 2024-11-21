@@ -37,6 +37,8 @@ public:
 	 */
 	bool IsExperienceLoaded() { return (LoadState == EGradExperienceLoadState::Loaded) && (CurrentExperience != nullptr); }
 
+	
+	
 	/**
 	 * 아래의 OnExperienceLoaded에 바인딩하거나, 이미 Experience 로딩이 완료되었다면 바로 호출함
 	 */

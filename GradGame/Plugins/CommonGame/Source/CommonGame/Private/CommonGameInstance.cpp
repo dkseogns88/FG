@@ -31,3 +31,8 @@ bool UCommonGameInstance::RemoveLocalPlayer(ULocalPlayer* ExistingPlayer)
 	GetSubsystem<UGameUIManagerSubsystem>()->NotifyPlayerDestroyed(Cast<UCommonLocalPlayer>(ExistingPlayer));
 	return Super::RemoveLocalPlayer(ExistingPlayer);
 }
+
+void UCommonGameInstance::Init()
+{
+	Super::Init();
+}
