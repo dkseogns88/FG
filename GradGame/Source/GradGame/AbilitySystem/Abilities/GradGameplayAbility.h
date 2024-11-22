@@ -141,4 +141,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SendDash(EGradAbilityDashDirection DashDirection, FVector MoveDirection);
 
+	UFUNCTION(BlueprintCallable)
+	void SendShield(FVector SpawnLocation, FRotator SpawnRotator);
+
 };

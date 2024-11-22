@@ -272,6 +272,26 @@ void Room::HandleDash(Protocol::C_DASH pkt)
 	Broadcast(sendBuffer);
 }
 
+void Room::HandleShield(Protocol::C_SHIELD pkt)
+{
+	const uint64 objectId = pkt.object_id();
+	if (_objects.find(objectId) == _objects.end())
+		return;
+
+	
+	Protocol::S_SHIELD shieldPkt;
+	shieldPkt.set_object_id(pkt.object_id());
+	shieldPkt.set_spawn_location_x(pkt.spawn_location_x());
+	shieldPkt.set_spawn_location_y(pkt.spawn_location_y());
+	shieldPkt.set_spawn_location_z(pkt.spawn_location_z());
+	shieldPkt.set_spawn_rotation_pitch(pkt.spawn_rotation_pitch());
+	shieldPkt.set_spawn_rotation_yaw(pkt.spawn_rotation_yaw());
+	shieldPkt.set_spawn_rotation_roll(pkt.spawn_rotation_roll());
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(shieldPkt);
+	Broadcast(sendBuffer);
+}
+
 void Room::TestGameStart()
 {
 	Protocol::S_GAMESTART gameStartpkt;

@@ -65,4 +65,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FVector MoveDirection;
+
+	// Shield
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FVector ShieldLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FRotator ShieldRotator;
 };

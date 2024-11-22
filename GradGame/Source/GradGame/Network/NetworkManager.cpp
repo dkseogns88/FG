@@ -467,6 +467,28 @@ void UNetworkManager::HandleDash(const Protocol::S_DASH& DashPkt)
 	}
 }
 
+void UNetworkManager::HandleShield(const Protocol::S_SHIELD ShieldPkt)
+{
+	const uint64 ObjectId = ShieldPkt.object_id();
+
+	TObjectPtr<APawn>* FindActor = Objects.Find(ObjectId);
+	if (FindActor == nullptr)
+		return;
+
+	if (MyPlayer == (*FindActor)) return;
+
+	AGradNetCharacter* NetPawn = Cast<AGradNetCharacter>(*FindActor);
+	NetPawn->ShieldLocation.X = ShieldPkt.spawn_location_x();
+	NetPawn->ShieldLocation.Y = ShieldPkt.spawn_location_y();
+	NetPawn->ShieldLocation.Z = ShieldPkt.spawn_location_z();
+	NetPawn->ShieldRotator.Pitch = ShieldPkt.spawn_rotation_pitch();
+	NetPawn->ShieldRotator.Yaw = ShieldPkt.spawn_rotation_yaw();
+	NetPawn->ShieldRotator.Roll = ShieldPkt.spawn_rotation_roll();
+
+	const FGradGameplayTags& GameplayTags = FGradGameplayTags::Get();
+	NetPawn->HandleSkill(GameplayTags.InputTag_Ability_Targeting);
+}
+
 void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine)
 {
 	auto* World = GetWorld();

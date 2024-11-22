@@ -380,3 +380,36 @@ void UGradGameplayAbility::SendDash(EGradAbilityDashDirection DashDirection, FVe
 		}
 	}
 }
+
+void UGradGameplayAbility::SendShield(FVector SpawnLocation, FRotator SpawnRotator)
+{
+	AGradCharacter* const AvatarPawn = Cast<AGradCharacter>(GetAvatarActorFromActorInfo());
+	if (AvatarPawn)
+	{
+		if (UGradNetworkComponent* NCP = AvatarPawn->FindComponentByClass<UGradNetworkComponent>())
+		{
+			Protocol::PosInfo* PosInfo = NCP->GetPosInfo();
+
+			Protocol::C_SHIELD ShieldPkt;
+			ShieldPkt.set_object_id(NCP->GetObjectId());
+			ShieldPkt.set_spawn_location_x(SpawnLocation.X);
+			ShieldPkt.set_spawn_location_y(SpawnLocation.Y);
+			ShieldPkt.set_spawn_location_z(SpawnLocation.Z);
+			ShieldPkt.set_spawn_rotation_pitch(SpawnRotator.Pitch);
+			ShieldPkt.set_spawn_rotation_yaw(SpawnRotator.Yaw);
+			ShieldPkt.set_spawn_rotation_roll(SpawnRotator.Roll);
+
+			for (auto World : GEngine->GetWorldContexts())
+			{
+				if (const UGameInstance* GameInstance = World.World()->GetGameInstance())
+				{
+					if (UNetworkManager* NetworkManager = GameInstance->GetSubsystem<UNetworkManager>())
+					{
+						NetworkManager->SendPacket(ShieldPkt);
+						return;
+					}
+				}
+			}
+		}
+	}
+}

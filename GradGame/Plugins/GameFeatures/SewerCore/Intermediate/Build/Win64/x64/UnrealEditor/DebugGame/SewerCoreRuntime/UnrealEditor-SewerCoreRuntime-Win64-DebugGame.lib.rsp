@@ -6,7 +6,7 @@
 /NAME:"UnrealEditor-SewerCoreRuntime-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\SewerCoreRuntimeModule.cpp.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Default.rc2.res"
-/OUT:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.lib"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Module.SewerCoreRuntime.cpp.obj"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Default.rc2.res"
+/OUT:"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.lib"

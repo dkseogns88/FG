@@ -35,9 +35,9 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\SewerCoreRuntimeModule.cpp.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Default.rc2.res"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Module.SewerCoreRuntime.cpp.obj"
+"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Slate\UnrealEditor-Slate.lib"
@@ -68,7 +68,7 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Binaries\Win64\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.dll"
-/IMPLIB:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.sup.lib"
-/PDB:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\GameFeatures\SewerCore\Binaries\Win64\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.pdb"
+/OUT:"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Binaries\Win64\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.dll"
+/IMPLIB:"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SewerCoreRuntime\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.sup.lib"
+/PDB:"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\GameFeatures\SewerCore\Binaries\Win64\UnrealEditor-SewerCoreRuntime-Win64-DebugGame.pdb"
 /ignore:4078

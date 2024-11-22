@@ -32,6 +32,8 @@ enum : uint16
 	PKT_S_SCORE = 1019,
 	PKT_C_DASH = 1020,
 	PKT_S_DASH = 1021,
+	PKT_C_SHIELD = 1022,
+	PKT_S_SHIELD = 1023,
 };
 
 // Custom Handlers
@@ -51,6 +53,7 @@ bool Handle_S_RELOAD(PacketSessionRef& session, Protocol::S_RELOAD& pkt);
 bool Handle_S_HIT(PacketSessionRef& session, Protocol::S_HIT& pkt);
 bool Handle_S_SCORE(PacketSessionRef& session, Protocol::S_SCORE& pkt);
 bool Handle_S_DASH(PacketSessionRef& session, Protocol::S_DASH& pkt);
+bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt);
 
 class ServerPacketHandler
 {
@@ -74,6 +77,7 @@ public:
 		GPacketHandler[PKT_S_HIT] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_HIT>(Handle_S_HIT, session, buffer, len); };
 		GPacketHandler[PKT_S_SCORE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_SCORE>(Handle_S_SCORE, session, buffer, len); };
 		GPacketHandler[PKT_S_DASH] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_DASH>(Handle_S_DASH, session, buffer, len); };
+		GPacketHandler[PKT_S_SHIELD] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_SHIELD>(Handle_S_SHIELD, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -88,6 +92,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::C_FIRE& pkt) { return MakeSendBuffer(pkt, PKT_C_FIRE); }
 	static SendBufferRef MakeSendBuffer(Protocol::C_RELOAD& pkt) { return MakeSendBuffer(pkt, PKT_C_RELOAD); }
 	static SendBufferRef MakeSendBuffer(Protocol::C_DASH& pkt) { return MakeSendBuffer(pkt, PKT_C_DASH); }
+	static SendBufferRef MakeSendBuffer(Protocol::C_SHIELD& pkt) { return MakeSendBuffer(pkt, PKT_C_SHIELD); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>

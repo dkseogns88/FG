@@ -14,7 +14,7 @@ public:
 	void HandleFire(Protocol::C_FIRE pkt);
 	void HandleReload(Protocol::C_RELOAD pkt);
 	void HandleDash(Protocol::C_DASH pkt);
-
+	void HandleShield(Protocol::C_SHIELD pkt);
 
 private:
 	void TestGameStart();

@@ -69,6 +69,7 @@ public:
 	void HandleHit(const Protocol::S_HIT& HitPkt);
 	void HandleScore(const Protocol::S_SCORE& ScorePkt);
 	void HandleDash(const Protocol::S_DASH& DashPkt);
+	void HandleShield(const Protocol::S_SHIELD ShieldPkt);
 
 private:
 	void SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine);

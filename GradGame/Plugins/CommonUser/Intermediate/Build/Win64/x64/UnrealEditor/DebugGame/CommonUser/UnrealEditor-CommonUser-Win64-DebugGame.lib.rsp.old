@@ -6,9 +6,9 @@
 /NAME:"UnrealEditor-CommonUser-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\Module.CommonUser.cpp.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\CommonSessionSubsystem.cpp.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\CommonUser.cpp.obj"
-"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\Default.rc2.res"
-/OUT:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame_School\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\UnrealEditor-CommonUser-Win64-DebugGame.lib"
+"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
+"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\Module.CommonUser.cpp.obj"
+"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\CommonSessionSubsystem.cpp.obj"
+"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\CommonUser.cpp.obj"
+"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\Default.rc2.res"
+/OUT:"C:\Users\SeongGyu\Desktop\LyraStarter\GradGame\Plugins\CommonUser\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CommonUser\UnrealEditor-CommonUser-Win64-DebugGame.lib"

@@ -191,3 +191,13 @@ bool Handle_S_DASH(PacketSessionRef& session, Protocol::S_DASH& pkt)
 	}
 	return false;
 }
+
+bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleShield(pkt);
+		return true;
+	}
+	return false;
+}
