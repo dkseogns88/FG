@@ -16,6 +16,9 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 {
 	bool success = AddObject(player);
 
+	// 인원 찼음! 입장 불가!
+	if (RedTeamCount <= 0 && BlueTeamCount <= 0) return false;
+
 	// 좌표 설정
 	player->posInfo->set_x(Utils::GetRandom(0.f, 500.f));
 	player->posInfo->set_y(Utils::GetRandom(0.f, 500.f));
@@ -29,6 +32,17 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	player->statInfo->set_max_hp(100);
 	player->statInfo->set_damage(50);
 
+	// 팀 설정
+	if (RedTeamCount > 0)
+	{
+		player->SetTeamType(ETeamType::Red);
+		--RedTeamCount;
+	}
+	else if (BlueTeamCount > 0)
+	{
+		player->SetTeamType(ETeamType::Blue);
+		--BlueTeamCount;
+	}
 
 	// 입장 사실을 들어온 플레이어에게 알린다.
 	{
@@ -42,16 +56,6 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(enterGamePkt);
 		if (auto session = player->session.lock())
 			session->Send(sendBuffer);
-
-		if (_objects.size() == 2) {
-			Protocol::S_GAMEREADY readyPkt;
-			readyPkt.set_ready(true);
-
-
-			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(readyPkt);
-			Broadcast(sendBuffer);
-			DoTimer(5000, &Room::TestGameStart);
-		}
 	}
 
 
@@ -85,6 +89,17 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(spawnPkt);
 		if (auto session = player->session.lock())
 			session->Send(sendBuffer);
+	}
+
+	// 모든 인원 입장 완료 게임 준비 및 시작
+	if (RedTeamCount == 0 && BlueTeamCount == 0) {
+		Protocol::S_GAMEREADY readyPkt;
+		readyPkt.set_ready(true);
+
+
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(readyPkt);
+		Broadcast(sendBuffer);
+		DoTimer(5000, &Room::TestGameStart);
 	}
 
 	return success;
@@ -183,10 +198,18 @@ void Room::HandleFire(Protocol::C_FIRE pkt)
 			newHP = 0;
 			hitPlayer->SetDead(true);
 			
-			// TODO: 레드 팀, 블루 팀 구별해서 처리
+			if (attackPlayer->GetTeamType() == ETeamType::Red)
+			{
+				++RedTeamScore;
+			}
+			else if (attackPlayer->GetTeamType() == ETeamType::Blue)
+			{
+				++BlueTeamScore;
+			}
+
 			Protocol::S_SCORE scorePkt;
-			float NewRedScore = ++RedScore;
-			scorePkt.set_redscore(NewRedScore);
+			scorePkt.set_redscore(RedTeamScore);
+			scorePkt.set_bluescore(BlueTeamScore);
 			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(scorePkt);
 			Broadcast(sendBuffer);
 
