@@ -10,6 +10,7 @@
 			"GameUIManagerSubsystem.gen.cpp.obj",
 			"GameUIPolicy.gen.cpp.obj",
 			"PrimaryGameLayout.gen.cpp.obj",
+			"AsyncAction_PushContentToLayerForPlayer.cpp.obj",
 			"CommonGame.cpp.obj",
 			"CommonGameInstance.cpp.obj",
 			"CommonLocalPlayer.cpp.obj",

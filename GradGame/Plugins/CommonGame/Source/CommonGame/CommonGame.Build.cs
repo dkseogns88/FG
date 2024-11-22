@@ -18,6 +18,7 @@ public class CommonGame : ModuleRules
                 "Slate",
                 "SlateCore",
                 "UMG",
+				"CommonInput",
                 "CommonUI",
                 "CommonUser",
                 "GameplayTags",
