@@ -6,6 +6,7 @@
 #include "Protocol.pb.h"
 #include "../GradGame.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "Tickable.h"
 #include "NetworkManager.generated.h"
 
 class AGradCharacter;
@@ -21,15 +22,18 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScoreGoal_Delegate, float, RedGoal
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScore_ChangedDelegate, float, RedScore, float, BlueScore);
 
 UCLASS()
-class GRADGAME_API UNetworkManager : public UGameInstanceSubsystem
+class GRADGAME_API UNetworkManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
 	GENERATED_BODY()
 public:
 	virtual void Deinitialize() override;
+	virtual void Tick(float DeltaTime) override;
+	virtual TStatId GetStatId() const override { return UObject::GetStatID(); };
+	virtual bool IsTickable() const override { return IsConnected; }
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void ConnectToGameServer();
+	bool ConnectToGameServer();
 
 	UFUNCTION(BlueprintCallable)
 	void DisconnectFromGameServer();
@@ -68,10 +72,15 @@ private:
 
 public:
 	class FSocket* Socket;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Network")
 	FString IpAddress = TEXT("127.0.0.1");
+	
 	int16 Port = 7777;
 
 	TSharedPtr<class PacketSession> GameServerSession;
+
+	bool IsConnected = false;
 
 public:
 	UPROPERTY()
