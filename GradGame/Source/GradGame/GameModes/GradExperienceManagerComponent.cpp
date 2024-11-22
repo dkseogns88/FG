@@ -10,6 +10,18 @@
 #include "GradGame/System/GradAssetManager.h"
 
 
+void UGradExperienceManagerComponent::CallOrRegister_OnExperienceLoaded_HighPriority(FOnGradExperienceLoaded::FDelegate&& Delegate)
+{
+	if (IsExperienceLoaded())
+	{
+		Delegate.Execute(CurrentExperience);
+	}
+	else
+	{
+		OnExperienceLoaded_HighPriority.Add(MoveTemp(Delegate));
+	}
+}
+
 void UGradExperienceManagerComponent::CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate&& Delegate)
 {
 	// 그냥 단순히 OnExperienceLoaded.Add(Delegate)를 해주면 되는데
@@ -248,6 +260,9 @@ void UGradExperienceManagerComponent::OnExperienceFullLoadCompleted()
 	}
 
 	LoadState = EGradExperienceLoadState::Loaded;
+
+	OnExperienceLoaded_HighPriority.Broadcast(CurrentExperience);
+	OnExperienceLoaded_HighPriority.Clear();
 
 	OnExperienceLoaded.Broadcast(CurrentExperience);
 	OnExperienceLoaded.Clear();

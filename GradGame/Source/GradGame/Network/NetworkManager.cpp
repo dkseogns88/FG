@@ -27,11 +27,21 @@
 void UNetworkManager::Deinitialize()
 {
 	// DisconnectFromGameServer();
+	Socket = nullptr;
 }
 
-void UNetworkManager::ConnectToGameServer()
+void UNetworkManager::Tick(float DeltaTime)
 {
-	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateSocket(TEXT("Stream"), TEXT("Client Socket"));
+	if (IsConnected)
+	{
+		HandleRecvPackets();
+		UE_LOG(LogGrad, Log, TEXT("NetworkManager Is Tick!"));
+	}
+}
+
+bool UNetworkManager::ConnectToGameServer()
+{
+	if(Socket == nullptr) Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateSocket(TEXT("Stream"), TEXT("Client Socket"));
 
 	FIPv4Address Ip;
 	FIPv4Address::Parse(IpAddress, Ip);
@@ -41,9 +51,9 @@ void UNetworkManager::ConnectToGameServer()
 	InternetAddr->SetPort(Port);
 
 
-	bool Connected = Socket->Connect(*InternetAddr);
+	IsConnected = Socket->Connect(*InternetAddr);
 
-	if (Connected)
+	if (IsConnected)
 	{
 		// Session
 		GameServerSession = MakeShared<PacketSession>(Socket);
@@ -56,10 +66,8 @@ void UNetworkManager::ConnectToGameServer()
 			SendPacket(SendBuffer);
 		}
 	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Connection Failed")));
-	}
+
+	return IsConnected;
 }
 
 void UNetworkManager::DisconnectFromGameServer()
@@ -255,15 +263,27 @@ void UNetworkManager::HandleStat(const Protocol::S_STAT& StatPkt)
 	}
 }
 
+void UNetworkManager::HandleGameReady(const Protocol::S_GAMEREADY& ReadyPkt)
+{
+	bool IsReady = ReadyPkt.ready();
+	if (IsReady)
+	{
+		OnGameReady.Broadcast(IsReady);
+	}
+}
+
 void UNetworkManager::HandleGameStart(const Protocol::S_GAMESTART& StatPkt)
 {
 	bool IsStart = StatPkt.start();
 	if (IsStart)
 	{
+		OnGameStart.Broadcast(IsStart);
 		OnScoreGoal.Broadcast(20, 20);
 		OnScore.Broadcast(0, 0);
 	}
 }
+
+
 
 void UNetworkManager::HandleFire(const Protocol::S_FIRE& FirePkt)
 {

@@ -38,7 +38,8 @@ public:
 	bool IsExperienceLoaded() { return (LoadState == EGradExperienceLoadState::Loaded) && (CurrentExperience != nullptr); }
 
 	
-	
+	void CallOrRegister_OnExperienceLoaded_HighPriority(FOnGradExperienceLoaded::FDelegate&& Delegate);
+
 	/**
 	 * 아래의 OnExperienceLoaded에 바인딩하거나, 이미 Experience 로딩이 완료되었다면 바로 호출함
 	 */
@@ -58,6 +59,8 @@ public:
 
 	/** Experience의 로딩 상태를 모니터링 */
 	EGradExperienceLoadState LoadState = EGradExperienceLoadState::Unloaded;
+
+	FOnGradExperienceLoaded OnExperienceLoaded_HighPriority;
 
 	/** Experience 로딩이 완료된 이후, Broadcasting Delegate */
 	FOnGradExperienceLoaded OnExperienceLoaded;

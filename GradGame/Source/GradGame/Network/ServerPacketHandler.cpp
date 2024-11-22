@@ -122,6 +122,16 @@ bool Handle_S_STAT(PacketSessionRef& session, Protocol::S_STAT& pkt)
 	return false;
 }
 
+bool Handle_S_GAMEREADY(PacketSessionRef& session, Protocol::S_GAMEREADY& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleGameReady(pkt);
+		return true;
+	}
+	return false;
+}
+
 bool Handle_S_GAMESTART(PacketSessionRef& session, Protocol::S_GAMESTART& pkt)
 {
 	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
