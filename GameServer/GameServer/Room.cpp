@@ -43,8 +43,15 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 		if (auto session = player->session.lock())
 			session->Send(sendBuffer);
 
-		DoTimer(5000, &Room::TestGameStart);
+		if (_objects.size() == 2) {
+			Protocol::S_GAMEREADY readyPkt;
+			readyPkt.set_ready(true);
 
+
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(readyPkt);
+			Broadcast(sendBuffer);
+			DoTimer(5000, &Room::TestGameStart);
+		}
 	}
 
 

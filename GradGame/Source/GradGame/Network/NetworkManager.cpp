@@ -263,15 +263,27 @@ void UNetworkManager::HandleStat(const Protocol::S_STAT& StatPkt)
 	}
 }
 
+void UNetworkManager::HandleGameReady(const Protocol::S_GAMEREADY& ReadyPkt)
+{
+	bool IsReady = ReadyPkt.ready();
+	if (IsReady)
+	{
+		OnGameReady.Broadcast(IsReady);
+	}
+}
+
 void UNetworkManager::HandleGameStart(const Protocol::S_GAMESTART& StatPkt)
 {
 	bool IsStart = StatPkt.start();
 	if (IsStart)
 	{
+		OnGameStart.Broadcast(IsStart);
 		OnScoreGoal.Broadcast(20, 20);
 		OnScore.Broadcast(0, 0);
 	}
 }
+
+
 
 void UNetworkManager::HandleFire(const Protocol::S_FIRE& FirePkt)
 {

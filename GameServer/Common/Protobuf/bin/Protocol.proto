@@ -69,6 +69,11 @@ message S_STAT
 	StatInfo info = 1;
 }
 
+message S_GAMEREADY
+{
+	bool ready = 1;
+}
+
 message S_GAMESTART
 {
 	bool start = 1;

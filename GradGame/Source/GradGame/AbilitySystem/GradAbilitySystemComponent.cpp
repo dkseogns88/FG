@@ -284,6 +284,32 @@ void UGradAbilitySystemComponent::CancelActivationGroupAbilities(EGradAbilityAct
 	CancelAbilitiesByFunc(ShouldCancelFunc, bReplicateCancelAbility);
 }
 
+void UGradAbilitySystemComponent::AbilitySpecInputPressed(FGameplayAbilitySpec& Spec)
+{
+	Super::AbilitySpecInputPressed(Spec);
+
+	// We don't support UGameplayAbility::bReplicateInputDirectly.
+	// Use replicated events instead so that the WaitInputPress ability task works.
+	if (Spec.IsActive())
+	{
+		// Invoke the InputPressed event. This is not replicated here. If someone is listening, they may replicate the InputPressed event to the server.
+		InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputPressed, Spec.Handle, Spec.ActivationInfo.GetActivationPredictionKey());
+	}
+}
+
+void UGradAbilitySystemComponent::AbilitySpecInputReleased(FGameplayAbilitySpec& Spec)
+{
+	Super::AbilitySpecInputReleased(Spec);
+
+	// We don't support UGameplayAbility::bReplicateInputDirectly.
+	// Use replicated events instead so that the WaitInputRelease ability task works.
+	if (Spec.IsActive())
+	{
+		// Invoke the InputReleased event. This is not replicated here. If someone is listening, they may replicate the InputReleased event to the server.
+		InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputReleased, Spec.Handle, Spec.ActivationInfo.GetActivationPredictionKey());
+	}
+}
+
 void UGradAbilitySystemComponent::ApplyAbilityBlockAndCancelTags(const FGameplayTagContainer& AbilityTags, UGameplayAbility* RequestingAbility, bool bEnableBlockTags, const FGameplayTagContainer& BlockTags, bool bExecuteCancelTags, const FGameplayTagContainer& CancelTags)
 {
 	FGameplayTagContainer ModifiedBlockTags = BlockTags;

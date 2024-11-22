@@ -22,15 +22,16 @@ enum : uint16
 	PKT_C_MOVE = 1009,
 	PKT_S_MOVE = 1010,
 	PKT_S_STAT = 1011,
-	PKT_S_GAMESTART = 1012,
-	PKT_C_FIRE = 1013,
-	PKT_S_FIRE = 1014,
-	PKT_C_RELOAD = 1015,
-	PKT_S_RELOAD = 1016,
-	PKT_S_HIT = 1017,
-	PKT_S_SCORE = 1018,
-	PKT_C_DASH = 1019,
-	PKT_S_DASH = 1020,
+	PKT_S_GAMEREADY = 1012,
+	PKT_S_GAMESTART = 1013,
+	PKT_C_FIRE = 1014,
+	PKT_S_FIRE = 1015,
+	PKT_C_RELOAD = 1016,
+	PKT_S_RELOAD = 1017,
+	PKT_S_HIT = 1018,
+	PKT_S_SCORE = 1019,
+	PKT_C_DASH = 1020,
+	PKT_S_DASH = 1021,
 };
 
 // Custom Handlers
@@ -43,6 +44,7 @@ bool Handle_S_DESPAWN(PacketSessionRef& session, Protocol::S_DESPAWN& pkt);
 bool Handle_S_RESPAWN(PacketSessionRef& session, Protocol::S_RESPAWN& pkt);
 bool Handle_S_MOVE(PacketSessionRef& session, Protocol::S_MOVE& pkt);
 bool Handle_S_STAT(PacketSessionRef& session, Protocol::S_STAT& pkt);
+bool Handle_S_GAMEREADY(PacketSessionRef& session, Protocol::S_GAMEREADY& pkt);
 bool Handle_S_GAMESTART(PacketSessionRef& session, Protocol::S_GAMESTART& pkt);
 bool Handle_S_FIRE(PacketSessionRef& session, Protocol::S_FIRE& pkt);
 bool Handle_S_RELOAD(PacketSessionRef& session, Protocol::S_RELOAD& pkt);
@@ -65,6 +67,7 @@ public:
 		GPacketHandler[PKT_S_RESPAWN] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_RESPAWN>(Handle_S_RESPAWN, session, buffer, len); };
 		GPacketHandler[PKT_S_MOVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_MOVE>(Handle_S_MOVE, session, buffer, len); };
 		GPacketHandler[PKT_S_STAT] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STAT>(Handle_S_STAT, session, buffer, len); };
+		GPacketHandler[PKT_S_GAMEREADY] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_GAMEREADY>(Handle_S_GAMEREADY, session, buffer, len); };
 		GPacketHandler[PKT_S_GAMESTART] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_GAMESTART>(Handle_S_GAMESTART, session, buffer, len); };
 		GPacketHandler[PKT_S_FIRE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_FIRE>(Handle_S_FIRE, session, buffer, len); };
 		GPacketHandler[PKT_S_RELOAD] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_RELOAD>(Handle_S_RELOAD, session, buffer, len); };
