@@ -35,9 +35,12 @@ public:
 private:
 	unordered_map<uint64, ObjectRef> _objects;
 
-	// Temp
-	float RedScore = 0;
-	float BlueScore = 0;
+	// TeamInfo
+	int32 RedTeamCount = 1;
+	int32 BlueTeamCount = 1;
+
+	float RedTeamScore = 0;
+	float BlueTeamScore = 0;
 
 };
 
