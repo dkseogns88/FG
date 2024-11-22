@@ -298,6 +298,13 @@ void UGradHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputCompo
 					GradIC->BindNativeAction(InputConfig, GameplayTags.InputTag_Move, ETriggerEvent::Triggered, this, &ThisClass::Input_Move, false);
 					GradIC->BindNativeAction(InputConfig, GameplayTags.InputTag_Move, ETriggerEvent::Completed, this, &ThisClass::Input_Move, false);
 					GradIC->BindNativeAction(InputConfig, GameplayTags.InputTag_Look_Mouse, ETriggerEvent::Triggered, this, &ThisClass::Input_LookMouse, false);
+
+					//타겟팅위해 추가함
+					if (UGradAbilitySystemComponent* GradASC = PawnExtComp->GetGradAbilitySystemComponent())
+					{
+						GradIC->BindNativeAction(InputConfig, GameplayTags.InputTag_Confirm, ETriggerEvent::Triggered, GradASC, &UAbilitySystemComponent::LocalInputConfirm, /*bLogIfNotFound=*/ false);
+						GradIC->BindNativeAction(InputConfig, GameplayTags.InputTag_Cancel, ETriggerEvent::Triggered, GradASC, &UAbilitySystemComponent::LocalInputConfirm, /*bLogIfNotFound=*/ false);
+					}
 				}
 			}
 		}

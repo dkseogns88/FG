@@ -49,6 +49,11 @@ struct FGradGameplayTags
 	FGameplayTag InputTag_Weapon_Reload;
 	FGameplayTag InputTag_Weapon_ADS;
 	FGameplayTag InputTag_Ability_Dash;
+	FGameplayTag InputTag_Ability_Shield;
+	FGameplayTag InputTag_Ability_Targeting;
+
+	FGameplayTag InputTag_Confirm;
+	FGameplayTag InputTag_Cancel;
 
 	/**
 	 * Ability ActivateFail Tags

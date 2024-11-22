@@ -27,11 +27,16 @@ void FGradGameplayTags::AddAllTags(UGameplayTagsManager& Manager)
 
 	AddTag(InputTag_Move, "InputTag.Move", "");
 	AddTag(InputTag_Look_Mouse, "InputTag.Look.Mouse", "");
+	
+	AddTag(InputTag_Confirm, "InputTag.ConfirmTageting", "");
+	AddTag(InputTag_Cancel, "InputTag.CancelTageting", "");
 
 	AddTag(InputTag_Weapon_Fire, "InputTag.Weapon.Fire", "");
 	AddTag(InputTag_Weapon_Reload, "InputTag.Weapon.Reload", "");
 	AddTag(InputTag_Weapon_ADS, "InputTag.Weapon.ADS", "");
 	AddTag(InputTag_Ability_Dash, "InputTag.Ability.Dash", "");
+	AddTag(InputTag_Ability_Shield, "InputTag.Ability.Shield", "");
+	AddTag(InputTag_Ability_Targeting, "InputTag.Ability.Targeting", "");
 	
 	AddTag(Status_Death, "Status.Death", "");
 	AddTag(Status_Death_Dying, "Status.Death.Dying", "");
