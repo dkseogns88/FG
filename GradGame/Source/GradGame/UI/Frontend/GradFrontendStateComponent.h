@@ -29,8 +29,10 @@ public:
 
 private:
 	void OnExperienceLoaded(const UGradExperienceDefinition* Experience);
-	
+
+	void FlowStep_WaitForUserInitialization(FControlFlowNodeRef SubFlow);
 	void FlowStep_TryShowPressStartScreen(FControlFlowNodeRef SubFlow);
+	void FlowStep_TryJoinRequestedSession(FControlFlowNodeRef SubFlow);
 	void FlowStep_TryShowMainScreen(FControlFlowNodeRef SubFlow);
 
 
@@ -44,5 +46,8 @@ private:
 	TSoftClassPtr<UCommonActivatableWidget> MainScreenClass;
 
 	TSharedPtr<FControlFlow> FrontEndFlow;
+
+	// If set, this is the in-progress press start screen task
+	FControlFlowNodePtr InProgressPressStartScreen;
 };
 

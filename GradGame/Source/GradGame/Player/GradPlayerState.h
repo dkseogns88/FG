@@ -3,21 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/PlayerState.h"
+#include "ModularPlayerState.h"
 #include "GradPlayerState.generated.h"
 
 class UGradPawnData;
 class UGradExperienceDefinition;
 
 UCLASS()
-class GRADGAME_API AGradPlayerState : public APlayerState
+class GRADGAME_API AGradPlayerState : public AModularPlayerState
 {
 	GENERATED_BODY()
 public:
+
+
 	/**
 	* AActor's interface
 	*/
 	virtual void PostInitializeComponents() final;
+	virtual void BeginPlay() override;
 
 	/**
 	 * member methods

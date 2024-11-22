@@ -10,6 +10,8 @@
 #include "GradGame/AbilitySystem/GradAbilitySet.h"
 #include "GradLogChannels.h"
 
+
+
 void AGradPlayerState::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
@@ -23,6 +25,11 @@ void AGradPlayerState::PostInitializeComponents()
 	ExperienceManagerComponent->CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate::CreateUObject(this, &ThisClass::OnExperienceLoaded));
 }
 
+void AGradPlayerState::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
 void AGradPlayerState::OnExperienceLoaded(const UGradExperienceDefinition* CurrentExperience)
 {
 	// CurrentExperience가 있는데 왜 게임 모드로 넘어가서 가지고 올까? 2가지 이유

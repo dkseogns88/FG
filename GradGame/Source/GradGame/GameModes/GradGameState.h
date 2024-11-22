@@ -3,16 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameStateBase.h"
+#include "ModularGameState.h"
 #include "GradGameState.generated.h"
 
 class UGradExperienceManagerComponent;
 
 /**
- * 
+ *
  */
 UCLASS()
-class GRADGAME_API AGradGameState : public AGameStateBase
+class GRADGAME_API AGradGameState : public AModularGameStateBase
 {
 	GENERATED_BODY()
 public:
