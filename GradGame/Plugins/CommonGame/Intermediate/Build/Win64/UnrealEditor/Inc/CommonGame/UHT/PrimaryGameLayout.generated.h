@@ -16,11 +16,11 @@ struct FGameplayTag;
 #endif
 #define COMMONGAME_PrimaryGameLayout_generated_h
 
-#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execRegisterLayer);
 
 
-#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPrimaryGameLayout(); \
 	friend struct Z_Construct_UClass_UPrimaryGameLayout_Statics; \
@@ -29,7 +29,7 @@ public: \
 	DECLARE_SERIALIZER(UPrimaryGameLayout)
 
 
-#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPrimaryGameLayout(UPrimaryGameLayout&&); \
@@ -41,13 +41,13 @@ public: \
 	NO_API virtual ~UPrimaryGameLayout();
 
 
-#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_12_PROLOG
-#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_GENERATED_BODY \
+#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_22_PROLOG
+#define FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_INCLASS_NO_PURE_DECLS \
-	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_15_ENHANCED_CONSTRUCTORS \
+	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_INCLASS_NO_PURE_DECLS \
+	FID_FG_GradGame_Plugins_CommonGame_Source_CommonGame_Public_PrimaryGameLayout_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
