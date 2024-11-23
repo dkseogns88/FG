@@ -30,7 +30,7 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	player->statInfo->set_object_id(player->objectInfo->object_id());
 	player->statInfo->set_hp(100);
 	player->statInfo->set_max_hp(100);
-	player->statInfo->set_damage(50);
+	player->statInfo->set_damage(10);
 
 	// ÆÀ ¼³Á¤
 	if (RedTeamCount > 0)
@@ -324,7 +324,7 @@ void Room::ObjectRespawn(uint64 objectId)
 	// ½ºÅÈ ¼³Á¤
 	player->statInfo->set_hp(100);
 	player->statInfo->set_max_hp(100);
-	player->statInfo->set_damage(50);
+	player->statInfo->set_damage(10);
 
 	// Á×¾ú´Ù°¡ »ì¾Æ³²
 	player->SetDead(false);
