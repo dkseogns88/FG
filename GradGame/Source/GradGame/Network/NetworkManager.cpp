@@ -410,6 +410,8 @@ void UNetworkManager::HandleHit(const Protocol::S_HIT& HitPkt)
 			Payload.Target = GradASC->GetAvatarActor();
 
 			GradASC->HandleGameplayEvent(Payload.EventTag, &Payload);
+
+			OnEliminationFeed.Broadcast(static_cast<int32>(AttackObjectId), static_cast<int32>(HitObjectId));
 		}
 
 		Objects.Remove(HitObjectId);

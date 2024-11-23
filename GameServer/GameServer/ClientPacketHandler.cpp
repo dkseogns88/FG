@@ -140,3 +140,14 @@ bool Handle_C_SHIELD(PacketSessionRef& session, Protocol::C_SHIELD& pkt)
 
 	return true;
 }
+
+bool Handle_C_STATUEACTIVE(PacketSessionRef& session, Protocol::C_STATUEACTIVE& pkt)
+{
+
+	return true;
+}
+
+bool Handle_C_STATUEDEACTIVE(PacketSessionRef& session, Protocol::C_STATUEDEACTIVE& pkt)
+{
+	return true;
+}

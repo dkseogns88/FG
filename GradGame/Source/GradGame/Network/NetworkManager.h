@@ -16,12 +16,20 @@ class AGradNetCharacter;
 // TODO: 추후에는 UGameInstanceSubsystem를 사용하지 않고 GameStateComponent에 추가하는 방식으로 작성하자
 
 
+// 게임 준비 및 시작
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameReady_Delegate, bool, Ready);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameStart_Delegate, bool, Start);
+
+// 팀 정보 관련
 DECLARE_DELEGATE_TwoParams(FTeamMembers_ChangedDelegate, TArray<int32>, int32);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FTeamHp_ChangedDelegate,int32, PlayerID, float, OldValue, float, NewValue);
+
+// 점수 관련
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScoreGoal_Delegate, float, RedGoal, float, BlueGoal);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScore_ChangedDelegate, float, RedScore, float, BlueScore);
+
+// 킬 관련
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEliminationFeed_Delegate, int32, KillID, int32, DeadID);
 
 UCLASS()
 class GRADGAME_API UNetworkManager : public UGameInstanceSubsystem, public FTickableGameObject
@@ -111,6 +119,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FScore_ChangedDelegate OnScore;
+
+	UPROPERTY(BlueprintAssignable)
+	FEliminationFeed_Delegate OnEliminationFeed;
 };
 
 template <typename T> 

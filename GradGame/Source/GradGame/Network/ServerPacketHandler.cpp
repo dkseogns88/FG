@@ -201,3 +201,16 @@ bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt)
 	}
 	return false;
 }
+
+bool Handle_S_STATUENOTIFY(PacketSessionRef& session, Protocol::S_STATUENOTIFY& pkt)
+{
+	return false;
+}
+bool Handle_S_STATUEACTIVE(PacketSessionRef& session, Protocol::S_STATUEACTIVE& pkt)
+{
+	return false;
+}
+bool Handle_S_STATUEDEACTIVE(PacketSessionRef& session, Protocol::S_STATUEDEACTIVE& pkt)
+{
+	return false;
+}
