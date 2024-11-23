@@ -3,3 +3,4 @@
 #include "C:/Users/SeongGyu/Desktop/FG/GradGame/Plugins/CommonUser/Intermediate/Build/Win64/UnrealEditor/Inc/CommonUser/UHT/CommonUser.init.gen.cpp"
 #include "C:/Users/SeongGyu/Desktop/FG/GradGame/Plugins/CommonUser/Source/CommonUser/Private/CommonSessionSubsystem.cpp"
 #include "C:/Users/SeongGyu/Desktop/FG/GradGame/Plugins/CommonUser/Source/CommonUser/Private/CommonUser.cpp"
+#include "C:/Users/SeongGyu/Desktop/FG/GradGame/Plugins/CommonUser/Source/CommonUser/Private/CommonUserSubsystem.cpp"

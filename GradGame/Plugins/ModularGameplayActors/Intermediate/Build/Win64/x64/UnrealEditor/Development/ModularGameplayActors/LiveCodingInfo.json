@@ -3,13 +3,13 @@
 	{
 		"Module.ModularGameplayActors.cpp.obj": [
 			"ModularCharacter.gen.cpp.obj",
+			"ModularGameplayActors.init.gen.cpp.obj",
 			"ModularPlayerController.gen.cpp.obj",
 			"ModularPlayerState.gen.cpp.obj",
 			"ModularCharacter.cpp.obj",
 			"ModularGameplayActors.cpp.obj",
-			"ModularPlayerController.cpp.obj",
-			"ModularGameplayActors.init.gen.cpp.obj",
 			"ModularGameState.cpp.obj",
+			"ModularPlayerController.cpp.obj",
 			"ModularPlayerState.cpp.obj"
 		]
 	}

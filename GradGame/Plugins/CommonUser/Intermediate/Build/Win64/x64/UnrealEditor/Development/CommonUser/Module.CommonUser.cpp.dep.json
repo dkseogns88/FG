@@ -24,7 +24,8 @@
             "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\engine\\contentencryptionconfig.h",
             "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\assetmanager.generated.h",
             "c:\\users\\seonggyu\\desktop\\fg\\gradgame\\plugins\\commonuser\\source\\commonuser\\private\\commonuser.cpp",
-            "c:\\users\\seonggyu\\desktop\\fg\\gradgame\\plugins\\commonuser\\source\\commonuser\\public\\commonuser.h"
+            "c:\\users\\seonggyu\\desktop\\fg\\gradgame\\plugins\\commonuser\\source\\commonuser\\public\\commonuser.h",
+            "c:\\users\\seonggyu\\desktop\\fg\\gradgame\\plugins\\commonuser\\source\\commonuser\\private\\commonusersubsystem.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
