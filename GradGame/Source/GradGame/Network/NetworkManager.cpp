@@ -35,7 +35,6 @@ void UNetworkManager::Tick(float DeltaTime)
 	if (IsConnected)
 	{
 		HandleRecvPackets();
-		UE_LOG(LogGrad, Log, TEXT("NetworkManager Is Tick!"));
 	}
 }
 
@@ -52,22 +51,27 @@ bool UNetworkManager::ConnectToGameServer()
 
 
 	IsConnected = Socket->Connect(*InternetAddr);
-
 	if (IsConnected)
 	{
-		// Session
 		GameServerSession = MakeShared<PacketSession>(Socket);
 		GameServerSession->Run();
-		
-		// TEMP : Lobby에서 캐릭터 선택창 등
-		{
-			Protocol::C_LOGIN Pkt;
-			SendBufferRef SendBuffer = ServerPacketHandler::MakeSendBuffer(Pkt);
-			SendPacket(SendBuffer);
-		}
+
+		Protocol::C_LOGIN Pkt;
+		SendBufferRef SendBuffer = ServerPacketHandler::MakeSendBuffer(Pkt);
+		SendPacket(SendBuffer);
 	}
 
 	return IsConnected;
+}
+
+void UNetworkManager::SendLoginPacket(const UGradExperienceDefinition* CurrentExperience)
+{	
+	/*if (IsConnected)
+	{
+		Protocol::C_LOGIN Pkt;
+		SendBufferRef SendBuffer = ServerPacketHandler::MakeSendBuffer(Pkt);
+		SendPacket(SendBuffer);
+	}*/
 }
 
 void UNetworkManager::DisconnectFromGameServer()

@@ -14,6 +14,7 @@
 #include "GradGame/UI/GradHUD.h"
 #include "Kismet/GameplayStatics.h"
 #include "GradWorldSettings.h"
+#include "Network/NetworkManager.h"
 
 AGradGameModeBase::AGradGameModeBase()
 {
@@ -49,6 +50,7 @@ void AGradGameModeBase::InitGameState()
 	// - 게임 모드는 Experience 로딩이 완료가 되어 있는 시점을 알 수가 없어서
 	// - 로딩이 완료가 되면 그 시점부터 OnExperienceLoaded(로딩)을 진행하다.
 	ExperienceManagerComponent->CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate::CreateUObject(this, &ThisClass::OnExperienceLoaded));
+
 }
 
 UClass* AGradGameModeBase::GetDefaultPawnClassForController_Implementation(AController* InController)

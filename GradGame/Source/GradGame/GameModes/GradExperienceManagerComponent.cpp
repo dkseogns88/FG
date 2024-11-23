@@ -49,6 +49,18 @@ void UGradExperienceManagerComponent::CallOrRegister_OnExperienceLoaded(FOnGradE
 	}
 }
 
+void UGradExperienceManagerComponent::CallOrRegister_OnExperienceLoaded_LowPriority(FOnGradExperienceLoaded::FDelegate&& Delegate)
+{
+	if (IsExperienceLoaded())
+	{
+		Delegate.Execute(CurrentExperience);
+	}
+	else
+	{
+		OnExperienceLoaded_LowPriority.Add(MoveTemp(Delegate));
+	}
+}
+
 void UGradExperienceManagerComponent::ServerSetCurrentExperience(FPrimaryAssetId ExperienceId)
 {
 	UGradAssetManager& AssetManager = UGradAssetManager::Get();
@@ -266,6 +278,9 @@ void UGradExperienceManagerComponent::OnExperienceFullLoadCompleted()
 
 	OnExperienceLoaded.Broadcast(CurrentExperience);
 	OnExperienceLoaded.Clear();
+
+	OnExperienceLoaded_LowPriority.Broadcast(CurrentExperience);
+	OnExperienceLoaded_LowPriority.Clear();
 }
 PRAGMA_ENABLE_OPTIMIZATION
 
