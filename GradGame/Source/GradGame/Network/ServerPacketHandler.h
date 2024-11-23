@@ -34,6 +34,10 @@ enum : uint16
 	PKT_S_DASH = 1021,
 	PKT_C_SHIELD = 1022,
 	PKT_S_SHIELD = 1023,
+	PKT_C_STATUEACTIVE = 1024,
+	PKT_S_STATUEACTIVE = 1025,
+	PKT_C_STATUEDEACTIVE = 1026,
+	PKT_S_STATUEDEACTIVE = 1027,
 };
 
 // Custom Handlers
@@ -54,6 +58,8 @@ bool Handle_S_HIT(PacketSessionRef& session, Protocol::S_HIT& pkt);
 bool Handle_S_SCORE(PacketSessionRef& session, Protocol::S_SCORE& pkt);
 bool Handle_S_DASH(PacketSessionRef& session, Protocol::S_DASH& pkt);
 bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt);
+bool Handle_S_STATUEACTIVE(PacketSessionRef& session, Protocol::S_STATUEACTIVE& pkt);
+bool Handle_S_STATUEDEACTIVE(PacketSessionRef& session, Protocol::S_STATUEDEACTIVE& pkt);
 
 class ServerPacketHandler
 {
@@ -78,6 +84,8 @@ public:
 		GPacketHandler[PKT_S_SCORE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_SCORE>(Handle_S_SCORE, session, buffer, len); };
 		GPacketHandler[PKT_S_DASH] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_DASH>(Handle_S_DASH, session, buffer, len); };
 		GPacketHandler[PKT_S_SHIELD] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_SHIELD>(Handle_S_SHIELD, session, buffer, len); };
+		GPacketHandler[PKT_S_STATUEACTIVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STATUEACTIVE>(Handle_S_STATUEACTIVE, session, buffer, len); };
+		GPacketHandler[PKT_S_STATUEDEACTIVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STATUEDEACTIVE>(Handle_S_STATUEDEACTIVE, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -93,6 +101,8 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::C_RELOAD& pkt) { return MakeSendBuffer(pkt, PKT_C_RELOAD); }
 	static SendBufferRef MakeSendBuffer(Protocol::C_DASH& pkt) { return MakeSendBuffer(pkt, PKT_C_DASH); }
 	static SendBufferRef MakeSendBuffer(Protocol::C_SHIELD& pkt) { return MakeSendBuffer(pkt, PKT_C_SHIELD); }
+	static SendBufferRef MakeSendBuffer(Protocol::C_STATUEACTIVE& pkt) { return MakeSendBuffer(pkt, PKT_C_STATUEACTIVE); }
+	static SendBufferRef MakeSendBuffer(Protocol::C_STATUEDEACTIVE& pkt) { return MakeSendBuffer(pkt, PKT_C_STATUEDEACTIVE); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>
