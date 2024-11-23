@@ -12,7 +12,7 @@ class UGradExperienceManagerComponent;
  *
  */
 UCLASS()
-class GRADGAME_API AGradGameState : public AModularGameStateBase
+class GRADGAME_API AGradGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:

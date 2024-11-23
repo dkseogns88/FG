@@ -131,6 +131,9 @@ void UGradFrontendStateComponent::FlowStep_TryShowPressStartScreen(FControlFlowN
 	//	return;
 	//}
 
+	SubFlow->ContinueFlow();
+	return;
+	
 	// Add the Press Start screen, move to the next flow when it deactivates.
 	if (UPrimaryGameLayout* RootLayout = UPrimaryGameLayout::GetPrimaryGameLayoutForPrimaryPlayer(this))
 	{

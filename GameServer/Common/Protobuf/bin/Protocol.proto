@@ -153,26 +153,3 @@ message S_SHIELD
 	float				spawn_rotation_yaw		= 6;
 	float				spawn_rotation_roll		= 7;
 }
-
-/*
-// Play Mode
-*/
-message C_STATUEACTIVE
-{
-	uint64  object_id = 1;
-}
-message S_STATUEACTIVE
-{
-	uint64  object_id = 1;
-
-}
-message C_STATUEDEACTIVE
-{
-	uint64  object_id = 1;
-
-}
-message S_STATUEDEACTIVE
-{
-	uint64  object_id = 1;
-
-}
