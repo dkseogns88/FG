@@ -47,7 +47,7 @@ private:
 	Array<StatueRef, 4> _statues;
 
 	// TeamInfo
-	int32 RedTeamCount	= 2;
+	int32 RedTeamCount	= 1;
 	int32 BlueTeamCount = 1;
 
 	float RedTeamScore = 0;
