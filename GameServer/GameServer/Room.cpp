@@ -3,11 +3,21 @@
 #include "GameSession.h"
 #include "ObjectUtils.h"
 #include "Player.h"
+#include "Statue.h"
 
 RoomRef GRoom = make_shared<Room>();
 
 Room::Room()
-{}
+{
+	// 석상 생성
+	for (StatueRef& statue : _statues)
+	{
+		statue = make_shared<Statue>();
+	}
+
+	_statues[0]->SetStatueType(Protocol::StatueType::STATUE_TYPE_ANGEL);
+
+}
 
 Room::~Room()
 {}
@@ -93,13 +103,15 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 
 	// 모든 인원 입장 완료 게임 준비 및 시작
 	if (RedTeamCount == 0 && BlueTeamCount == 0) {
-		Protocol::S_GAMEREADY readyPkt;
+		/*Protocol::S_GAMEREADY readyPkt;
 		readyPkt.set_ready(true);
 
 
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(readyPkt);
 		Broadcast(sendBuffer);
-		DoTimer(5000, &Room::GameStart);
+		DoTimer(5000, &Room::GameStart);*/
+
+		DoTimer(5000, &Room::RandomStatueActive);
 	}
 
 	return success;
@@ -213,7 +225,7 @@ void Room::HandleFire(Protocol::C_FIRE pkt)
 			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(scorePkt);
 			Broadcast(sendBuffer);
 
-			// TODO: 여기서 특정 시간 뒤에 클라이언트 Respawn 처리
+			// 여기서 특정 시간 뒤에 클라이언트 Respawn 처리
 			DoTimer(5000, &Room::ObjectRespawn, hitId);
 		}
 
@@ -384,6 +396,17 @@ void Room::ObjectRespawn(uint64 objectId)
 	objectInfo->CopyFrom(*player->objectInfo);
 
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(respawnPkt);
+	Broadcast(sendBuffer);
+}
+
+void Room::RandomStatueActive()
+{
+	Protocol::S_STATUENOTIFY statueNotifyPkt;
+
+	// 랜덤으로 해야 함.
+	statueNotifyPkt.set_statue_type(_statues[0]->GetStatueType());
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueNotifyPkt);
 	Broadcast(sendBuffer);
 }
 

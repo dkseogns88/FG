@@ -40,3 +40,9 @@ enum DashDirectionType
 	DASH_DIRECTION_TYPE_LEFT		= 3;
 	DASH_DIRECTION_TYPE_RIGHT		= 4;
 }
+
+enum StatueType
+{
+	STATUE_TYPE_NONE	= 0;
+	STATUE_TYPE_ANGEL	= 1;
+}

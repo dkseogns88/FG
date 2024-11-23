@@ -33,6 +33,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEliminationFeed_Delegate, int32, K
 
 // 석상 관련
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatue_Delegate, bool, Active);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatueNotify_Delegate, bool, Active);
 
 
 UCLASS()
@@ -142,6 +143,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FActiveStatue_Delegate OnActiveStatue;
+
+	UPROPERTY(BlueprintAssignable)
+	FActiveStatueNotify_Delegate OnActiveStatueNotify;
 };
 
 template <typename T> 

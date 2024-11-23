@@ -514,7 +514,10 @@ void UNetworkManager::HandleShield(const Protocol::S_SHIELD ShieldPkt)
 
 void UNetworkManager::HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNotifyPkt)
 {
-	
+	// 활성화 된 석상화
+	const Protocol::StatueType StatueType = StatueNotifyPkt.statue_type();
+
+	OnActiveStatueNotify.Broadcast(true);
 }
 
 void UNetworkManager::HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt)

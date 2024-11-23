@@ -160,7 +160,7 @@ message S_SHIELD
 
 message S_STATUENOTIFY
 {
-
+	StatueType statue_type = 1;
 }
 
 message C_STATUEACTIVE
