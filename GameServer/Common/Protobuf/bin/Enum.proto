@@ -13,6 +13,13 @@ enum PlayerType
 	PLAYER_TYPE_NONE	= 0;
 }
 
+enum TeamType
+{
+	TEAM_TYPE_NONE	= 0;
+	TEAM_TYPE_RED	= 1;
+	TEAM_TYPE_BLUE	= 2;
+}
+
 enum MonsterType
 {
 	MONSTER_TYPE_NONE		= 0;

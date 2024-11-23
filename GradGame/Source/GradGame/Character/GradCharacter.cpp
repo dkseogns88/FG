@@ -158,3 +158,8 @@ int64 AGradCharacter::GetPlayerId()
 	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetObjectId() : 0);
 }
 
+Protocol::TeamType AGradCharacter::GetTeamType()
+{
+	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetTeamType() : Protocol::TeamType::TEAM_TYPE_NONE);
+}
+

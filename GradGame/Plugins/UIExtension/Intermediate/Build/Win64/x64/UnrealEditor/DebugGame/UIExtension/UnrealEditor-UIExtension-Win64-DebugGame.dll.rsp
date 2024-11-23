@@ -37,9 +37,6 @@
 /FUNCTIONPADMIN:6
 "C:\Users\SeongGyu\Desktop\FG\GradGame\Intermediate\Build\Win64\x64\GradGameEditor\DebugGame\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
 "C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\UIExtension\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\UIExtension\Module.UIExtension.cpp.obj"
-"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\UIExtension\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\UIExtension\UIExtension.init.gen.cpp.obj"
-"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\UIExtension\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\UIExtension\UIExtensionPointWidget.gen.cpp.obj"
-"C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\UIExtension\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\UIExtension\UIExtensionSystem.gen.cpp.obj"
 "C:\Users\SeongGyu\Desktop\FG\GradGame\Plugins\UIExtension\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\UIExtension\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"

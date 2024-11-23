@@ -136,8 +136,6 @@ void UNetworkManager::HandleSpawn(const Protocol::ObjectInfo& ObjectInfo, bool I
 	{
 	case Protocol::ObjectType::OBJECT_TYPE_PLAYER:
 		SpawnPlayer(ObjectInfo, IsMine);
-		// 캐릭터가 추가되었으니 왼쪽 하단에 팀 체력바 업그레이드 해보자
-		OnTeamMembersChanged.ExecuteIfBound(PlayerIDs, Objects.Num());
 		break;
 	default:
 		break;
@@ -549,9 +547,8 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 		return;
 
 	FVector SpawnLocation(ObjectInfo.pos_info().x(), ObjectInfo.pos_info().y(), ObjectInfo.pos_info().z());
-	
-	PlayerIDs.Add(ObjectInfo.pos_info().object_id());
-	PlayerIDs.Sort(); // 음 정렬을 해야 할까?
+	Protocol::TeamType SpawnTeamType = Protocol::TeamType::TEAM_TYPE_NONE;
+
 
 	if (IsMine)
 	{
@@ -572,6 +569,9 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 
 		MyPlayer = Player;
 		MyPlayerId = ObjectInfo.pos_info().object_id();
+		MyTeamType = ObjectInfo.team_type();
+		SpawnTeamType = MyTeamType;
+
 		Objects.Add(ObjectInfo.object_id(), Player);
 	}
 	else
@@ -605,7 +605,18 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 			Player->K2_NetOnEquipped();
 		}
 
+		SpawnTeamType = ObjectInfo.team_type();
+
 		Objects.Add(ObjectInfo.object_id(), Player);
 	}
+
+	// 캐릭터가 추가되었으니 왼쪽 하단에 팀 체력바 업그레이드 해보자
+	if (MyTeamType == SpawnTeamType)
+	{
+		PlayerIDs.Add(ObjectInfo.pos_info().object_id());
+		PlayerIDs.Sort(); // 음 정렬을 해야 할까?
+		OnTeamMembersChanged.ExecuteIfBound(PlayerIDs, Objects.Num());
+	}
+
 }
 PRAGMA_ENABLE_OPTIMIZATION

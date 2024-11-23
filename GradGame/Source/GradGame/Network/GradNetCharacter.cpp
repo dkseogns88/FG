@@ -170,4 +170,9 @@ uint64 AGradNetCharacter::GetPlayerId()
 {
 	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetObjectId() : 0);
 }
+
+Protocol::TeamType AGradNetCharacter::GetTeamType()
+{
+	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetTeamType() : Protocol::TeamType::TEAM_TYPE_NONE);
+}
 PRAGMA_ENABLE_OPTIMIZATION

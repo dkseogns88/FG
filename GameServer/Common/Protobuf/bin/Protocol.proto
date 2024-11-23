@@ -174,11 +174,12 @@ message S_STATUEACTIVE
 }
 message C_STATUEDEACTIVE
 {
-	uint64  object_id = 1;
+	uint64	object_id		= 1;
+	float	statue_gauge	= 2;
 
 }
 message S_STATUEDEACTIVE
 {
-	uint64  object_id = 1;
-
+	uint64  object_id		= 1;
+	float	statue_gauge	= 2;
 }

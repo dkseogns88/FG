@@ -2,13 +2,6 @@
 
 class Room;
 
-enum class ETeamType
-{
-	None,
-	Red,
-	Blue
-};
-
 class Object : public enable_shared_from_this<Object>
 {
 public:
@@ -17,9 +10,8 @@ public:
 
 	void SetDead(bool isDead) { _isDead = isDead; }
 
-	void SetTeamType(ETeamType teamType) { _teamType = teamType; }
-	ETeamType GetTeamType() { return _teamType; }
-	
+	Protocol::TeamType GetTeamType() { return objectInfo->team_type(); }
+
 	bool IsPlayer() { return _isPlayer; }
 	bool IsDead() { return _isDead; }
 public:
@@ -34,6 +26,5 @@ protected:
 	bool _isPlayer = false;
 	bool _isDead = false;
 
-	ETeamType _teamType = ETeamType::None;
 };
 

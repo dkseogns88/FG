@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/PawnComponent.h"
 #include "Protocol.pb.h"
+#include "Enum.pb.h"
 #include "../Inventory/GradInventoryManagerComponent.h"
 #include "GradNetworkComponent.generated.h"
 
@@ -49,6 +50,7 @@ public:
 	Protocol::PosInfo* GetPosInfo() { return PosInfo; }
 	Protocol::StatInfo* GetStatInfo() { return StatInfo; }
 	uint64 GetObjectId() { return ObjectInfo->pos_info().object_id(); }
+	Protocol::TeamType GetTeamType() { return ObjectInfo->team_type(); }
 
 public:
 	class Protocol::ObjectInfo* ObjectInfo;

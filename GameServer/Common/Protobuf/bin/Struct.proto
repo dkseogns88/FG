@@ -33,8 +33,9 @@ message ObjectInfo
 	uint64	object_id			= 1;
 	ObjectType object_type		= 2;
 	PlayerType player_type		= 3;
-	PosInfo pos_Info			= 4;
-	StatInfo stat_Info			= 5;
+	TeamType team_type			= 4;
+	PosInfo pos_Info			= 5;
+	StatInfo stat_Info			= 6;
 }
 
 message FireInfo

@@ -390,21 +390,29 @@ void UGradGameplayAbility_RangedWeapon::OnTargetDataReadyCallback(const FGamepla
 			OnRangeWeaponTargetDataReady(LocalTargetDataHandle);
 
 			FHitResult HitResult = UAbilitySystemBlueprintLibrary::GetHitResultFromTargetData(LocalTargetDataHandle, 0);
-
-			// 다른 플레이어 캐릭터는 그냥 쏜 것만 알려주면 되기 때문에 Send 할 필요 없다.
-			if (AGradNetCharacter* const Avatar = Cast<AGradNetCharacter>(GetAvatarActorFromActorInfo()))
+			
+			// 내가 쏜거라면? 
+			AGradCharacter* const AttackAvatar = Cast<AGradCharacter>(GetAvatarActorFromActorInfo());
+			if (AttackAvatar)
 			{
-				return;
-			}
-
-			if (ACharacter* HitCharacter = Cast<ACharacter>(HitResult.GetActor()))
-			{
-				UGradNetworkComponent* GradNCP = HitCharacter->FindComponentByClass<UGradNetworkComponent>();
-				SendFire(GradNCP->GetObjectId(), true);
-			}
-			else
-			{
-				SendFire(0, false);
+				// 충돌 된거라면?
+				AGradNetCharacter* const HitAvatar = Cast<AGradNetCharacter>(HitResult.GetActor());
+				if (HitAvatar)
+				{
+					// 같은 팀이 아니라면?
+					if (AttackAvatar->GetTeamType() != HitAvatar->GetTeamType())
+					{
+						SendFire(HitAvatar->GetPlayerId(), true);
+					}
+					else
+					{
+						SendFire(0, false);
+					}
+				}
+				else
+				{
+					SendFire(0, false);
+				}
 			}
 		}
 		else

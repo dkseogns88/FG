@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "ModularCharacter.h"
+#include "Network/Enum.pb.h"
+
 #include "GradCharacter.generated.h"
 
 class UGradPawnExtensionComponent;
@@ -55,7 +57,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	int64 GetPlayerId();
-
+	Protocol::TeamType GetTeamType();
 
 public:
 	UPROPERTY(VisibleAnywhere, BluePrintReadOnly, Category = "Grad|Character")

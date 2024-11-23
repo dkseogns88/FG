@@ -37,6 +37,7 @@ public:
 	void Broadcast(SendBufferRef sendBuffer, uint64 exceptId = 0);
 	void RedTeamBroadcast(SendBufferRef sendBuffer);
 	void BlueTeamBroadcast(SendBufferRef sendBuffer);
+
 private:
 	unordered_map<uint64, ObjectRef> _objects;
 	unordered_map<uint64, ObjectRef> _redTeam_objects;
@@ -46,11 +47,14 @@ private:
 	Array<StatueRef, 4> _statues;
 
 	// TeamInfo
-	int32 RedTeamCount	= 1;
+	int32 RedTeamCount	= 2;
 	int32 BlueTeamCount = 1;
 
 	float RedTeamScore = 0;
 	float BlueTeamScore = 0;
+
+	float RedTeamGauge = 0.f;
+	float BlueTeamGauge = 0.f;
 
 
 };

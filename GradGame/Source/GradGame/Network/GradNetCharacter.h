@@ -7,6 +7,7 @@
 #include "ModularCharacter.h"
 #include "GradGame/GradGameplayTags.h"
 #include "GradGame/AbilitySystem/Abilities/GradGameplayAbility.h"
+#include "Network/Enum.pb.h"
 #include "GradNetCharacter.generated.h"
 
 class UGradAbilitySystemComponent;
@@ -48,6 +49,8 @@ public:
 	UGradAbilitySystemComponent* GetGradAbilitySystemComponent() const { return AbilitySystemComponent; }
 
 	uint64 GetPlayerId();
+	Protocol::TeamType GetTeamType();
+
 public:
 	UPROPERTY(VisibleAnywhere, Category = "Grad|NetCharacter")
 	TObjectPtr<UGradAbilitySystemComponent> AbilitySystemComponent;

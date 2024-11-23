@@ -45,12 +45,12 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	// ÆÀ ¼³Á¤
 	if (RedTeamCount > 0)
 	{
-		player->SetTeamType(ETeamType::Red);
+		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_RED);
 		--RedTeamCount;
 	}
 	else if (BlueTeamCount > 0)
 	{
-		player->SetTeamType(ETeamType::Blue);
+		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_BLUE);
 		--BlueTeamCount;
 	}
 
@@ -198,6 +198,9 @@ void Room::HandleFire(Protocol::C_FIRE pkt)
 
 	if (isHit)
 	{
+		// °°Àº ÆÀÀÌ¸é ±×³É Return
+		if (attackPlayer->GetTeamType() == hitPlayer->GetTeamType()) return;
+
 		float attackDamage = attackPlayer->statInfo->damage();
 		float hitHp = hitPlayer->statInfo->hp();
 
@@ -210,11 +213,11 @@ void Room::HandleFire(Protocol::C_FIRE pkt)
 			newHP = 0;
 			hitPlayer->SetDead(true);
 			
-			if (attackPlayer->GetTeamType() == ETeamType::Red)
+			if (attackPlayer->GetTeamType() == Protocol::TEAM_TYPE_RED)
 			{
 				++RedTeamScore;
 			}
-			else if (attackPlayer->GetTeamType() == ETeamType::Blue)
+			else if (attackPlayer->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 			{
 				++BlueTeamScore;
 			}
@@ -319,11 +322,11 @@ void Room::HandleStatueActive(Protocol::C_STATUEACTIVE pkt)
 	statueactivePkt.set_object_id(objectId);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
 
-	if (activePlayer->GetTeamType() == ETeamType::Red)
+	if (activePlayer->GetTeamType() == Protocol::TEAM_TYPE_RED)
 	{
 		RedTeamBroadcast(sendBuffer);
 	}
-	else if (activePlayer->GetTeamType() == ETeamType::Blue)
+	else if (activePlayer->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 	{
 		BlueTeamBroadcast(sendBuffer);
 	}
@@ -345,11 +348,11 @@ void Room::HandleStatueDeActive(Protocol::C_STATUEDEACTIVE pkt)
 	statueDeactivePkt.set_object_id(objectId);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueDeactivePkt);
 
-	if (deactivePlayer->GetTeamType() == ETeamType::Red)
+	if (deactivePlayer->GetTeamType() == Protocol::TEAM_TYPE_RED)
 	{
 		RedTeamBroadcast(sendBuffer);
 	}
-	else if (deactivePlayer->GetTeamType() == ETeamType::Blue)
+	else if (deactivePlayer->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 	{
 		BlueTeamBroadcast(sendBuffer);
 	}
@@ -464,7 +467,7 @@ void Room::RedTeamBroadcast(SendBufferRef sendBuffer)
 		if (player == nullptr)
 			break;
 
-		if (player->GetTeamType() != ETeamType::Red)
+		if (player->GetTeamType() == Protocol::TEAM_TYPE_RED)
 			continue;
 
 		if (GameSessionRef session = player->session.lock())
@@ -480,7 +483,7 @@ void Room::BlueTeamBroadcast(SendBufferRef sendBuffer)
 		if (player == nullptr)
 			break;
 
-		if (player->GetTeamType() != ETeamType::Blue)
+		if (player->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 			continue;
 
 		if (GameSessionRef session = player->session.lock())

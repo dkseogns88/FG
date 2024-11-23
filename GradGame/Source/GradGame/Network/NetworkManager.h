@@ -116,6 +116,7 @@ public:
 	UPROPERTY()
 	TObjectPtr<APawn> MyPlayer;
 	uint64 MyPlayerId = 0;
+	Protocol::TeamType MyTeamType;
 
 	UPROPERTY()
 	TMap<uint64, TObjectPtr<APawn>> Objects;
