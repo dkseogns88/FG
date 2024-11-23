@@ -31,6 +31,10 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScore_ChangedDelegate, float, RedS
 // 킬 관련
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEliminationFeed_Delegate, int32, KillID, int32, DeadID);
 
+// 석상 관련
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatue_Delegate, bool, Active);
+
+
 UCLASS()
 class GRADGAME_API UNetworkManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
@@ -59,6 +63,12 @@ public:
 	template<typename T>
 	void SendPacket(T packet) const;
 
+	// Temp
+	UFUNCTION(BlueprintCallable)
+	void SendStatueActive(int32 ObjectId);
+	UFUNCTION(BlueprintCallable)
+	void SendStatueDeActive(int32 ObjectId);
+
 public:
 	void HandleSpawn(const Protocol::ObjectInfo& ObjectInfo, bool IsMine);
 	void HandleSpawn(const Protocol::S_ENTER_GAME& EnterGamePkt);
@@ -81,6 +91,10 @@ public:
 	void HandleScore(const Protocol::S_SCORE& ScorePkt);
 	void HandleDash(const Protocol::S_DASH& DashPkt);
 	void HandleShield(const Protocol::S_SHIELD ShieldPkt);
+
+	void HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNotifyPkt);
+	void HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt);
+	void HandleStatueDeActive(const Protocol::S_STATUEDEACTIVE& StatueDeActivePkt);
 
 private:
 	void SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine);
@@ -125,6 +139,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FEliminationFeed_Delegate OnEliminationFeed;
+
+	UPROPERTY(BlueprintAssignable)
+	FActiveStatue_Delegate OnActiveStatue;
 };
 
 template <typename T> 

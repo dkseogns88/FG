@@ -53,7 +53,8 @@ public:
 
 	UGradAbilitySystemComponent* GetGradAbilitySystemComponent() const { return AbilitySystemComponent; }
 
-	uint64 GetPlayerId();
+	UFUNCTION(BlueprintCallable)
+	int64 GetPlayerId();
 
 
 public:

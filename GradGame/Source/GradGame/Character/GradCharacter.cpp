@@ -153,7 +153,7 @@ void AGradCharacter::UninitAndDestroy()
 	SetActorHiddenInGame(true);
 }
 
-uint64 AGradCharacter::GetPlayerId()
+int64 AGradCharacter::GetPlayerId()
 {
 	return (this->FindComponentByClass<UGradNetworkComponent>() ? this->FindComponentByClass<UGradNetworkComponent>()->GetObjectId() : 0);
 }

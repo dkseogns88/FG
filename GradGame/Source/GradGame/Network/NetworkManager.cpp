@@ -106,6 +106,23 @@ void UNetworkManager::SendPacket(SendBufferRef SendBuffer)
 	GameServerSession->SendPacket(SendBuffer);
 }
 
+void UNetworkManager::SendStatueActive(int32 ObjectId)
+{
+	Protocol::C_STATUEACTIVE StatueActivePkt;
+
+	StatueActivePkt.set_object_id(ObjectId);
+	SendPacket(StatueActivePkt);
+
+}
+
+void UNetworkManager::SendStatueDeActive(int32 ObjectId)
+{
+	Protocol::C_STATUEDEACTIVE StatueDeActivePkt;
+
+	StatueDeActivePkt.set_object_id(ObjectId);
+	SendPacket(StatueDeActivePkt);
+}
+
 void UNetworkManager::HandleSpawn(const Protocol::ObjectInfo& ObjectInfo, bool IsMine)
 {
 	if (Socket == nullptr || GameServerSession == nullptr)
@@ -493,6 +510,33 @@ void UNetworkManager::HandleShield(const Protocol::S_SHIELD ShieldPkt)
 
 	const FGradGameplayTags& GameplayTags = FGradGameplayTags::Get();
 	NetPawn->HandleSkill(GameplayTags.InputTag_Ability_Targeting);
+}
+
+void UNetworkManager::HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNotifyPkt)
+{
+	
+}
+
+void UNetworkManager::HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt)
+{
+	const uint64 ObjectId = StatueActivePkt.object_id();
+
+	TObjectPtr<APawn>* FindActor = Objects.Find(ObjectId);
+	if (FindActor == nullptr)
+		return;
+
+	OnActiveStatue.Broadcast(true);
+}
+
+void UNetworkManager::HandleStatueDeActive(const Protocol::S_STATUEDEACTIVE& StatueDeActivePkt)
+{
+	const uint64 ObjectId = StatueDeActivePkt.object_id();
+
+	TObjectPtr<APawn>* FindActor = Objects.Find(ObjectId);
+	if (FindActor == nullptr)
+		return;
+
+	OnActiveStatue.Broadcast(false);
 }
 
 void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine)

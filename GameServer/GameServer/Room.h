@@ -16,9 +16,11 @@ public:
 	void HandleDash(Protocol::C_DASH pkt);
 	void HandleShield(Protocol::C_SHIELD pkt);
 
+	void HandleStatueActive(Protocol::C_STATUEACTIVE pkt);
+	void HandleStatueDeActive(Protocol::C_STATUEDEACTIVE pkt);
+
 private:
-	void TestGameStart();
-	void GameStart(Protocol::S_GAMESTART pkt);
+	void GameStart();
 	void ObjectRespawn(uint64 objectId);
 
 public:
@@ -31,12 +33,15 @@ private:
 
 public:
 	void Broadcast(SendBufferRef sendBuffer, uint64 exceptId = 0);
-
+	void RedTeamBroadcast(SendBufferRef sendBuffer);
+	void BlueTeamBroadcast(SendBufferRef sendBuffer);
 private:
 	unordered_map<uint64, ObjectRef> _objects;
+	unordered_map<uint64, ObjectRef> _redTeam_objects;
+	unordered_map<uint64, ObjectRef> _blueTeam_objects;
 
 	// TeamInfo
-	int32 RedTeamCount = 1;
+	int32 RedTeamCount	= 1;
 	int32 BlueTeamCount = 1;
 
 	float RedTeamScore = 0;

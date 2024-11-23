@@ -144,10 +144,34 @@ bool Handle_C_SHIELD(PacketSessionRef& session, Protocol::C_SHIELD& pkt)
 bool Handle_C_STATUEACTIVE(PacketSessionRef& session, Protocol::C_STATUEACTIVE& pkt)
 {
 
+	auto gameSession = static_pointer_cast<GameSession>(session);
+
+	PlayerRef player = gameSession->player.load();
+	if (player == nullptr)
+		return false;
+
+	RoomRef room = player->room.load().lock();
+	if (room == nullptr)
+		return false;
+
+	room->DoAsync(&Room::HandleStatueActive, pkt);
+
 	return true;
 }
 
 bool Handle_C_STATUEDEACTIVE(PacketSessionRef& session, Protocol::C_STATUEDEACTIVE& pkt)
 {
+	auto gameSession = static_pointer_cast<GameSession>(session);
+
+	PlayerRef player = gameSession->player.load();
+	if (player == nullptr)
+		return false;
+
+	RoomRef room = player->room.load().lock();
+	if (room == nullptr)
+		return false;
+
+	room->DoAsync(&Room::HandleStatueDeActive, pkt);
+
 	return true;
 }

@@ -99,7 +99,7 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(readyPkt);
 		Broadcast(sendBuffer);
-		DoTimer(5000, &Room::TestGameStart);
+		DoTimer(5000, &Room::GameStart);
 	}
 
 	return success;
@@ -292,7 +292,59 @@ void Room::HandleShield(Protocol::C_SHIELD pkt)
 	Broadcast(sendBuffer);
 }
 
-void Room::TestGameStart()
+void Room::HandleStatueActive(Protocol::C_STATUEACTIVE pkt)
+{
+	const uint64 objectId = pkt.object_id();
+	if (_objects.find(objectId) == _objects.end())
+		return;
+
+	auto activeIter = _objects.find(objectId);
+	if (activeIter == _objects.end()) return;
+	auto activePlayer = activeIter->second;
+
+
+	Protocol::S_STATUEACTIVE statueactivePkt;
+	statueactivePkt.set_object_id(objectId);
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
+
+	if (activePlayer->GetTeamType() == ETeamType::Red)
+	{
+		RedTeamBroadcast(sendBuffer);
+	}
+	else if (activePlayer->GetTeamType() == ETeamType::Blue)
+	{
+		BlueTeamBroadcast(sendBuffer);
+	}
+
+	
+}
+
+void Room::HandleStatueDeActive(Protocol::C_STATUEDEACTIVE pkt)
+{
+	const uint64 objectId = pkt.object_id();
+	if (_objects.find(objectId) == _objects.end())
+		return;
+
+	auto deactiveIter = _objects.find(objectId);
+	if (deactiveIter == _objects.end()) return;
+	auto deactivePlayer = deactiveIter->second;
+
+	Protocol::S_STATUEDEACTIVE statueDeactivePkt;
+	statueDeactivePkt.set_object_id(objectId);
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueDeactivePkt);
+
+	if (deactivePlayer->GetTeamType() == ETeamType::Red)
+	{
+		RedTeamBroadcast(sendBuffer);
+	}
+	else if (deactivePlayer->GetTeamType() == ETeamType::Blue)
+	{
+		BlueTeamBroadcast(sendBuffer);
+	}
+}
+
+
+void Room::GameStart()
 {
 	Protocol::S_GAMESTART gameStartpkt;
 	gameStartpkt.set_start(true);
@@ -300,11 +352,6 @@ void Room::TestGameStart()
 
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(gameStartpkt);
 	Broadcast(sendBuffer);
-}
-
-void Room::GameStart(Protocol::S_GAMESTART pkt)
-{
-
 }
 
 void Room::ObjectRespawn(uint64 objectId)
@@ -379,6 +426,38 @@ void Room::Broadcast(SendBufferRef sendBuffer, uint64 exceptId)
 			break;
 
 		if (player->objectInfo->object_id() == exceptId)
+			continue;
+
+		if (GameSessionRef session = player->session.lock())
+			session->Send(sendBuffer);
+	}
+}
+
+void Room::RedTeamBroadcast(SendBufferRef sendBuffer)
+{
+	for (auto& item : _objects)
+	{
+		PlayerRef player = dynamic_pointer_cast<Player>(item.second);
+		if (player == nullptr)
+			break;
+
+		if (player->GetTeamType() != ETeamType::Red)
+			continue;
+
+		if (GameSessionRef session = player->session.lock())
+			session->Send(sendBuffer);
+	}
+}
+
+void Room::BlueTeamBroadcast(SendBufferRef sendBuffer)
+{
+	for (auto& item : _objects)
+	{
+		PlayerRef player = dynamic_pointer_cast<Player>(item.second);
+		if (player == nullptr)
+			break;
+
+		if (player->GetTeamType() != ETeamType::Blue)
 			continue;
 
 		if (GameSessionRef session = player->session.lock())

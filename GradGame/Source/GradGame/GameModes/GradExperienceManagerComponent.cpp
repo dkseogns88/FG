@@ -230,7 +230,7 @@ void UGradExperienceManagerComponent::OnGameFeaturePluginLoadComplete(const UE::
 PRAGMA_DISABLE_OPTIMIZATION
 void UGradExperienceManagerComponent::OnExperienceFullLoadCompleted()
 {
-	check(LoadState != EGradExperienceLoadState::Loaded);w
+	check(LoadState != EGradExperienceLoadState::Loaded);
 
 	// GameFeature Plugin의 로딩과 활성화 이후, GameFeature Action들을 활성화 시키자:
 	{

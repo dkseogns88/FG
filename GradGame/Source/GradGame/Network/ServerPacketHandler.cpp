@@ -204,13 +204,28 @@ bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt)
 
 bool Handle_S_STATUENOTIFY(PacketSessionRef& session, Protocol::S_STATUENOTIFY& pkt)
 {
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleStatueNotify(pkt);
+		return true;
+	}
 	return false;
 }
 bool Handle_S_STATUEACTIVE(PacketSessionRef& session, Protocol::S_STATUEACTIVE& pkt)
 {
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleStatueActive(pkt);
+		return true;
+	}
 	return false;
 }
 bool Handle_S_STATUEDEACTIVE(PacketSessionRef& session, Protocol::S_STATUEDEACTIVE& pkt)
 {
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleStatueDeActive(pkt);
+		return true;
+	}
 	return false;
 }
