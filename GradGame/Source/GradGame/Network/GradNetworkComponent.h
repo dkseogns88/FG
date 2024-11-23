@@ -12,6 +12,13 @@
 class UGradEquipmentManagerComponent;
 class UGradEquipmentInstance;
 
+UENUM(BlueprintType)
+enum class EGradTeamType : uint8
+{
+	Red,
+	Blue,
+	None,
+};
 
 UCLASS(BlueprintType, Blueprintable, Meta = (BlueprintSpawnableComponent))
 class GRADGAME_API UGradNetworkComponent : public UPawnComponent
@@ -51,6 +58,8 @@ public:
 	Protocol::StatInfo* GetStatInfo() { return StatInfo; }
 	uint64 GetObjectId() { return ObjectInfo->pos_info().object_id(); }
 	Protocol::TeamType GetTeamType() { return ObjectInfo->team_type(); }
+	UFUNCTION(BlueprintCallable)
+	EGradTeamType GetETeamType();
 
 public:
 	class Protocol::ObjectInfo* ObjectInfo;

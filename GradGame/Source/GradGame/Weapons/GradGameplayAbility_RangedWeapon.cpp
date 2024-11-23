@@ -367,7 +367,6 @@ void UGradGameplayAbility_RangedWeapon::AddAdditionalTraceIgnoreActors(FCollisio
 		// - 근데 왜 앞서 FindFirstPawnHitResult 이건 왜 한단계만 할까? ---
 		Avatar->GetAttachedActors(AttachedActors);
 
-		TraceParams.AddIgnoredActors(AttachedActors);
 	}
 }
 

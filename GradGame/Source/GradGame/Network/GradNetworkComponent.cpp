@@ -172,3 +172,11 @@ void UGradNetworkComponent::SetStatInfo(const Protocol::StatInfo& Info)
 
 	StatInfo->CopyFrom(Info);
 }
+
+EGradTeamType UGradNetworkComponent::GetETeamType()
+{
+	if (GetTeamType() == Protocol::TEAM_TYPE_RED) return EGradTeamType::Red;
+	if (GetTeamType() == Protocol::TEAM_TYPE_BLUE) return EGradTeamType::Blue;
+
+	return EGradTeamType::None;
+}
