@@ -45,6 +45,9 @@ public:
 	 */
 	void CallOrRegister_OnExperienceLoaded(FOnGradExperienceLoaded::FDelegate&& Delegate);
 
+	void CallOrRegister_OnExperienceLoaded_LowPriority(FOnGradExperienceLoaded::FDelegate&& Delegate);
+
+
 	void ServerSetCurrentExperience(FPrimaryAssetId ExperienceId);
 	void StartExperienceLoad();
 	void OnExperienceLoadComplete();
@@ -64,6 +67,8 @@ public:
 
 	/** Experience 로딩이 완료된 이후, Broadcasting Delegate */
 	FOnGradExperienceLoaded OnExperienceLoaded;
+
+	FOnGradExperienceLoaded OnExperienceLoaded_LowPriority;
 
 	/** 활성화된 GameFeature Plugin들 */
 	int32 NumGameFeaturePluginsLoading = 0;

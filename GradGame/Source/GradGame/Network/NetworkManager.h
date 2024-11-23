@@ -11,7 +11,7 @@
 
 class AGradCharacter;
 class AGradNetCharacter;
-
+class UGradExperienceDefinition;
 
 // TODO: 추후에는 UGameInstanceSubsystem를 사용하지 않고 GameStateComponent에 추가하는 방식으로 작성하자
 
@@ -41,9 +41,12 @@ public:
 	virtual TStatId GetStatId() const override { return UObject::GetStatID(); };
 	virtual bool IsTickable() const override { return IsConnected; }
 
+
 public:
 	UFUNCTION(BlueprintCallable)
 	bool ConnectToGameServer();
+
+	void SendLoginPacket(const UGradExperienceDefinition* CurrentExperience);
 
 	UFUNCTION(BlueprintCallable)
 	void DisconnectFromGameServer();
