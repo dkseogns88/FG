@@ -214,7 +214,7 @@ void UNetworkManager::HandleRespawn(const Protocol::S_RESPAWN& RespawnPkt)
 
 		UClass* NetClass = ExperienceManagerComponent->CurrentExperience->DefaultPawnData->NetPawnClass;
 		TObjectPtr<AGradNetCharacter> Player = Cast<AGradNetCharacter>(World->SpawnActor(NetClass, &SpawnLocation));
-
+		if (Player == nullptr) return;
 		if (const UGradPawnData* PawnData = ExperienceManagerComponent->CurrentExperience->DefaultPawnData)
 		{
 			for (UGradAbilitySet* AbilitySet : PawnData->AbilitySets)
@@ -635,6 +635,7 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 		UClass* NetClass = ExperienceManagerComponent->CurrentExperience->DefaultPawnData->NetPawnClass;
 		TObjectPtr<AGradNetCharacter> Player = Cast<AGradNetCharacter>(World->SpawnActor(NetClass, &SpawnLocation));
 
+		if (Player == nullptr)return;
 		if (const UGradPawnData* PawnData = ExperienceManagerComponent->CurrentExperience->DefaultPawnData)
 		{
 			for (UGradAbilitySet* AbilitySet : PawnData->AbilitySets)

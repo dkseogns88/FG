@@ -2,11 +2,11 @@
 	"RemapUnityFiles": 
 	{
 		"Module.CommonUser.cpp.obj": [
+			"CommonSessionSubsystem.gen.cpp.obj",
+			"CommonUser.init.gen.cpp.obj",
 			"CommonSessionSubsystem.cpp.obj",
 			"CommonUser.cpp.obj",
-			"CommonUserSubsystem.cpp.obj",
-			"CommonSessionSubsystem.gen.cpp.obj",
-			"CommonUser.init.gen.cpp.obj"
+			"CommonUserSubsystem.cpp.obj"
 		]
 	}
 }

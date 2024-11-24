@@ -30,9 +30,14 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	if (RedTeamCount <= 0 && BlueTeamCount <= 0) return false;
 
 	// ÁÂÇ¥ ¼³Á¤
-	player->posInfo->set_x(Utils::GetRandom(0.f, 2000.f));
-	player->posInfo->set_y(Utils::GetRandom(0.f, 2000.f));
-	player->posInfo->set_z(88.f);
+	//player->posInfo->set_x(Utils::GetRandom(0.f, 2000.f));
+	//player->posInfo->set_y(Utils::GetRandom(0.f, 2000.f));
+	//player->posInfo->set_z(88.f);
+
+	player->posInfo->set_x(10770.f);
+	player->posInfo->set_y(11220.f);
+	player->posInfo->set_z(250.f);
+
 	player->posInfo->set_yaw(Utils::GetRandom(0.f, 500.f));
 	player->posInfo->set_move_state(Protocol::MoveState::MOVE_STATE_IDLE);
 
@@ -47,21 +52,12 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	{
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_RED);
 	
-		// TEMP
-		player->posInfo->set_x(1720.f);
-		player->posInfo->set_y(11200.f);
-		player->posInfo->set_z(30.f);
-
 		--RedTeamCount;
 	}
 	else if (BlueTeamCount > 0)
 	{
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_BLUE);
-		
-		// TEMP
-		player->posInfo->set_x(1800.f);
-		player->posInfo->set_y(-45.f);
-		player->posInfo->set_z(30.f);
+
 		--BlueTeamCount;
 	}
 

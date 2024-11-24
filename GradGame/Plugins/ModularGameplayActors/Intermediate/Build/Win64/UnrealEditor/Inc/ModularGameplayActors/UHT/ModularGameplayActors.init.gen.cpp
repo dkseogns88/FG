@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeModularGameplayActors_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xCA0B5033,
+				0x66AE3EB1,
 				0xAA62115C,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodeModularGameplayActors_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_ModularGameplayActors.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ModularGameplayActors(Z_Construct_UPackage__Script_ModularGameplayActors, TEXT("/Script/ModularGameplayActors"), Z_Registration_Info_UPackage__Script_ModularGameplayActors, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xCA0B5033, 0xAA62115C));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ModularGameplayActors(Z_Construct_UPackage__Script_ModularGameplayActors, TEXT("/Script/ModularGameplayActors"), Z_Registration_Info_UPackage__Script_ModularGameplayActors, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x66AE3EB1, 0xAA62115C));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
