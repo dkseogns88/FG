@@ -13,6 +13,13 @@ class AGradCharacter;
 class AGradNetCharacter;
 class UGradExperienceDefinition;
 
+UENUM(BlueprintType)
+enum class EGradStatueType : uint8
+{
+	Angel,
+	None,
+};
+
 // TODO: 추후에는 UGameInstanceSubsystem를 사용하지 않고 GameStateComponent에 추가하는 방식으로 작성하자
 
 
@@ -33,7 +40,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEliminationFeed_Delegate, int32, K
 
 // 석상 관련
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatue_Delegate, bool, Active);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatueNotify_Delegate, bool, Active);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActiveStatueNotify_Delegate, bool, Active, EGradStatueType, StatueType);
 
 
 UCLASS()

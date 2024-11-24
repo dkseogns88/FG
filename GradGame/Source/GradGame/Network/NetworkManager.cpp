@@ -515,7 +515,19 @@ void UNetworkManager::HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNo
 	// 활성화 된 석상화
 	const Protocol::StatueType StatueType = StatueNotifyPkt.statue_type();
 
-	OnActiveStatueNotify.Broadcast(true);
+	EGradStatueType ActiveStatue = EGradStatueType::None;
+
+	switch (StatueType)
+	{
+	case Protocol::STATUE_TYPE_ANGEL:
+		ActiveStatue = EGradStatueType::Angel;
+		break;
+	case Protocol::STATUE_TYPE_NONE:
+		ActiveStatue = EGradStatueType::None;
+		break;
+	}
+
+	OnActiveStatueNotify.Broadcast(true, ActiveStatue);
 }
 
 void UNetworkManager::HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt)
