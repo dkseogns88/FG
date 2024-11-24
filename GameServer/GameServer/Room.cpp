@@ -30,8 +30,8 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	if (RedTeamCount <= 0 && BlueTeamCount <= 0) return false;
 
 	// 좌표 설정
-	player->posInfo->set_x(Utils::GetRandom(0.f, 500.f));
-	player->posInfo->set_y(Utils::GetRandom(0.f, 500.f));
+	player->posInfo->set_x(Utils::GetRandom(0.f, 2000.f));
+	player->posInfo->set_y(Utils::GetRandom(0.f, 2000.f));
 	player->posInfo->set_z(88.f);
 	player->posInfo->set_yaw(Utils::GetRandom(0.f, 500.f));
 	player->posInfo->set_move_state(Protocol::MoveState::MOVE_STATE_IDLE);
@@ -46,11 +46,22 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	if (RedTeamCount > 0)
 	{
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_RED);
+	
+		// TEMP
+		player->posInfo->set_x(1720.f);
+		player->posInfo->set_y(11200.f);
+		player->posInfo->set_z(30.f);
+
 		--RedTeamCount;
 	}
 	else if (BlueTeamCount > 0)
 	{
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_BLUE);
+		
+		// TEMP
+		player->posInfo->set_x(1800.f);
+		player->posInfo->set_y(-45.f);
+		player->posInfo->set_z(30.f);
 		--BlueTeamCount;
 	}
 
@@ -318,20 +329,30 @@ void Room::HandleStatueActive(Protocol::C_STATUEACTIVE pkt)
 	auto activePlayer = activeIter->second;
 
 
-	Protocol::S_STATUEACTIVE statueactivePkt;
-	statueactivePkt.set_object_id(objectId);
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
-
 	if (activePlayer->GetTeamType() == Protocol::TEAM_TYPE_RED)
 	{
-		RedTeamBroadcast(sendBuffer);
+		// 이미 활성화 중
+		if (RedTeamStatueActive) return;
+
+		// 레드 팀 활성화!
+		RedTeamStatueActive = true;
+		DoTimer(1000, &Room::RedTeamStatueGaugeUp, objectId);
+
+		// 이미 블루팀 활성화
+		// -> 레드 팀과 블루 팀 둘 다 활성화 상태
+		// --> 둘 다 업로드 진행 불가
+		
 	}
 	else if (activePlayer->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 	{
-		BlueTeamBroadcast(sendBuffer);
-	}
+		// 이미 활성화 중
+		if (BlueTeamStatueActive) return;
 
-	
+		// 레드 팀 활성화!
+		BlueTeamStatueActive = true;
+		DoTimer(1000, &Room::BlueTeamStatueGaugeUp, objectId);
+
+	}
 }
 
 void Room::HandleStatueDeActive(Protocol::C_STATUEDEACTIVE pkt)
@@ -344,17 +365,13 @@ void Room::HandleStatueDeActive(Protocol::C_STATUEDEACTIVE pkt)
 	if (deactiveIter == _objects.end()) return;
 	auto deactivePlayer = deactiveIter->second;
 
-	Protocol::S_STATUEDEACTIVE statueDeactivePkt;
-	statueDeactivePkt.set_object_id(objectId);
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueDeactivePkt);
-
 	if (deactivePlayer->GetTeamType() == Protocol::TEAM_TYPE_RED)
 	{
-		RedTeamBroadcast(sendBuffer);
+		RedTeamStatueActive = false;
 	}
 	else if (deactivePlayer->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
 	{
-		BlueTeamBroadcast(sendBuffer);
+		BlueTeamStatueActive = false;
 	}
 }
 
@@ -408,9 +425,181 @@ void Room::RandomStatueActive()
 
 	// 랜덤으로 해야 함.
 	statueNotifyPkt.set_statue_type(_statues[0]->GetStatueType());
+	statueNotifyPkt.set_active(true);
 
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueNotifyPkt);
 	Broadcast(sendBuffer);
+}
+
+void Room::RedTeamStatueGaugeUp(uint64 objectId)
+{
+	if (RedTeamStatueActive == false) return;
+	if (BlueTeamStatueActive) return;
+
+	RedTeamGauge += 0.1f;
+
+	{
+		Protocol::S_STATUEACTIVE statueactivePkt;
+		statueactivePkt.set_object_id(objectId);
+		statueactivePkt.set_statue_gauge(RedTeamGauge);
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
+		RedTeamBroadcast(sendBuffer);
+	}
+
+	if (RedTeamGauge >= 1.f)
+	{
+		// 버프 부여, 현재 활성화 된 석상에 따라 적용시키기
+		cout << "레드 팀 버프 부여!" << endl << endl;
+
+		if (_objects.find(objectId) == _objects.end())
+			return;
+
+		auto activeIter = _objects.find(objectId);
+		if (activeIter == _objects.end()) return;
+		PlayerRef activePlayer = dynamic_pointer_cast<Player>(activeIter->second);
+
+		// 버프 설정
+		activePlayer->SetBeforeDamage(activePlayer->statInfo->damage());
+		activePlayer->statInfo->set_damage(20);
+
+		Protocol::S_BUFF buffPkt;
+		buffPkt.set_buff_type(Protocol::BuffType::BUFF_TYPE_DAMAGE);
+		Protocol::StatInfo* info = buffPkt.mutable_info();
+		info->CopyFrom(*(activePlayer->statInfo));
+
+		// 버프 전송
+		{
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(buffPkt);
+			if (auto session = activePlayer->session.lock())
+				session->Send(sendBuffer);
+		}
+		// 특정 시간 뒤에 버프 리셋
+		DoTimer(10000, &Room::ResetPlayerBuff, objectId);
+
+
+		// 모든 클라에게 석상 비활성화
+		{
+			Protocol::S_STATUENOTIFY statueNotifyPkt;
+			statueNotifyPkt.set_statue_type(Protocol::STATUE_TYPE_NONE);
+			statueNotifyPkt.set_active(false);
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueNotifyPkt);
+			Broadcast(sendBuffer);
+		}
+		// 모든 클라에게 게이지 0으로 설정
+		ResetGaugeAndSendGauge(objectId);
+		return;
+	}
+
+	if(RedTeamStatueActive)
+		DoTimer(1000, &Room::RedTeamStatueGaugeUp, objectId);
+
+	cout << "레드 팀 게이지 - " << RedTeamGauge << endl;
+}
+
+void Room::BlueTeamStatueGaugeUp(uint64 objectId)
+{
+	if (BlueTeamStatueActive == false) return;
+	if (RedTeamStatueActive) return;
+
+	BlueTeamGauge += 0.1f;
+
+
+	{
+		Protocol::S_STATUEACTIVE statueactivePkt;
+		statueactivePkt.set_object_id(objectId);
+		statueactivePkt.set_statue_gauge(BlueTeamGauge);
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
+		BlueTeamBroadcast(sendBuffer);
+	}
+	if (BlueTeamGauge >= 1.f)
+	{
+		// 버프 부여
+
+		cout << "블루팀 버프 부여!" << endl << endl;
+		if (_objects.find(objectId) == _objects.end())
+			return;
+
+		auto activeIter = _objects.find(objectId);
+		if (activeIter == _objects.end()) return;
+		PlayerRef activePlayer = dynamic_pointer_cast<Player>(activeIter->second);
+
+		// 버프 설정
+		activePlayer->SetBeforeDamage(activePlayer->statInfo->damage());
+		activePlayer->statInfo->set_damage(20);
+
+		Protocol::S_BUFF buffPkt;
+		buffPkt.set_buff_type(Protocol::BuffType::BUFF_TYPE_DAMAGE);
+		Protocol::StatInfo* info = buffPkt.mutable_info();
+		info->CopyFrom(*(activePlayer->statInfo));
+
+		// 버프 전송
+		{
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(buffPkt);
+			if (auto session = activePlayer->session.lock())
+				session->Send(sendBuffer);
+		}
+		// 특정 시간 뒤에 버프 리셋
+		DoTimer(10000, &Room::ResetPlayerBuff, objectId);
+
+		// 모든 클라에게 석상 비활성화
+		{
+			Protocol::S_STATUENOTIFY statueNotifyPkt;
+			statueNotifyPkt.set_statue_type(Protocol::STATUE_TYPE_NONE);
+			statueNotifyPkt.set_active(false);
+			SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueNotifyPkt);
+			Broadcast(sendBuffer);
+		}
+
+		// 모든 클라에게 게이지 0으로 설정
+		ResetGaugeAndSendGauge(objectId);
+		return;
+	}
+
+	if (BlueTeamStatueActive)
+		DoTimer(1000, &Room::BlueTeamStatueGaugeUp, objectId);
+
+	cout << "블루 팀 게이지 - " << BlueTeamGauge << endl;
+}
+
+void Room::ResetGaugeAndSendGauge(uint64 objectId)
+{
+	RedTeamGauge = 0.f;
+	BlueTeamGauge = 0.f;
+
+	RedTeamStatueActive = false;
+	BlueTeamStatueActive = false;
+
+	Protocol::S_STATUEACTIVE statueactivePkt;
+	statueactivePkt.set_object_id(objectId);
+
+	{
+		statueactivePkt.set_statue_gauge(RedTeamGauge);
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
+		RedTeamBroadcast(sendBuffer);
+	}
+	{
+		statueactivePkt.set_statue_gauge(BlueTeamGauge);
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(statueactivePkt);
+		BlueTeamBroadcast(sendBuffer);
+	}
+
+	// 특정 시간 뒤에 다시 석상 활성화 보내기
+	DoTimer(5000, &Room::RandomStatueActive);
+}
+
+void Room::ResetPlayerBuff(uint64 objectId)
+{
+	if (_objects.find(objectId) == _objects.end())
+		return;
+
+	auto activeIter = _objects.find(objectId);
+	if (activeIter == _objects.end()) return;
+	PlayerRef activePlayer = dynamic_pointer_cast<Player>(activeIter->second);
+
+	activePlayer->statInfo->set_damage(activePlayer->GetBeforeDamage());
+	activePlayer->SetBeforeDamage(activePlayer->statInfo->damage());
+
+	cout << "버프 리셋!" << endl;
 }
 
 RoomRef Room::GetRoomRef()
@@ -467,7 +656,7 @@ void Room::RedTeamBroadcast(SendBufferRef sendBuffer)
 		if (player == nullptr)
 			break;
 
-		if (player->GetTeamType() == Protocol::TEAM_TYPE_RED)
+		if (player->GetTeamType() != Protocol::TEAM_TYPE_RED)
 			continue;
 
 		if (GameSessionRef session = player->session.lock())
@@ -483,7 +672,7 @@ void Room::BlueTeamBroadcast(SendBufferRef sendBuffer)
 		if (player == nullptr)
 			break;
 
-		if (player->GetTeamType() == Protocol::TEAM_TYPE_BLUE)
+		if (player->GetTeamType() != Protocol::TEAM_TYPE_BLUE)
 			continue;
 
 		if (GameSessionRef session = player->session.lock())

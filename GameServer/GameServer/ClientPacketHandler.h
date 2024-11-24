@@ -39,6 +39,7 @@ enum : uint16
 	PKT_S_STATUEACTIVE = 1026,
 	PKT_C_STATUEDEACTIVE = 1027,
 	PKT_S_STATUEDEACTIVE = 1028,
+	PKT_S_BUFF = 1029,
 };
 
 // Custom Handlers
@@ -97,6 +98,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::S_STATUENOTIFY& pkt) { return MakeSendBuffer(pkt, PKT_S_STATUENOTIFY); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_STATUEACTIVE& pkt) { return MakeSendBuffer(pkt, PKT_S_STATUEACTIVE); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_STATUEDEACTIVE& pkt) { return MakeSendBuffer(pkt, PKT_S_STATUEDEACTIVE); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_BUFF& pkt) { return MakeSendBuffer(pkt, PKT_S_BUFF); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>

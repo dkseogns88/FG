@@ -39,6 +39,7 @@ enum : uint16
 	PKT_S_STATUEACTIVE = 1026,
 	PKT_C_STATUEDEACTIVE = 1027,
 	PKT_S_STATUEDEACTIVE = 1028,
+	PKT_S_BUFF = 1029,
 };
 
 // Custom Handlers
@@ -62,6 +63,7 @@ bool Handle_S_SHIELD(PacketSessionRef& session, Protocol::S_SHIELD& pkt);
 bool Handle_S_STATUENOTIFY(PacketSessionRef& session, Protocol::S_STATUENOTIFY& pkt);
 bool Handle_S_STATUEACTIVE(PacketSessionRef& session, Protocol::S_STATUEACTIVE& pkt);
 bool Handle_S_STATUEDEACTIVE(PacketSessionRef& session, Protocol::S_STATUEDEACTIVE& pkt);
+bool Handle_S_BUFF(PacketSessionRef& session, Protocol::S_BUFF& pkt);
 
 class ServerPacketHandler
 {
@@ -89,6 +91,7 @@ public:
 		GPacketHandler[PKT_S_STATUENOTIFY] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STATUENOTIFY>(Handle_S_STATUENOTIFY, session, buffer, len); };
 		GPacketHandler[PKT_S_STATUEACTIVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STATUEACTIVE>(Handle_S_STATUEACTIVE, session, buffer, len); };
 		GPacketHandler[PKT_S_STATUEDEACTIVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_STATUEDEACTIVE>(Handle_S_STATUEDEACTIVE, session, buffer, len); };
+		GPacketHandler[PKT_S_BUFF] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::S_BUFF>(Handle_S_BUFF, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)

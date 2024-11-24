@@ -9,8 +9,10 @@ public:
 	virtual ~Object();
 
 	void SetDead(bool isDead) { _isDead = isDead; }
+	void SetBeforeDamage(float before_damage) { _before_damage = before_damage; }
 
 	Protocol::TeamType GetTeamType() { return objectInfo->team_type(); }
+	float GetBeforeDamage() { return _before_damage; }
 
 	bool IsPlayer() { return _isPlayer; }
 	bool IsDead() { return _isDead; }
@@ -25,6 +27,8 @@ public:
 protected:
 	bool _isPlayer = false;
 	bool _isDead = false;
+	
+	float _before_damage = 0.f;
 
 };
 

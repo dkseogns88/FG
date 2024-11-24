@@ -229,3 +229,13 @@ bool Handle_S_STATUEDEACTIVE(PacketSessionRef& session, Protocol::S_STATUEDEACTI
 	}
 	return false;
 }
+
+bool Handle_S_BUFF(PacketSessionRef& session, Protocol::S_BUFF& pkt)
+{
+	if (UNetworkManager* GameNetwork = GetWorldNetwork(session))
+	{
+		GameNetwork->HandleBuff(pkt);
+		return true;
+	}
+	return false;
+}

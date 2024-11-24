@@ -53,3 +53,11 @@ enum StatueType
 	STATUE_TYPE_NONE	= 0;
 	STATUE_TYPE_ANGEL	= 1;
 }
+
+// TEMP
+enum BuffType
+{
+	BUFF_TYPE_NONE		= 0;
+	BUFF_TYPE_SPEED		= 1;
+	BUFF_TYPE_DAMAGE	= 2;
+}

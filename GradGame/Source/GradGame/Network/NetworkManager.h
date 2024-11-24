@@ -39,7 +39,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FScore_ChangedDelegate, float, RedS
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEliminationFeed_Delegate, int32, KillID, int32, DeadID);
 
 // 석상 관련
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActiveStatue_Delegate, bool, Active);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActiveStatue_Delegate, bool, Active, float, Gauge);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActiveStatueNotify_Delegate, bool, Active, EGradStatueType, StatueType);
 
 
@@ -58,6 +58,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool ConnectToGameServer();
 
+	UFUNCTION(BlueprintCallable)
 	void SendLoginPacket(const UGradExperienceDefinition* CurrentExperience);
 
 	UFUNCTION(BlueprintCallable)
@@ -104,6 +105,8 @@ public:
 	void HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt);
 	void HandleStatueDeActive(const Protocol::S_STATUEDEACTIVE& StatueDeActivePkt);
 
+	void HandleBuff(const Protocol::S_BUFF BuffPkt);
+
 private:
 	void SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine);
 
@@ -117,7 +120,10 @@ public:
 
 	TSharedPtr<class PacketSession> GameServerSession;
 
+	UPROPERTY(BlueprintReadWrite, Category = "Network")
 	bool IsConnected = false;
+	UPROPERTY(BlueprintReadWrite, Category = "Network")
+	bool IsLogin = false;
 
 public:
 	UPROPERTY()
@@ -128,6 +134,11 @@ public:
 	UPROPERTY()
 	TMap<uint64, TObjectPtr<APawn>> Objects;
 	TArray<int32> PlayerIDs;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Network|Team")
+	float RedTeamGauge = 0.f;
+	UPROPERTY(BlueprintReadWrite, Category = "Network|Team")
+	float BlueTeamGauge = 0.f;
 
 public:
 	UPROPERTY(BlueprintAssignable)

@@ -56,9 +56,9 @@ bool UNetworkManager::ConnectToGameServer()
 		GameServerSession = MakeShared<PacketSession>(Socket);
 		GameServerSession->Run();
 
-		Protocol::C_LOGIN Pkt;
+		/*Protocol::C_LOGIN Pkt;
 		SendBufferRef SendBuffer = ServerPacketHandler::MakeSendBuffer(Pkt);
-		SendPacket(SendBuffer);
+		SendPacket(SendBuffer);*/
 	}
 
 	return IsConnected;
@@ -66,12 +66,13 @@ bool UNetworkManager::ConnectToGameServer()
 
 void UNetworkManager::SendLoginPacket(const UGradExperienceDefinition* CurrentExperience)
 {	
-	/*if (IsConnected)
+	if (IsConnected)
 	{
 		Protocol::C_LOGIN Pkt;
 		SendBufferRef SendBuffer = ServerPacketHandler::MakeSendBuffer(Pkt);
 		SendPacket(SendBuffer);
-	}*/
+		IsLogin = true;
+	}
 }
 
 void UNetworkManager::DisconnectFromGameServer()
@@ -112,7 +113,6 @@ void UNetworkManager::SendStatueActive(int32 ObjectId)
 
 	StatueActivePkt.set_object_id(ObjectId);
 	SendPacket(StatueActivePkt);
-
 }
 
 void UNetworkManager::SendStatueDeActive(int32 ObjectId)
@@ -514,6 +514,7 @@ void UNetworkManager::HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNo
 {
 	// 활성화 된 석상화
 	const Protocol::StatueType StatueType = StatueNotifyPkt.statue_type();
+	bool IsAcive = StatueNotifyPkt.active();
 
 	EGradStatueType ActiveStatue = EGradStatueType::None;
 
@@ -527,7 +528,7 @@ void UNetworkManager::HandleStatueNotify(const Protocol::S_STATUENOTIFY StatueNo
 		break;
 	}
 
-	OnActiveStatueNotify.Broadcast(true, ActiveStatue);
+	OnActiveStatueNotify.Broadcast(IsAcive, ActiveStatue);
 }
 
 void UNetworkManager::HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueActivePkt)
@@ -538,7 +539,9 @@ void UNetworkManager::HandleStatueActive(const Protocol::S_STATUEACTIVE& StatueA
 	if (FindActor == nullptr)
 		return;
 
-	OnActiveStatue.Broadcast(true);
+	float Gauge = StatueActivePkt.statue_gauge();
+
+	OnActiveStatue.Broadcast(true, Gauge);
 }
 
 void UNetworkManager::HandleStatueDeActive(const Protocol::S_STATUEDEACTIVE& StatueDeActivePkt)
@@ -549,7 +552,42 @@ void UNetworkManager::HandleStatueDeActive(const Protocol::S_STATUEDEACTIVE& Sta
 	if (FindActor == nullptr)
 		return;
 
-	OnActiveStatue.Broadcast(false);
+	float Gauge = StatueDeActivePkt.statue_gauge();
+	OnActiveStatue.Broadcast(false, Gauge);
+}
+
+void UNetworkManager::HandleBuff(const Protocol::S_BUFF BuffPkt)
+{
+	const Protocol::BuffType BuffyType = BuffPkt.buff_type();
+	switch (BuffyType)
+	{
+	case Protocol::BUFF_TYPE_DAMAGE:
+		break;
+	case Protocol::BUFF_TYPE_SPEED:
+		break;
+	case Protocol::BUFF_TYPE_NONE:
+		break;
+	}
+
+	const uint64 ObjectId = BuffPkt.info().object_id();
+	if (Socket == nullptr || GameServerSession == nullptr)
+		return;
+
+	auto* World = GetWorld();
+	if (World == nullptr)
+		return;
+
+	TObjectPtr<APawn>* FindActor = Objects.Find(ObjectId);
+	if (FindActor == nullptr)
+		return;
+
+	if (MyPlayer != (*FindActor)) return;
+
+	const Protocol::StatInfo& Info = BuffPkt.info();
+	if (UGradNetworkComponent* PawnNetComp = (*FindActor)->FindComponentByClass<UGradNetworkComponent>())
+	{
+		PawnNetComp->SetStatInfo(Info);
+	}
 }
 
 void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool IsMine)
@@ -603,7 +641,10 @@ void UNetworkManager::SpawnPlayer(const Protocol::ObjectInfo& ObjectInfo, bool I
 			{
 				if (AbilitySet)
 				{
-					AbilitySet->GiveToAbilitySystem(Player->GetGradAbilitySystemComponent(), nullptr);
+					if (Player->GetGradAbilitySystemComponent())
+					{
+						AbilitySet->GiveToAbilitySystem(Player->GetGradAbilitySystemComponent(), nullptr);
+					}
 				}
 			}
 		}

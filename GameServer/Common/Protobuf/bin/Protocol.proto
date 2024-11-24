@@ -157,29 +157,36 @@ message S_SHIELD
 /*
 // Play Mode
 */
-
 message S_STATUENOTIFY
 {
 	StatueType statue_type = 1;
+	bool active = 2;
 }
 
 message C_STATUEACTIVE
 {
 	uint64  object_id = 1;
 }
+
 message S_STATUEACTIVE
 {
-	uint64  object_id = 1;
-
+	uint64  object_id		= 1;
+	float	statue_gauge	= 2;
 }
+
 message C_STATUEDEACTIVE
 {
 	uint64	object_id		= 1;
-	float	statue_gauge	= 2;
-
 }
+
 message S_STATUEDEACTIVE
 {
 	uint64  object_id		= 1;
 	float	statue_gauge	= 2;
+}
+
+message S_BUFF
+{
+	BuffType buff_type	= 1;
+	StatInfo info		= 2;
 }

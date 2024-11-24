@@ -24,6 +24,13 @@ private:
 	void ObjectRespawn(uint64 objectId);
 
 	void RandomStatueActive();
+	void RedTeamStatueGaugeUp(uint64 objectId);
+	void BlueTeamStatueGaugeUp(uint64 objectId);
+
+	void ResetGaugeAndSendGauge(uint64 objectId);
+
+
+	void ResetPlayerBuff(uint64 objectId);
 
 public:
 	RoomRef GetRoomRef();
@@ -43,9 +50,6 @@ private:
 	unordered_map<uint64, ObjectRef> _redTeam_objects;
 	unordered_map<uint64, ObjectRef> _blueTeam_objects;
 
-	// Statue
-	Array<StatueRef, 4> _statues;
-
 	// TeamInfo
 	int32 RedTeamCount	= 1;
 	int32 BlueTeamCount = 1;
@@ -53,10 +57,14 @@ private:
 	float RedTeamScore = 0;
 	float BlueTeamScore = 0;
 
+	// Statue
+	Array<StatueRef, 4> _statues;
+
 	float RedTeamGauge = 0.f;
 	float BlueTeamGauge = 0.f;
 
-
+	bool RedTeamStatueActive = false;
+	bool BlueTeamStatueActive = false;
 };
 
 extern RoomRef GRoom;
