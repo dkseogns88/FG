@@ -29,14 +29,14 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 	// 인원 찼음! 입장 불가!
 	if (RedTeamCount <= 0 && BlueTeamCount <= 0) return false;
 
-	// 좌표 설정
+	// 좌표 설정 첫 플레이어 생성좌표
 	//player->posInfo->set_x(Utils::GetRandom(0.f, 2000.f));
 	//player->posInfo->set_y(Utils::GetRandom(0.f, 2000.f));
 	//player->posInfo->set_z(88.f);
 
-	player->posInfo->set_x(10770.f);
-	player->posInfo->set_y(11220.f);
-	player->posInfo->set_z(250.f);
+	//player->posInfo->set_x(-3610.f);
+	//player->posInfo->set_y(300.f);
+	//player->posInfo->set_z(0.f);
 
 	player->posInfo->set_yaw(Utils::GetRandom(0.f, 500.f));
 	player->posInfo->set_move_state(Protocol::MoveState::MOVE_STATE_IDLE);
@@ -53,12 +53,21 @@ bool Room::HandleEnterPlayer(PlayerRef player)
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_RED);
 	
 		--RedTeamCount;
+
+		player->posInfo->set_x(-3520.f);  // 레드 팀 X 좌표
+		player->posInfo->set_y(300.f);  // 레드 팀 Y 좌표
+		player->posInfo->set_z(100.f);    // 레드 팀 Z 좌표
+
 	}
 	else if (BlueTeamCount > 0)
 	{
 		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_BLUE);
 
 		--BlueTeamCount;
+		// 블루 팀 스폰 위치 설정
+		player->posInfo->set_x(3620.f); // 블루 팀 X 좌표
+		player->posInfo->set_y(350.f); // 블루 팀 Y 좌표
+		player->posInfo->set_z(100.f);    // 블루 팀 Z 좌표
 	}
 
 	// 입장 사실을 들어온 플레이어에게 알린다.
@@ -389,12 +398,34 @@ void Room::ObjectRespawn(uint64 objectId)
 
 	PlayerRef player = dynamic_pointer_cast<Player>(_objects[objectId]);
 
-	// 좌표 설정(레드팀, 블루팀)
-	player->posInfo->set_x(Utils::GetRandom(0.f, 500.f));
-	player->posInfo->set_y(Utils::GetRandom(0.f, 500.f));
-	player->posInfo->set_z(88.f);
+	// 좌표 설정(레드팀, 블루팀) 리스폰
+	//player->posInfo->set_x(Utils::GetRandom(0.f, 500.f));
+	//player->posInfo->set_y(Utils::GetRandom(0.f, 500.f));
+	//player->posInfo->set_z(88.f);
 	player->posInfo->set_yaw(Utils::GetRandom(0.f, 500.f));
 	player->posInfo->set_move_state(Protocol::MoveState::MOVE_STATE_IDLE);
+
+	if (RedTeamCount > 0)
+	{
+		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_RED);
+
+		--RedTeamCount;
+
+		player->posInfo->set_x(-3520.f);  // 레드 팀 X 좌표
+		player->posInfo->set_y(300.f);  // 레드 팀 Y 좌표
+		player->posInfo->set_z(100.f);    // 레드 팀 Z 좌표
+
+	}
+	else if (BlueTeamCount > 0)
+	{
+		player->objectInfo->set_team_type(Protocol::TeamType::TEAM_TYPE_BLUE);
+
+		--BlueTeamCount;
+		// 블루 팀 스폰 위치 설정
+		player->posInfo->set_x(3620.f); // 블루 팀 X 좌표
+		player->posInfo->set_y(350.f); // 블루 팀 Y 좌표
+		player->posInfo->set_z(100.f);    // 블루 팀 Z 좌표
+	}
 
 	// 스탯 설정
 	player->statInfo->set_hp(100);
